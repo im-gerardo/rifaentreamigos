@@ -72,6 +72,14 @@ Ollama responde y tiene `gemma4:26b` instalado. Configuración local define `hyb
 
 ## Bloqueos y continuación
 
+### Iteración F0-V01 — dependencias vulnerables
+
+- Responsable: GPT-6.1 Sol; archivos `package.json`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`, `docs/F0_AUDIT.md` y este informe.
+- Auditoría inicial `pnpm audit --json`: exit 1, 2 críticos/3 altos/6 moderados. Afectaba Vitest/mocker/tinypool (dev), PostCSS (Next), Zod y minimatch (lint).
+- Cambios: Vitest 4.1.12, Zod 4.6.7; overrides acotados `next>postcss=8.5.23` y `@typescript-eslint/typescript-estree>minimatch=11.0.1`. No se forzó tinypool incompatible: se actualizó el runner completo. No se desactivaron avisos de auditoría.
+- Validación: lint, typecheck, 28 unitarias, build aislado y 10 E2E pasan tras actualizaciones; `pnpm audit --json` exit 0, 0 avisos en todas las severidades. Esto cubre avisos conocidos del lockfile canónico, no garantiza ausencia de vulnerabilidades.
+- Estado: completado en alcance local. Commit previsto `fix: patch audited dependency vulnerabilities`. `package-lock.json` histórico no se usa y queda pendiente de reconciliar; no ejecutar npm install/ci con él. Siguiente: cierre F0-D01.
+
 ### Iteración F0-Q02 — E2E determinista y transporte
 
 - Responsable: GPT-6.1 Sol (QA y revisión); archivos `playwright.config.ts`, `tests/public.spec.ts`, `tests/operational-block.spec.ts`, este estado y registro metodológico `skill-observations/log.md`.
