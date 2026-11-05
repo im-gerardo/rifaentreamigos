@@ -1,0 +1,24 @@
+node_modules/
+.next/
+.env*
+!.env.example
+playwright-report/
+test-results/
+artifacts/issuance/
+
+# Entornos locales, cachés y secretos generados por Supabase/OpenCode.
+.opencode/
+supabase/.temp/
+supabase/.branches/
+*.tsbuildinfo
+coverage/
+out/
+dist/
+.DS_Store
+*.log
+*.bak
+*.pem
+*.key
+*.p12
+*.pfx
+supabase/signing_keys.json

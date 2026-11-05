@@ -1,0 +1,41 @@
+# Skill Observation Log
+
+Observations captured during task-oriented work.
+
+**Status key:** OPEN = not yet actioned | ACTIONED (YYYY-MM-DD) = skill updated/created | DECLINED (YYYY-MM-DD) = user decided not to pursue.
+
+---
+
+## 2026-10-28
+
+### Observation 1: Verificar la instalación funcional, no solo el lockfile
+
+**Status:** OPEN
+**Date:** 2026-10-28
+**Session context:** Estabilización de un proyecto Next.js después de migrar de npm a pnpm.
+**Skill:** New skill candidate: baseline de dependencias JavaScript
+**Type:** open-source
+**Phase/Area:** Validación del entorno
+
+**Issue:** Un lockfile puede pasar la verificación de políticas aunque `node_modules` esté incompleto o en transición desde otro gestor; las pruebas y el build siguen sin poder ejecutarse.
+
+**Suggested improvement:** Tras instalar o migrar de gestor de paquetes, ejecutar de inmediato una comprobación funcional mínima, por ejemplo el binario del framework, typecheck y una prueba unitaria, antes de declarar el entorno listo.
+
+**Principle:** La integridad declarativa de dependencias no sustituye una verificación ejecutable del entorno.
+
+## 2026-11-05
+
+### Observation 2: Reservar presupuesto para evidencia y revisar entregas parciales
+
+**Status:** OPEN
+**Date:** 2026-11-05
+**Session context:** Auditoría delegada con lectura previa obligatoria y límite reducido de pasos.
+**Skill:** New skill candidate: delegación verificable de auditorías
+**Type:** open-source
+**Phase/Area:** Orquestación y aceptación
+
+**Issue:** Un ejecutor agotó pasos antes de revisar el archivo de pruebas; su resumen contenía una afirmación de atomicidad no sustentada. La sesión terminada no demostraba el alcance completado.
+
+**Suggested improvement:** Presupuestar lectura obligatoria, inspección y reporte por separado; pedir evidencia por archivo y auditar de forma independiente lo incompleto, sin repetir automáticamente la misma delegación.
+
+**Principle:** El cierre de una sesión y la confianza del resumen no sustituyen evidencia de cobertura ni revisión independiente.

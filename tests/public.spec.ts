@@ -1,0 +1,3 @@
+import {test,expect} from '@playwright/test';
+test('home presenta datos del premio y estado de preparación',async({page})=>{await page.goto('/');await expect(page.getByText('RIFA ENTRE AMIGOS').first()).toBeVisible();await expect(page.getByText('$250 MXN / boleto')).toBeVisible();await expect(page.getByText(/Ventas públicas deshabilitadas/)).toBeVisible()});
+test('inventario muestra selección sin activar compra',async({page})=>{await page.goto('/boletos');await expect(page.getByRole('heading',{name:'Selecciona tus boletos'})).toBeVisible();await expect(page.getByRole('button',{name:/Reservar/})).toBeDisabled()});

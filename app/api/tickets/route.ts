@@ -1,0 +1,2 @@
+import {db} from '@/lib/supabase';
+export async function GET(){const id=process.env.RAFFLE_ID;if(!id)return Response.json({error:'Rifa no configurada'},{status:503});const {data,error}=await db().from('tickets').select('id,folio,state,ticket_numbers(number)').eq('raffle_id',id).order('folio');if(error)return Response.json({error:'Error de consulta'},{status:500});return Response.json({tickets:data});}
