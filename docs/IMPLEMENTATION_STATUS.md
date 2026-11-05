@@ -72,4 +72,13 @@ Ollama responde y tiene `gemma4:26b` instalado. Configuración local define `hyb
 
 ## Bloqueos y continuación
 
+### Iteración F0-T01 — emisor inerte
+
+- Responsable: GPT-6.1 Sol; sin nueva delegación tras el límite del worker.
+- Base segura: commit raíz `9292bc6` (estado recuperado, sin certificar), rama `main`; escaneo de secretos sin hallazgos. `git diff --cached --check` encontró espacios finales preexistentes, conservados deliberadamente en baseline.
+- Cambio: `scripts/issue_tickets.ts` deja de importar `arg` y el cliente de BD; conserva solo una constante deshabilitada. **No implementa emisión.**
+- Prueba nueva: `tests/issuance-safety.test.ts` inspecciona AST, no importa/ejecuta el script, y rechaza cualquier sentencia adicional.
+- Validación: 10 unitarias pasan; build aislado pasa; typecheck pasa al reejecutar secuencialmente. Primer typecheck concurrente con build falló TS6053 porque Next regeneraba `.next/types`: no ejecutar esos gates en paralelo. Lint y 2 E2E siguen pendientes de estabilización (no se atribuye éxito a esta tarea).
+- Estado: completado únicamente el marcador seguro y desbloqueo de compilación, NO la emisión. Commit posterior se identifica por `fix: keep ticket issuance inert and restore typecheck`.
+
 Ver backlog priorizado, dependencias y criterios en [`F0_AUDIT.md`](F0_AUDIT.md). Prohibido operar con la BD existente, otorgar permisos para hacer pasar pruebas, ejecutar emisión o aplicar `007`. La integración debe usar infraestructura **nueva y desechable**, no la BD existente. Requieren autorización/datos humanos: bases, permiso, mecanismo oficial, maestro físico, privacidad, bancos, hora límite y entrega. No se crearon remotos, push ni despliegues.
