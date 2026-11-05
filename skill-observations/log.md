@@ -54,3 +54,18 @@ Observations captured during task-oriented work.
 **Suggested improvement:** Antes de paralelizar gates, identificar directorios generados compartidos. Ejecutar build, dev/E2E y typecheck secuencialmente; registrar el fallo inicial y su causa, no ocultarlo mediante reintentos.
 
 **Principle:** La independencia lógica de dos comprobaciones no implica independencia de sus efectos sobre el sistema de archivos.
+
+### Observation 4: El escaneo de secretos no sustituye revisar privacidad antes del baseline
+
+**Status:** OPEN
+**Date:** 2026-11-05
+**Session context:** Recuperación de versionado sobre archivos preexistentes.
+**Skill:** New skill candidate: recuperación segura de repositorios
+**Type:** open-source
+**Phase/Area:** Auditoría previa al primer commit
+
+**Issue:** El escaneo heurístico de claves no detectó un identificador personal dentro de un SQL auxiliar. Se encontró después del commit raíz; anonimizar el árbol actual no lo eliminó del historial local.
+
+**Suggested improvement:** Antes de crear baseline, inventariar y leer snippets/seeds además del código principal; añadir detección de emails/PII y revisión de excepciones. Si se detecta tarde, preservar el original fuera de versionado, bloquear distribución y obtener autorización específica antes de reescribir historial.
+
+**Principle:** Un repositorio limpio de claves no implica un historial apto para distribuir; la revisión de privacidad debe preceder al primer commit.

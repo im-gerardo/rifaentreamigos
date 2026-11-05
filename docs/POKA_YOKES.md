@@ -9,7 +9,7 @@
 | Liberar boleto con movimiento financiero | PostgreSQL | Retención de conciliación, nunca liberación automática | Pendiente de validar en PostgreSQL |
 | Sobrepago | API y PostgreSQL | Centavos enteros y suma de pagos pendientes/aprobados bajo bloqueo de orden | Pendiente de validar en PostgreSQL |
 | Doble conciliación | PostgreSQL | Un pago solo puede revisarse desde estado `pending` | Pendiente de validar en PostgreSQL |
-| Venta presencial sin comprador autorizado | API | Ruta bloqueada con `503` hasta implementar el flujo completo | Implementado |
-| Checkout público no autorizado | Producto | No existe ruta ni endpoint público de compra | Implementado |
+| Venta presencial, pago o publicación inseguros | API | Todos los POST/PATCH y GET compradores bloqueados con `503 OPERATIONS_DISABLED`, sin switch por entorno | Verificado: 18 unitarias de handlers y 1 E2E HTTP sobre 9 handlers |
+| Checkout público no autorizado | Producto | No existe checkout; selección consultiva nunca envía POST y reserva permanece deshabilitada | Verificado en smoke E2E con fixtures |
 
 Cada control pendiente de validar requiere integración PostgreSQL antes de poder considerarse terminado.

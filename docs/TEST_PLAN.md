@@ -4,7 +4,20 @@
 
 - Unitarias de validación: teléfono, selección, centavos enteros, transferencia con referencia y formato MXN.
 - Unitarias de emisión: 200 folios, 1,000 números únicos, cobertura `000-999`, checksum determinista y semilla obligatoria.
-- Typecheck y build de Next.js.
+- Lint no interactivo sin advertencias, typecheck y build Next.js con entorno ficticio.
+- 28 unitarias (Vitest 4.1.12): 9 existentes + AST de emisor inerte + 18 handlers contenidos sin Auth/DB, incluso con flag pública true.
+- 10 smoke Playwright/Chromium: 4 redirecciones anónimas, 5 portal consultivo (listo/vacío/error, selección sin POST y móvil 375px), 1 transporte que comprueba 9 handlers HTTP 503.
+- Auditoría de paquetes: inicialmente 11 avisos (2 críticos/3 altos/6 moderados); tras corrección `pnpm audit --json` exit 0, cero avisos conocidos.
+- Catálogos SQL solo lectura, sin probar operación ni acceder a registros sensibles.
+
+## Reproducción segura
+
+Comandos en README. Playwright sobrescribe credenciales/URL con valores ficticios
+y no reutiliza un servidor existente. Los folios simulados existen solo como
+fixtures de respuesta de navegador. Build, typecheck y dev/E2E son secuenciales:
+ejecutarlos simultáneamente puede borrar/regenerar `.next/types` durante typecheck.
+CI básica usa Node 24; ejecución local se comprobó con Node 26.5.0. CI remota no
+ejecutada, sin push. No afirmar equivalencia entre esos entornos.
 
 ## Pendiente y necesario antes de operar
 
@@ -13,4 +26,10 @@
 - E2E: login, logout, restricción vendedor-administrador, reserva, pago, conciliación, expiración y móvil.
 - Accesibilidad y revisión visual en 375, 768 y 1440 px.
 
-Las E2E no se pudieron ejecutar en este sandbox porque no permite abrir el servidor de desarrollo en un puerto local.
+La restricción histórica EPERM no se reproduce en esta sesión. Inicialmente
+faltaba Chromium y fallaron 2/6 E2E por selectores antiguos; tras instalarlo y
+actualizar cobertura pasan 10/10. Un intento intermedio tuvo 2 selectores `status`
+ambiguos; se acotaron por contenido sin eliminar garantías. El historial completo
+queda registrado en IMPLEMENTATION_STATUS. Integración SQL, login real y E2E de
+negocio siguen **NO VERIFICADOS**; requieren infraestructura desechable nueva,
+no otorgar permisos ni escribir datos en el stack existente para pasar QA.

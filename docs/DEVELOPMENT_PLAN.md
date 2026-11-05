@@ -58,12 +58,16 @@ Implementa de principio a fin un MVP verificable para una rifa con venta mixta: 
 ## 3. Fases y entregables obligatorios
 
 ### Fase 0 — Auditoría y estabilización [P0]
-- [ ] Inspeccionar dependencias, código, SQL, API, UI y tests actuales; contrastar README con implementación real.
-- [ ] Ejecutar instalación, build, typecheck y pruebas; registrar versiones y errores reproducibles.
-- [ ] Revisar específicamente `reserve_tickets` y `review_payment` para autenticación, `SECURITY DEFINER`, permisos de ejecución, carreras, liberación, sobrepagos y estados inconsistentes.
-- [ ] Configurar ESLint, scripts `lint`, `typecheck`, `.env.example` y CI básica.
-- [ ] Crear `docs/IMPLEMENTATION_STATUS.md`, registrar deuda técnica y riesgos.
+- [x] Inspeccionar dependencias, código, SQL, API, UI y tests actuales; contrastar README con implementación real.
+- [x] Ejecutar instalación, build, typecheck y pruebas; registrar versiones y errores reproducibles.
+- [x] Revisar específicamente `reserve_tickets` y `review_payment` para autenticación, `SECURITY DEFINER`, permisos de ejecución, carreras, liberación, sobrepagos y estados inconsistentes.
+- [x] Configurar ESLint, scripts `lint`, `typecheck`, `.env.example` y CI básica.
+- [x] Crear `docs/IMPLEMENTATION_STATUS.md`, registrar deuda técnica y riesgos.
 **Aceptación:** baseline reproducible o bloqueos explícitos, sin afirmar que el esqueleto está listo para producción.
+
+**Evidencia Fase 0, 2026-11-05:** baseline Git `9292bc6` sin certificar; correcciones locales de compilación/contención/QA/dependencias con commits atómicos. Lint/typecheck/build, 28 unitarias y 10 smoke E2E pasan; auditoría de paquetes sin avisos conocidos. Revisión SQL solo de lectura: `001–006` aplicadas localmente, `007` pendiente y defectuosa, grants críticos ausentes y dos tablas sin RLS. **No se verificaron migraciones desde cero, RPC, concurrencia, login real ni CI remota.** Las casillas indican auditoría/configuración ejecutadas, no corrección/certificación de operaciones. Ventas, cobros y escrituras operativas permanecen bloqueadas. Evidencia y continuación en `IMPLEMENTATION_STATUS.md` y `F0_AUDIT.md`. Ninguna casilla de fases posteriores se da por completada.
+
+**Bloqueo de cierre F0-P01:** la revisión del SQL auxiliar encontró PII en el historial inicial creado durante recuperación. Copia vigente anonimizada y original preservado fuera de versionado; historial anterior no saneado. **No compartir Git ni dar Fase 0 por cerrada de forma integral** hasta autorizar y verificar depuración local de historial. No hay remoto/push; no se ejecutó ese SQL. Ver trazabilidad y límites en el informe de estado.
 
 ### Fase 1 — Infraestructura, autenticación y autorización [P0]
 - [ ] Configurar Supabase local o proyecto de desarrollo, migraciones versionadas y seed de DEMO sin datos reales.

@@ -34,8 +34,8 @@ Gates locales estabilizados; auditoría **PARCIAL** por saneamiento histórico d
 | F0-Q01 — ESLint/CI básica | GPT-6.1 Sol | completado local, remoto no verificado | `73f601e` |
 | F0-Q02 — smoke E2E aislado | GPT-6.1 Sol | completado | `3e4fd1a` |
 | F0-V01 — avisos de dependencias | GPT-6.1 Sol | completado local | `704fa97` |
-| F0-P01 — privacidad SQL/historial | GPT-6.1 Sol | parcial, historial bloqueado por autorización | Asunto `fix: anonymize administrative SQL and block repository sharing` |
-| F0-D01 — cierre documental y revisión | GPT-6.1 Sol | pendiente de commit final | Mensaje `docs: close phase zero audit with verified baseline` |
+| F0-P01 — privacidad SQL/historial | GPT-6.1 Sol | parcial, historial bloqueado por autorización | `e1c6256` |
+| F0-D01 — informe documental y revisión | GPT-6.1 Sol | completado informe, Fase 0 integral PARCIAL por F0-P01 | Mensaje `docs: record phase zero validation and privacy blocker` |
 
 Git local rama `main`, sin remotos ni push/despliegue. Estado limpio se comprueba después del commit de cierre; no se afirma de antemano. Todos los archivos previos se conservan salvo actualizaciones documentadas/versionadas; configuración local y secretos permanecen en disco, excluidos. **Primero F0-P01:** autorizar depuración local del historial con PII antes de compartirlo. Después **F1-I01** (infraestructura nueva, migraciones desde cero, grants mínimos/RLS y pruebas), antes de login/roles completos; no quitar la contención.
 
@@ -69,7 +69,7 @@ Estados: **funcional** = evidencia ejecutada en el alcance indicado; **parcial**
 | 0 — unitarias | funcional (28 casos) | Validación, generador, emisor inerte y contención; no prueban BD |
 | 0 — E2E | funcional (10 smoke) | No prueban login real, roles activos, dinero ni RLS |
 | 0 — CI básica | parcial | Workflow escrito, no ejecutado remotamente; sin CI SQL ni deploy |
-| 0 — Git | funcional (local) | `main`, baseline y commits atómicos comprobados; no remotos |
+| 0 — Git | parcial (local utilizable, no distribuible) | `main`, baseline/commits comprobados; sin remotos; PII histórica requiere depuración autorizada |
 | 1 — Supabase local / migraciones / seed DEMO | parcial | Stack ya existente y `001–006` en catálogo; desde cero NO VERIFICADO. Seed no idempotente, sin usuarios Auth, horas demo no son decisiones oficiales |
 | 1 — login / logout / sesión | parcial | Login y middleware existen; no logout encontrado; login real y renovación NO VERIFICADOS |
 | 1 — roles / vendedor solo asignado | bloqueada | `admin/orders` acepta `sellerId` del cliente; compradores se consultan sin filtro de vendedor; dashboard muestra agregados globales |
@@ -105,6 +105,15 @@ Estados: **funcional** = evidencia ejecutada en el alcance indicado; **parcial**
 Ollama responde y tiene `gemma4:26b` instalado. Configuración local define `hybrid-lead`, `gemma-worker` y `local-lead`; el catálogo de modelos de OpenCode solo anuncia Ollama 12B, no 26B. La invocación real del worker produjo respuesta, pero no se obtuvo metadato independiente que certifique el modelo ejecutado. El respaldo `local-lead` no se invocó ni se certifica. No se alteró la configuración local; excluida de Git. No hay edición concurrente: el worker fue de solo lectura; implementación, QA y aprobación corresponden al coordinador.
 
 ## Bloqueos y continuación
+
+### Iteración F0-D01 — informe y validación final
+
+- Responsable: GPT-6.1 Sol (documentación, QA y revisión; no agente independiente de aprobación).
+- Archivos: `README.md`, `docs/DEVELOPMENT_PLAN.md`, `docs/API.md`, `docs/ARCHITECTURE.md`, `docs/DATABASE.md`, `docs/BUSINESS_RULES.md`, `docs/TEST_PLAN.md`, `docs/DEPLOYMENT.md`, `docs/POKA_YOKES.md`, `docs/CHANGELOG.md` y este estado. Hallazgos/backlog en F0_AUDIT.
+- Validación secuencial final: frozen install, lint, typecheck, 28 unitarias, build ficticio, 10 smoke E2E y audit sin avisos, todos exit 0. Enlaces locales comprobados, sin faltantes. Diff sin errores de whitespace nuevos; baseline conserva los originales. No SQL mutante, emisión, cleanup, push ni despliegue.
+- Privacidad: escaneo ampliado del árbol vigente sin emails ajenos a plantillas, original ignorado/0600 verificado. El historial anterior conserva el dato personal: **NO saneado**, requiere autorización de reescritura antes de compartir Git. Esta verificación NO certifica ausencia de toda PII posible.
+- Estado de la tarea documental: completado; estado integral Fase 0: **PARCIAL** por F0-P01. Commit final asociado por asunto estable `docs: record phase zero validation and privacy blocker` (su propio hash se consulta con `git log -1`; no se inventa autorreferencia).
+- Siguiente: autorización específica para depurar únicamente el historial local creado en recuperación, preservando original local y verificando ausencia histórica. No iniciar funcionalidades nuevas con este bloqueo abierto. Después F1-I01 según plan, con infraestructura desechable nueva.
 
 ### Iteración F0-P01 — privacidad del SQL auxiliar
 

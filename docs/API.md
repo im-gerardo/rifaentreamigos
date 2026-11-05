@@ -14,12 +14,17 @@ Todas las respuestas de error evitan enviar trazas, credenciales o mensajes inte
 | Método | Ruta | Acceso actual | Estado |
 |---|---|---|---|
 | `GET` | `/api/tickets` | Público, sin PII | Implementado; depende de `RAFFLE_ID` |
-| `POST` | `/api/reservations` | Administrador o vendedor | Implementado sin validar contra PostgreSQL |
-| `POST` | `/api/payments` | Administrador o vendedor | Implementado sin validar contra PostgreSQL |
-| `GET/PATCH` | `/api/admin/payments` | Administrador | Implementado sin validar contra PostgreSQL |
-| `POST` | `/api/admin/orders` | Ninguno | Devuelve `503` hasta implementar el flujo autorizado de compradores |
+| `POST` | `/api/reservations` | Ninguno durante contención | 503 `OPERATIONS_DISABLED` |
+| `POST` | `/api/payments` | Ninguno durante contención | 503 `OPERATIONS_DISABLED` |
+| `GET` | `/api/admin/payments` | Administrador | Código recuperado; falta integración/grants |
+| `PATCH` | `/api/admin/payments` | Ninguno durante contención | 503 `OPERATIONS_DISABLED` |
+| `GET/POST` | `/api/admin/buyers` | Ninguno durante contención | 503; aislamiento vendedor pendiente |
+| `POST` | `/api/admin/orders` | Ninguno durante contención | 503; actor seguro/flujo completo pendientes |
+| `POST` | `/api/payments/evidence` | Ninguno durante contención | 503; propiedad/archivo/hash pendientes |
+| `POST` | `/api/admin/raffle-validation` | Ninguno durante contención | 503; no certifica maestro físico |
+| `POST` | `/api/admin/raffle-publish` | Ninguno durante contención | 503; RPC `007` insegura/no aplicada |
 
-## Reserva de vendedor
+## Contrato recuperado/objetivo de reserva (no operativo)
 
 `POST /api/reservations` requiere sesión, `Idempotency-Key` como UUID y cuerpo:
 
@@ -31,7 +36,7 @@ Todas las respuestas de error evitan enviar trazas, credenciales o mensajes inte
 }
 ```
 
-## Pago
+## Contrato recuperado/objetivo de pago (no operativo)
 
 `POST /api/payments` recibe importes en centavos, no en pesos:
 

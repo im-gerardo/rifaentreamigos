@@ -1,37 +1,55 @@
-# Rifa Entre Amigos — MVP técnico
+# Rifa Entre Amigos — base técnica en recuperación
 
-Next.js 15 + TypeScript + Supabase/PostgreSQL. Configuración: apartados 24 h; transferencia y efectivo; roles admin y vendedor. Las ventas públicas permanecen deshabilitadas hasta confirmar autorización y bases.
+Next.js 15, React 19, TypeScript estricto y Supabase/PostgreSQL; Zod 4, Vitest 4 y Playwright.
+**No listo para operar ni cobrar.** Fase 0 auditada y baseline local estabilizada el 2026-11-05.
+**Auditoría PARCIAL: compartir Git está BLOQUEADO por un dato personal en el historial inicial.**
+La copia actual del SQL se anonimizó y el original se preservó ignorado; no hubo
+push. Falta autorización específica para depurar el historial antes de compartir
+repositorio, `.git` o bundles. Ver F0-P01 en el estado de implementación.
+El plan maestro sigue siendo [`docs/DEVELOPMENT_PLAN.md`](docs/DEVELOPMENT_PLAN.md).
 
-## Iniciar
+## Seguridad antes de iniciar
 
-1. `pnpm install --frozen-lockfile`
-2. Copia `.env.example` a `.env.local` y llena los valores (NUNCA exponer `SUPABASE_SERVICE_ROLE_KEY` al navegador).
-3. Ejecuta las migraciones en orden mediante Supabase CLI (`supabase db push`) o SQL Editor.
-4. Crea la rifa en `raffles` con `status='draft'`, precio `25000` centavos y fechas correctas; guarda su UUID en `RAFFLE_ID`.
-5. Genera 200 boletos y una permutación auditada de 000 a 999, cinco números por boleto. No se incluye seed definitivo para evitar divergencias con el PDF impreso.
-6. Crea usuarios en Supabase Auth y sus filas en `profiles` (rol `admin` o `seller`).
-7. `pnpm dev` y visita http://localhost:3000.
+- Ventas/reservas públicas deshabilitadas; no hay checkout.
+- Todos los POST/PATCH actuales y GET de compradores devuelven `503 OPERATIONS_DISABLED`, sin acceso a BD. `PUBLIC_SALES_ENABLED=true` no retira este bloqueo.
+- No ejecutar `scripts/issue_tickets.ts` (marcador inerte, emisión no implementada), limpieza de reservas, seed ni migraciones sobre datos existentes.
+- **No ejecutar `supabase db push`:** `007` es defectuosa y contiene apertura sin checklist. Las migraciones desde cero y RLS requieren un entorno nuevo, aislado y desechable.
+- No modificar `.env.local`, secretos, permisos ni datos reales para pasar pruebas. `.env.example` solo describe nombres; service role nunca va al navegador.
 
-## Endpoints
+## Instalar y validar sin Supabase real
 
-- `GET /api/tickets`: catálogo de folios y participaciones.
-- `POST /api/reservations`: reserva autenticada por admin/vendedor, transacción RPC.
-- `POST /api/payments`: registro de pago pendiente (admin/vendedor).
-- `GET /api/admin/payments`: listado de pagos (admin).
-- `PATCH /api/admin/payments`: aprobación/rechazo por admin, RPC transaccional.
+Usar pnpm 12.15.0. Se probó localmente con Node 26.5.0; CI básica declara Node 24, aún sin ejecución remota. `package-lock.json` se conserva como archivo histórico: **no usar npm install/ci**, no está sincronizado ni certificado.
 
-## Pruebas
+```sh
+pnpm install --frozen-lockfile
+pnpm run lint
+pnpm run typecheck
+pnpm run test
+pnpm exec playwright install chromium
+pnpm run test:e2e
+```
 
-- `pnpm run typecheck`
-- `pnpm run test` (Vitest)
-- `pnpm exec playwright install chromium && pnpm run test:e2e`
+Playwright inicia un servidor nuevo en `127.0.0.1:3000` con claves ficticias/URL inalcanzable; no reutiliza servidores ni requiere cuentas reales. Cerrar solo el servidor propio que ocupe ese puerto; no detener proyectos ajenos.
 
-Consulta [`docs/IMPLEMENTATION_STATUS.md`](docs/IMPLEMENTATION_STATUS.md) para distinguir lo validado de lo pendiente. El build actual pasa, pero las pruebas E2E y las migraciones todavía requieren un entorno local de Supabase y un host que permita abrir el servidor de desarrollo.
+Build sin contactar un proyecto Supabase real:
 
-## Pendientes para producción
+```sh
+env NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:1 \
+  NEXT_PUBLIC_SUPABASE_ANON_KEY=phase0-test-only \
+  SUPABASE_SERVICE_ROLE_KEY=phase0-test-only RAFFLE_ID= \
+  PUBLIC_SALES_ENABLED=false NEXT_TELEMETRY_DISABLED=1 pnpm run build
+```
 
-Este repositorio es un **esqueleto funcional**, NO un sistema listo para cobrar. Faltan: pantalla de login, CRUD de compradores y ventas, flujo de checkout, subida de comprobantes mediante URLs firmadas y verificación de archivos, conciliación de saldos y sobrepagos al registrar, control de expiración y liberación de reservas, autorización por vendedor sobre sus órdenes, snapshots de cierre, validación formal de mecánica de sorteo, generación y cotejo de PDFs/QR, tests de concurrencia en PostgreSQL, rate limits y controles antiabuso. La RPC de reserva requiere pruebas de integración antes de usarse con dinero real. La clave service role se usa solo en servidor y jamás debe publicarse.
+Ejecutar build, typecheck y dev/E2E **secuencialmente**, comparten `.next/types`.
+Resultado local final: lint, typecheck y build pasan; 28 unitarias y 10 E2E smoke pasan.
+`pnpm audit --json`: cero avisos conocidos tras actualizar dependencias; no es certificación de seguridad.
 
-## Plan completo para Codex
+## Estado y continuidad
 
-Consulta [`docs/DEVELOPMENT_PLAN.md`](docs/DEVELOPMENT_PLAN.md) para el backlog integral, fases, criterios de aceptación, arquitectura objetivo, APIs, seguridad y pruebas. **El código actual es un esqueleto y el plan no implica que las funciones estén implementadas.**
+- [`docs/IMPLEMENTATION_STATUS.md`](docs/IMPLEMENTATION_STATUS.md): matriz real, agentes, tareas, commits y pruebas no verificadas.
+- [`docs/F0_AUDIT.md`](docs/F0_AUDIT.md): hallazgos críticos y backlog P0/P1 dependiente del plan.
+- [`docs/API.md`](docs/API.md), [`docs/DATABASE.md`](docs/DATABASE.md), [`docs/TEST_PLAN.md`](docs/TEST_PLAN.md): límites operativos y validación pendiente.
+
+Login y middleware existen, pero login real, aislamiento por vendedor, RLS/Storage, RPC/concurrencia, comprobantes, saldos, publicación/inmutabilidad, maestro físico, cierre, PDF/QR y UAT no están certificados. CI básica escrita sin despliegue; ejecución remota NO VERIFICADA. Git local recuperado, sin remotos/push.
+
+Permiso, bases, mecánica, privacidad, hora límite, bancos y maestro físico siguen pendientes de confirmación humana. No inventar esos datos ni abrir ventas para demostrar funcionalidad.

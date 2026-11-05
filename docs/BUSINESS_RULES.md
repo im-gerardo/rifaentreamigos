@@ -1,4 +1,10 @@
-# Reglas de negocio implementadas
+# Reglas de negocio — intención del código y límites verificados
+
+Actualizado 2026-11-05: los controles SQL listados abajo **NO están certificados**.
+Faltan grants, integración/RLS y pruebas de concurrencia. Se verificó el bloqueo
+HTTP 503 previo a BD de toda operación mutante y GET compradores (28 unitarias
+totales y 10 E2E smoke); no hay interruptor público para retirarlo. La consulta
+de catálogo sigue siendo informativa. Ver `IMPLEMENTATION_STATUS.md`.
 
 ## Estados
 
@@ -10,7 +16,7 @@ Los valores vigentes en base de datos están en inglés para conservar compatibi
 | Orden | `reserved`, `partial`, `proof_pending`, `reconciliation_hold`, `paid`, `expired`, `cancelled` |
 | Pago | `pending`, `approved`, `rejected` |
 
-## Controles críticos
+## Controles críticos propuestos en SQL (pendientes de integración)
 
 - Un vendedor solo puede crear reservas con una llave de idempotencia UUID. Reintentar la misma solicitud devuelve la misma orden; reutilizar la llave para otro contenido se rechaza.
 - La reserva bloquea los boletos en orden y exige que todos sigan disponibles antes de crear la orden.
