@@ -22,3 +22,4 @@ dist/
 *.p12
 *.pfx
 supabase/signing_keys.json
+.local-recovery/

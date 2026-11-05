@@ -2,8 +2,42 @@
 
 Actualizado: 2026-11-05. Responsable: GPT-6.1 Sol (coordinación, QA y revisión).
 
-**ESTADO: PARCIAL. Estado recuperado, sin certificar. No apto para operar ni cobrar.**
+**ESTADO: PARCIAL. Estado recuperado, sin certificar. No apto para operar ni cobrar. Compartir Git BLOQUEADO por PII histórica (F0-P01).**
 Este informe sustituye afirmaciones contradictorias del informe anterior; el commit raíz conserva el estado recuperado. La existencia de archivos no demuestra funcionamiento. No se ejecutaron emisión, limpieza de reservas, migraciones ni escrituras en Supabase.
+
+## Resultado vigente de Fase 0
+
+Gates locales estabilizados; auditoría **PARCIAL** por saneamiento histórico de PII pendiente, producto **PARCIAL**, operación **BLOQUEADA**. Sin desarrollar funcionalidades de Fases 1–7. La contención no arregla los defectos subyacentes ni certifica dinero/inventario.
+
+| Gate final | Resultado ejecutado |
+|---|---|
+| `pnpm install --frozen-lockfile` | Correcto; lockfile canónico pnpm |
+| `pnpm run lint` | Correcto, cero advertencias |
+| `pnpm run typecheck` | Correcto, ejecutado sin build concurrente |
+| `pnpm run test` | Correcto, 4 archivos / 28 unitarias, Vitest 4.1.12 |
+| `pnpm run build` | Correcto con entorno ficticio del README |
+| `pnpm run test:e2e` | Correcto, 10 smoke (Chromium), fixtures/URL ficticia; incluye móvil y bloqueo HTTP |
+| `pnpm audit --json` | Exit 0, cero avisos conocidos tras F0-V01 |
+| SQL/RPC/RLS/concurrencia desde cero | **NO VERIFICADO**, falta entorno nuevo y desechable; no usar stack existente ni aplicar `007` |
+| Login real, roles cruzados, upload, dinero, restore/UAT | **NO VERIFICADO**, suites e infraestructura de negocio pendientes |
+| CI GitHub Actions | Configurada; ejecución remota **NO VERIFICADA**, sin push autorizado |
+| Privacidad de historial Git | **BLOQUEADA**, correo personal en SQL de baseline; copia actual anonimizada pero commits anteriores pendientes de depuración autorizada |
+
+### Commits asociados
+
+| Tarea | Responsable | Estado en alcance | Commit |
+|---|---|---|---|
+| F0-A01 / F0-G01 — auditoría y Git | GPT-6.1 Sol | completado | `9292bc6` |
+| F0-A02 — inspección delegada | gemma-worker (Ollama 26B configurado) | parcial, sin edición/pruebas | No aplica; evidencia en baseline |
+| F0-T01 — emisor inerte/typecheck | GPT-6.1 Sol | completado, emisión no implementada | `e521fd9` |
+| F0-S01 — contención 9 handlers | GPT-6.1 Sol | completado, negocio bloqueado | `a161f02` |
+| F0-Q01 — ESLint/CI básica | GPT-6.1 Sol | completado local, remoto no verificado | `73f601e` |
+| F0-Q02 — smoke E2E aislado | GPT-6.1 Sol | completado | `3e4fd1a` |
+| F0-V01 — avisos de dependencias | GPT-6.1 Sol | completado local | `704fa97` |
+| F0-P01 — privacidad SQL/historial | GPT-6.1 Sol | parcial, historial bloqueado por autorización | Asunto `fix: anonymize administrative SQL and block repository sharing` |
+| F0-D01 — cierre documental y revisión | GPT-6.1 Sol | pendiente de commit final | Mensaje `docs: close phase zero audit with verified baseline` |
+
+Git local rama `main`, sin remotos ni push/despliegue. Estado limpio se comprueba después del commit de cierre; no se afirma de antemano. Todos los archivos previos se conservan salvo actualizaciones documentadas/versionadas; configuración local y secretos permanecen en disco, excluidos. **Primero F0-P01:** autorizar depuración local del historial con PII antes de compartirlo. Después **F1-I01** (infraestructura nueva, migraciones desde cero, grants mínimos/RLS y pruebas), antes de login/roles completos; no quitar la contención.
 
 ## Evidencia inicial reproducida
 
@@ -31,29 +65,29 @@ Estados: **funcional** = evidencia ejecutada en el alcance indicado; **parcial**
 | Fase / historia del plan | Estado | Evidencia y faltantes |
 |---|---|---|
 | 0 — inventario, dependencias y diagnóstico | funcional (auditoría local) | Código, UI, rutas, SQL, documentación y pruebas inspeccionados; ver `F0_AUDIT.md` |
-| 0 — build/typecheck/lint | bloqueada | TS2307 y ESLint sin configurar |
-| 0 — unitarias | funcional (9 casos existentes) | Validación y generador; no prueban base de datos |
-| 0 — E2E | parcial | 4/6; no prueban login real, roles activos, dinero ni RLS |
-| 0 — CI básica | no implementada | Sin workflow encontrado |
-| 0 — Git | parcial | Inicializado `main`, pendiente commit raíz revisado; no remotos |
+| 0 — build/typecheck/lint | funcional (local) | Gates pasan; emisión persistente sigue deshabilitada/no implementada |
+| 0 — unitarias | funcional (28 casos) | Validación, generador, emisor inerte y contención; no prueban BD |
+| 0 — E2E | funcional (10 smoke) | No prueban login real, roles activos, dinero ni RLS |
+| 0 — CI básica | parcial | Workflow escrito, no ejecutado remotamente; sin CI SQL ni deploy |
+| 0 — Git | funcional (local) | `main`, baseline y commits atómicos comprobados; no remotos |
 | 1 — Supabase local / migraciones / seed DEMO | parcial | Stack ya existente y `001–006` en catálogo; desde cero NO VERIFICADO. Seed no idempotente, sin usuarios Auth, horas demo no son decisiones oficiales |
 | 1 — login / logout / sesión | parcial | Login y middleware existen; no logout encontrado; login real y renovación NO VERIFICADOS |
 | 1 — roles / vendedor solo asignado | bloqueada | `admin/orders` acepta `sellerId` del cliente; compradores se consultan sin filtro de vendedor; dashboard muestra agregados globales |
 | 1 — RLS / Storage / auditoría | bloqueada | Sin políticas; RLS falta en consentimientos/idempotencia; grants service_role ausentes; trigger sin search_path ni actor real |
 | 2 — CRUD rifas / reglas versionadas | no implementada | Tablas iniciales, no CRUD completo |
 | 2 — permutación 200×5 / CSV / JSON / checksum | parcial | 4 unitarias pasan; checksum no sustituye cotejo físico; escritura de archivo no atómica ante carrera |
-| 2 — emisión / cotejo / inmutabilidad | bloqueada | `issue_tickets.ts` es placeholder; maestro físico ausente; endpoint de validación no compara con BD ni garantiza cobertura exacta |
+| 2 — emisión / cotejo / inmutabilidad | bloqueada | `issue_tickets.ts` es marcador inerte; maestro físico ausente; validación contenida con 503, no compara con BD ni garantiza cobertura exacta |
 | 2 — inventario admin / eventos físicos | no implementada | Sin `/admin/boletos` ni flujo físico completo |
 | 2 — publicación / checklist legal | bloqueada | `007` contiene `set search_batch`, abre ventas sin checklist ni 200×5; endpoint envía JSON serializado en lugar de array |
-| 3 — compradores / privacidad / deduplicación | parcial | GET/POST existen, sin UI, consentimiento ni aislamiento; deduplicación no transaccional |
+| 3 — compradores / privacidad / deduplicación | bloqueada | GET/POST contenidos 503; sin UI, consentimiento ni aislamiento; deduplicación no transaccional |
 | 3 — órdenes / reserva atómica idempotente | no verificada | SQL `006` con locks ordenados y actor validado por perfil; falta EXECUTE, pruebas SQL y autorización integral |
 | 3 — expiración / retención / job | no verificada | RPC y script existen; job ausente; riesgo al liberar historial de vínculos. Script NO ejecutado |
-| 3 — venta presencial / cancelación / reembolso | bloqueada | Ruta POST de órdenes no está bloqueada como decía la documentación; flujo incompleto e inseguro; no cancelación/reembolso |
+| 3 — venta presencial / cancelación / reembolso | bloqueada | POST órdenes ahora contenido 503; actor arbitrario sigue en código recuperado, no cancelación/reembolso |
 | 4 — registro / revisión de pagos | no verificada | API y RPC existen, sin privilegios operativos ni QA de doble revisión/concurrencia; sin motivo/historial de revisión completo |
 | 4 — comprobantes / upload seguro / descarga | bloqueada | Falta propiedad de pago, verificación de archivo/hash, URLs firmadas y Storage policies. UI envía hash vacío |
 | 4 — saldos / sobrepago / duplicados | parcial | Restricciones y sumas SQL, sin reembolsos ni integración; no detección de hash duplicado |
 | 4 — bandeja / filtros / exportación | parcial | Lista y botones; sin filtros/exportación y sin ejecución con cuentas ficticias |
-| 5 — home / catálogo / responsive | parcial | UI consultiva, precio informativo fijo; pruebas antiguas fallan; accesibilidad y móvil completos NO VERIFICADOS |
+| 5 — home / catálogo / responsive | parcial | Smoke actualizado pasa y móvil 375px sin overflow; precio informativo fijo; auditoría completa de accesibilidad/visual NO VERIFICADA |
 | 5 — checkout público / antiabuso | bloqueada | No existe checkout, reserva pública rechazada por rol; `PUBLIC_SALES_ENABLED` no se usa como garantía efectiva |
 | 5 — token privado / PDF / QR / WhatsApp | no implementada | Sin flujos encontrados |
 | 6 — dashboard / reportes / control físico | parcial | Agregados iniciales; sin reportes protegidos, ingresos conciliados ni control físico completo |
@@ -66,11 +100,19 @@ Estados: **funcional** = evidencia ejecutada en el alcance indicado; **parcial**
 |---|---|---|---|---|---|
 | F0-A01 — auditoría y QA inicial | GPT-6.1 Sol | completado (diagnóstico, no certificación) | Documentación de auditoría | Resultados arriba; inspección independiente de rutas/SQL | Commit raíz pendiente; estabilizar P0 |
 | F0-A02 — auditar emisión (solo lectura) | `gemma-worker`, configurado `ollama/gemma4:26b` | parcial, agotó 12 pasos | Ninguno | Sesión real `ses_e5367bf7dffeFKnx2MYLY4vRN7`; reportó import roto y generador. No leyó el test ni ejecutó pruebas; QA del coordinador detecta carrera de archivo, NO escritura atómica | Sin commit; coordinador revisó los tres archivos al terminar la delegación |
-| F0-G01 — recuperar Git seguro | GPT-6.1 Sol | parcial | `.gitignore`, informes | Exclusiones verificadas y escaneo heurístico sin hallazgos; sin historia local recuperable identificada | Commit raíz pendiente, mensaje de estado sin certificar |
+| F0-G01 — recuperar Git seguro | GPT-6.1 Sol | completado | `.gitignore`, informes | Exclusiones verificadas y escaneo heurístico sin hallazgos; sin historia local recuperable identificada | `9292bc6`, sin remotos/push |
 
 Ollama responde y tiene `gemma4:26b` instalado. Configuración local define `hybrid-lead`, `gemma-worker` y `local-lead`; el catálogo de modelos de OpenCode solo anuncia Ollama 12B, no 26B. La invocación real del worker produjo respuesta, pero no se obtuvo metadato independiente que certifique el modelo ejecutado. El respaldo `local-lead` no se invocó ni se certifica. No se alteró la configuración local; excluida de Git. No hay edición concurrente: el worker fue de solo lectura; implementación, QA y aprobación corresponden al coordinador.
 
 ## Bloqueos y continuación
+
+### Iteración F0-P01 — privacidad del SQL auxiliar
+
+- Responsable: GPT-6.1 Sol; fallo de cobertura inicial reconocido, no atribuible al worker (fuera de su alcance).
+- Archivos: `.gitignore`, SQL auxiliar, `docs/F0_AUDIT.md`, este informe; copia original preservada en `.local-recovery/original-admin-snippet.sql` (ignorada, modo 0600), sin mostrar su contenido. El SQL no fue ejecutado.
+- Hallazgo: correo personal en el SQL administrativo incluido en baseline. Anonimizada copia actual con dominio reservado `.invalid`. **Historial previo NO saneado**, no remoto/push. Prohibido compartir repo/bundle/copia de recuperación; se requiere autorización de reescritura histórica local para cerrar F0.
+- Pruebas: verificación de exclusión y permisos de copia, escaneo ampliado de emails del árbol vigente; no ejecución SQL ni escritura en BD. Reescritura y verificación de ausencia en historial: NO EJECUTADAS por autorización pendiente.
+- Estado: parcial, bloquea certificación de Git distribuible. Commit por asunto `fix: anonymize administrative SQL and block repository sharing`. Siguiente: autorización específica y depuración comprobada; no continuar nuevas funcionalidades.
 
 ### Iteración F0-V01 — dependencias vulnerables
 
