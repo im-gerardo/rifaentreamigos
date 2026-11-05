@@ -14,7 +14,8 @@ export async function POST(req: Request) {
   const blocked = operationalBlockResponse();
   if (blocked) return blocked;
   try {
-    const { user }  = await requireRole(['admin', 'seller']);
+    // Pendiente: derivar el actor de sesión, nunca reabrir esta ruta tal como está.
+    await requireRole(['admin', 'seller']);
     const body = adminOrderSchema.parse(await req.json());
     const { buyerName, phone, ticketIds, sellerId, idempotencyKey } = body;
     

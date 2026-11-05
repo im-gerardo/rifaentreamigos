@@ -56,9 +56,8 @@ export default function PaymentEvidenceUpload({ paymentId }: PaymentEvidenceUplo
 
       toast.success('Evidencia vinculada con éxito');
       setFile(null);
-    } catch (error: any) {
-      console.error(error);
-      toast.error(error.message || 'Error al subir comprobante');
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : 'Error al subir comprobante');
     } finally {
       setIsUploading(false);
     }

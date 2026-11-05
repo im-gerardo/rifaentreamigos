@@ -35,8 +35,8 @@ describe('emisión determinista de boletos', () => {
     const first = createManifest('first.json');
     const second = createManifest('second.json');
 
-    const checksum1 = first.checksumSha256 || (first as any).checksumsha256;
-    const checksum2 = second.checksumSha256 || (second as any).checksumsha256;
+    const checksum1 = first.checksumSha256 || first.checksumsha256;
+    const checksum2 = second.checksumSha256 || second.checksumsha256;
 
     expect(checksum1).toMatch(/^[a-f0-9]{64}$/);
     expect(checksum1).toBe(checksum2);

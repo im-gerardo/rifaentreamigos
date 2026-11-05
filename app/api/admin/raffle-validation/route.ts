@@ -1,7 +1,6 @@
 import { z } from 'zod';
-import { rpcError } from '@/lib/api-errors';
+import { createHash } from 'node:crypto';
 import { authError, requireRole } from '@/lib/auth';
-import { db } from '@/lib/supabase';
 import { operationalBlockResponse } from '@/lib/operation-gate';
 
 const validationSchema = z.object({
@@ -29,8 +28,7 @@ export async function POST(req: Request) {
       .map((t) => `${t.folio}:${t.numbers.join(',')}`)
       .join('\n');
     
-    const crypto = require('crypto');
-    const computedChecksum = crypto.createHash('sha256').update(canonicalMapping).digest('hex');
+    const computedChecksum = createHash('sha256').update(canonicalMapping).digest('hex');
 
     if (computedChecksum !== body.checksumSha256) {
       return Response.json({ error: 'Checksum mismatch: El contenido no coincide con la firma', code: 'CHECKSUM_INVALID' }, { status: 400 });

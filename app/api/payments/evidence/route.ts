@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { rpcError } from '@/lib/api-errors';
 import { authError, requireRole } from '@/lib/auth';
 import { db } from '@/lib/supabase';
 import { operationalBlockResponse } from '@/lib/operation-gate';
@@ -14,7 +13,8 @@ export async function POST(req: Request) {
   const blocked = operationalBlockResponse();
   if (blocked) return blocked;
   try {
-    const { user } = await requireRole(['admin', 'seller']);
+    // Falta verificar propiedad de pago/orden/objeto; conservar el bloqueo.
+    await requireRole(['admin', 'seller']);
     const body = evidenceSchema.parse(await req.json());
     const { paymentId, storagePath, sha256 } = body;
 

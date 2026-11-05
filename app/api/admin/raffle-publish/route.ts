@@ -29,9 +29,9 @@ export async function POST(req: Request) {
       numbers: m.numbers, 
     }));
 
-    const { data, error } = await db().rpc('publish_raffle_batch', {
+    const { error } = await db().rpc('publish_raffle_batch', {
       p_raffle_id: raffleId,
-      p_manifest_json: JSON.stringify(manifest) // Enviamos el array de objetos
+      p_manifest_json: JSON.stringify(manifestForRpc) // Pendiente: enviar array JSON, no string.
     });
 
     if (error) return rpcError(error.message);

@@ -15,8 +15,8 @@
     "test": "pnpm run test:unit",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix --max-warnings=0"
   },
   "dependencies": {
     "@supabase/ssr": "^0.6.1",
@@ -28,11 +28,12 @@
     "zod": "^3.24.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.7",
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "eslint": "^9.0.0",
-    "eslint-config-next": "15.3.0",
+    "eslint-config-next": "15.5.28",
     "typescript": "^5.8.0",
     "vitest": "^3.1.0"
   }

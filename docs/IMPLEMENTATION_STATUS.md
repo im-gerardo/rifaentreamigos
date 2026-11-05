@@ -72,6 +72,14 @@ Ollama responde y tiene `gemma4:26b` instalado. Configuración local define `hyb
 
 ## Bloqueos y continuación
 
+### Iteración F0-Q01 — ESLint y CI básica
+
+- Responsable: GPT-6.1 Sol; alcance de Fase 0, sin habilitar funcionalidades.
+- Cambios: `eslint.config.mjs`, scripts/dependencias en `package.json`/`pnpm-lock.yaml`, workflow `.github/workflows/ci.yml`; limpieza de tipos/imports no usados en cinco rutas, componente de upload y test de emisión. Excepción CommonJS limitada a `scripts/*.js`, sin desactivar validación de tipos ni reglas de seguridad.
+- El primer lint configurado encontró 10 errores/8 advertencias reales; se corrigieron tipos/imports y variables sin reabrir rutas. Los defectos de autorización y publicación siguen contenidos y registrados; no se confunde limpieza lint con corrección de negocio.
+- CI sin secretos reales, con URL ficticia, sin DB, sin deploy; solo smoke frontend/unitarias. Ejecución remota NO VERIFICADA (no push autorizado). pnpm advierte deprecación ESLint 9, conservado por compatibilidad Next 15; migración mayor pendiente, no resuelta mediante silenciar advertencias.
+- Validación local ejecutada: lint sin advertencias, typecheck, 28 unitarias y build aislado pasan. CI remota y E2E actualizadas NO VERIFICADAS aún. Estado: completado lint/configuración CI básica; no certifica pipeline remoto ni CI SQL. Commit previsto: `chore: add noninteractive lint and safe baseline CI`. Siguiente F0-Q02.
+
 ### Iteración F0-S01 — contención operativa
 
 - Responsable: GPT-6.1 Sol (implementación y QA); no se delegaron ediciones concurrentes.

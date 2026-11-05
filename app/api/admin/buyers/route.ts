@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { rpcError } from '@/lib/api-errors';
 import { authError, requireRole } from '@/lib/auth';
 import { db } from '@/lib/supabase';
 import { operationalBlockResponse } from '@/lib/operation-gate';
@@ -30,7 +29,7 @@ export async function GET(req: Request) {
       phone: searchParams.get('phone')?.replace(/\s+/g, ''),
     });
 
-    let filter: any = {};
+    const filter: { name?: string; phone?: string } = {};
     if (query.name) {
       filter.name = `%${query.name}%`;
     }

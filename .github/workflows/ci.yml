@@ -1,0 +1,38 @@
+name: Safe baseline checks
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CI: '1'
+      NEXT_TELEMETRY_DISABLED: '1'
+      NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:1
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: phase0-test-only
+      SUPABASE_SERVICE_ROLE_KEY: phase0-test-only
+      RAFFLE_ID: ''
+      PUBLIC_SALES_ENABLED: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run lint
+      - run: pnpm run typecheck
+      - run: pnpm run test
+      # No paralelizar build, typecheck y dev: comparten .next/types.
+      - run: pnpm run build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm run test:e2e
