@@ -39,3 +39,18 @@ Observations captured during task-oriented work.
 **Suggested improvement:** Presupuestar lectura obligatoria, inspección y reporte por separado; pedir evidencia por archivo y auditar de forma independiente lo incompleto, sin repetir automáticamente la misma delegación.
 
 **Principle:** El cierre de una sesión y la confianza del resumen no sustituyen evidencia de cobertura ni revisión independiente.
+
+### Observation 3: Los gates con artefactos compartidos no son independientes
+
+**Status:** OPEN
+**Date:** 2026-11-05
+**Session context:** Estabilización de typecheck y build en un proyecto App Router.
+**Skill:** New skill candidate: baseline de dependencias JavaScript
+**Type:** open-source
+**Phase/Area:** Validación del entorno
+
+**Issue:** Ejecutar build y typecheck simultáneamente provocó TS6053 al regenerarse los tipos de Next. La misma verificación pasó al ejecutarse secuencialmente, sin cambiar tipos del proyecto.
+
+**Suggested improvement:** Antes de paralelizar gates, identificar directorios generados compartidos. Ejecutar build, dev/E2E y typecheck secuencialmente; registrar el fallo inicial y su causa, no ocultarlo mediante reintentos.
+
+**Principle:** La independencia lógica de dos comprobaciones no implica independencia de sus efectos sobre el sistema de archivos.

@@ -72,6 +72,13 @@ Ollama responde y tiene `gemma4:26b` instalado. Configuración local define `hyb
 
 ## Bloqueos y continuación
 
+### Iteración F0-Q02 — E2E determinista y transporte
+
+- Responsable: GPT-6.1 Sol (QA y revisión); archivos `playwright.config.ts`, `tests/public.spec.ts`, `tests/operational-block.spec.ts`, este estado y registro metodológico `skill-observations/log.md`.
+- Se actualizan los selectores al portal consultivo vigente sin habilitar ventas. Casos de inventario simulado listo/vacío/error, selección sin POST, móvil 375px y 9 handlers HTTP bloqueados. El servidor siempre usa URL/claves ficticias y no reutiliza uno existente; fixtures solo en memoria del navegador.
+- Primer recorrido actualizado: 8/10; dos selectores `status` ambiguos (incluían `<output>`) se acotaron por contenido, sin retirar aserciones. Segundo recorrido: **10/10 pasan**. Lint/typecheck y reinstalación frozen pasan después del cambio. Los 4 smoke de middleware solo prueban anonimato, no login/roles reales.
+- Estado: completado smoke aislado, NO E2E de negocio/BD. Build/unitarias se reejecutan en cierre global; CI remota sigue NO VERIFICADA. Commit previsto `test: isolate browser smoke checks and verify operational lock`. Siguiente F0-D01: cierre documental/gates.
+
 ### Iteración F0-Q01 — ESLint y CI básica
 
 - Responsable: GPT-6.1 Sol; alcance de Fase 0, sin habilitar funcionalidades.
