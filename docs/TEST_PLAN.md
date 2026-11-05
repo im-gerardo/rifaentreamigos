@@ -9,6 +9,7 @@
 - 10 smoke Playwright/Chromium: 4 redirecciones anónimas, 5 portal consultivo (listo/vacío/error, selección sin POST y móvil 375px), 1 transporte que comprueba 9 handlers HTTP 503.
 - Auditoría de paquetes: inicialmente 11 avisos (2 críticos/3 altos/6 moderados); tras corrección `pnpm audit --json` exit 0, cero avisos conocidos.
 - Catálogos SQL solo lectura, sin probar operación ni acceder a registros sensibles.
+- F0-P02: ensayo Git sintético de sustitución en blob/autor/committer conservando commits vacíos; verificación por commit de archivos/mensajes/fechas, árbol actual e índice intactos, originales privados sin cambios. Escaneo posterior: 217 objetos Git y 31 archivos de metadatos, cero coincidencias del identificador; 8 objetos commit antiguos ausentes, fsck sin hallazgos. Son cifras al terminar la reescritura; el commit documental añade objetos nuevos y exige reescaneo. Véase `GIT_PRIVACY_RECOVERY.md`.
 
 ## Reproducción segura
 

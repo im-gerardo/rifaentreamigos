@@ -69,3 +69,18 @@ Observations captured during task-oriented work.
 **Suggested improvement:** Antes de crear baseline, inventariar y leer snippets/seeds además del código principal; añadir detección de emails/PII y revisión de excepciones. Si se detecta tarde, preservar el original fuera de versionado, bloquear distribución y obtener autorización específica antes de reescribir historial.
 
 **Principle:** Un repositorio limpio de claves no implica un historial apto para distribuir; la revisión de privacidad debe preceder al primer commit.
+
+### Observation 5: Depurar identidades y objetos recuperables, no solo versiones de archivos
+
+**Status:** OPEN
+**Date:** 2026-11-05
+**Session context:** Depuración autorizada de historial Git local con respaldo privado.
+**Skill:** New skill candidate: recuperación segura de repositorios
+**Type:** open-source
+**Phase/Area:** Verificación de reescritura
+
+**Issue:** El mismo identificador del archivo también aparecía en author/committer. La poda por defecto de la herramienta eliminaba un commit vacío en el ensayo sintético. Revisar solo árboles alcanzables habría omitido identidades, reflogs y objetos antiguos recuperables.
+
+**Suggested improvement:** Ensayar con datos sintéticos, preservar commits explícitamente y cotejar árboles/metadatos contra manifiesto previo. Ajustar identidad local antes de reescribir, inspeccionar todos los objetos y metadatos, verificar ausencia de commits originales y repetir el escaneo tras el commit documental. Mantener backups sensibles fuera de refs/versionado.
+
+**Principle:** La ausencia de un dato en archivos actuales no demuestra su ausencia en el repositorio; la verificación debe abarcar contenido, identidades, referencias y objetos recuperables.

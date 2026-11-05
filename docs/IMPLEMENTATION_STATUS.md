@@ -2,12 +2,12 @@
 
 Actualizado: 2026-11-05. Responsable: GPT-6.1 Sol (coordinación, QA y revisión).
 
-**ESTADO: PARCIAL. Estado recuperado, sin certificar. No apto para operar ni cobrar. Compartir Git BLOQUEADO por PII histórica (F0-P01).**
+**ESTADO DEL PRODUCTO: PARCIAL. No apto para operar ni cobrar. F0-P02: depuración del identificador conocido COMPLETADA con autorización; no equivale a autorización de publicación.**
 Este informe sustituye afirmaciones contradictorias del informe anterior; el commit raíz conserva el estado recuperado. La existencia de archivos no demuestra funcionamiento. No se ejecutaron emisión, limpieza de reservas, migraciones ni escrituras en Supabase.
 
 ## Resultado vigente de Fase 0
 
-Gates locales estabilizados; auditoría **PARCIAL** por saneamiento histórico de PII pendiente, producto **PARCIAL**, operación **BLOQUEADA**. Sin desarrollar funcionalidades de Fases 1–7. La contención no arregla los defectos subyacentes ni certifica dinero/inventario.
+Gates locales estabilizados y bloqueo histórico F0-P01 resuelto mediante F0-P02; auditoría/estabilización de Fase 0 completada dentro del alcance documentado. Producto **PARCIAL**, operación **BLOQUEADA**. Sin desarrollar funcionalidades de Fases 1–7. La contención no arregla los defectos subyacentes ni certifica dinero/inventario. Backups privados fuera de Git conservan PII deliberadamente: no distribuirlos ni copiar todo el directorio de trabajo.
 
 | Gate final | Resultado ejecutado |
 |---|---|
@@ -21,23 +21,24 @@ Gates locales estabilizados; auditoría **PARCIAL** por saneamiento histórico d
 | SQL/RPC/RLS/concurrencia desde cero | **NO VERIFICADO**, falta entorno nuevo y desechable; no usar stack existente ni aplicar `007` |
 | Login real, roles cruzados, upload, dinero, restore/UAT | **NO VERIFICADO**, suites e infraestructura de negocio pendientes |
 | CI GitHub Actions | Configurada; ejecución remota **NO VERIFICADA**, sin push autorizado |
-| Privacidad de historial Git | **BLOQUEADA**, correo personal en SQL de baseline; copia actual anonimizada pero commits anteriores pendientes de depuración autorizada |
+| Privacidad del identificador detectado en Git | **VERIFICADA**, ausente de todos los objetos y metadatos tras reescritura autorizada; original/respaldo privados ignorados, no certifica toda PII |
 
 ### Commits asociados
 
 | Tarea | Responsable | Estado en alcance | Commit |
 |---|---|---|---|
-| F0-A01 / F0-G01 — auditoría y Git | GPT-6.1 Sol | completado | `9292bc6` |
+| F0-A01 / F0-G01 — auditoría y Git | GPT-6.1 Sol | completado | `04c78d0` |
 | F0-A02 — inspección delegada | gemma-worker (Ollama 26B configurado) | parcial, sin edición/pruebas | No aplica; evidencia en baseline |
-| F0-T01 — emisor inerte/typecheck | GPT-6.1 Sol | completado, emisión no implementada | `e521fd9` |
-| F0-S01 — contención 9 handlers | GPT-6.1 Sol | completado, negocio bloqueado | `a161f02` |
-| F0-Q01 — ESLint/CI básica | GPT-6.1 Sol | completado local, remoto no verificado | `73f601e` |
-| F0-Q02 — smoke E2E aislado | GPT-6.1 Sol | completado | `3e4fd1a` |
-| F0-V01 — avisos de dependencias | GPT-6.1 Sol | completado local | `704fa97` |
-| F0-P01 — privacidad SQL/historial | GPT-6.1 Sol | parcial, historial bloqueado por autorización | `e1c6256` |
-| F0-D01 — informe documental y revisión | GPT-6.1 Sol | completado informe, Fase 0 integral PARCIAL por F0-P01 | Mensaje `docs: record phase zero validation and privacy blocker` |
+| F0-T01 — emisor inerte/typecheck | GPT-6.1 Sol | completado, emisión no implementada | `7d408d3` |
+| F0-S01 — contención 9 handlers | GPT-6.1 Sol | completado, negocio bloqueado | `cb929bb` |
+| F0-Q01 — ESLint/CI básica | GPT-6.1 Sol | completado local, remoto no verificado | `8d4e632` |
+| F0-Q02 — smoke E2E aislado | GPT-6.1 Sol | completado | `a841f23` |
+| F0-V01 — avisos de dependencias | GPT-6.1 Sol | completado local | `401e4d1` |
+| F0-P01 — anonimizar SQL vigente | GPT-6.1 Sol | completado; depuración histórica cubierta por F0-P02 | `0e4d52e` |
+| F0-D01 — informe documental y revisión | GPT-6.1 Sol | completado; su bloqueo histórico resuelto después en F0-P02 | `49a1816` |
+| F0-P02 — depuración histórica autorizada | GPT-6.1 Sol | completado en alcance conocido; regresión local correcta | Asunto `chore: verify authorized Git history redaction` |
 
-Git local rama `main`, sin remotos ni push/despliegue. Estado limpio se comprueba después del commit de cierre; no se afirma de antemano. Todos los archivos previos se conservan salvo actualizaciones documentadas/versionadas; configuración local y secretos permanecen en disco, excluidos. **Primero F0-P01:** autorizar depuración local del historial con PII antes de compartirlo. Después **F1-I01** (infraestructura nueva, migraciones desde cero, grants mínimos/RLS y pruebas), antes de login/roles completos; no quitar la contención.
+Git local rama `main`, sin remotos ni push/despliegue. Ocho commits recuperados conservados con hashes nuevos; tabla anterior usa hashes vigentes y `GIT_PRIVACY_RECOVERY.md` conserva correspondencia. Código actual idéntico antes/después de reescritura; `.env.local`, configuración de agentes y original privado sin cambios. Solo identidad técnica Git local ajustada para no reintroducir el dato; configuración global sin modificar. Estado limpio se comprueba tras commit documental. Siguiente **F1-I01** (infraestructura nueva, migraciones desde cero, grants mínimos/RLS y pruebas), sin quitar la contención; publicar sigue requiriendo autorización independiente.
 
 ## Evidencia inicial reproducida
 
@@ -69,7 +70,7 @@ Estados: **funcional** = evidencia ejecutada en el alcance indicado; **parcial**
 | 0 — unitarias | funcional (28 casos) | Validación, generador, emisor inerte y contención; no prueban BD |
 | 0 — E2E | funcional (10 smoke) | No prueban login real, roles activos, dinero ni RLS |
 | 0 — CI básica | parcial | Workflow escrito, no ejecutado remotamente; sin CI SQL ni deploy |
-| 0 — Git | parcial (local utilizable, no distribuible) | `main`, baseline/commits comprobados; sin remotos; PII histórica requiere depuración autorizada |
+| 0 — Git | funcional (local, alcance verificado) | `main`, 8 commits preservados y depurados del identificador conocido; sin remotos/push; backups privados no distribuibles |
 | 1 — Supabase local / migraciones / seed DEMO | parcial | Stack ya existente y `001–006` en catálogo; desde cero NO VERIFICADO. Seed no idempotente, sin usuarios Auth, horas demo no son decisiones oficiales |
 | 1 — login / logout / sesión | parcial | Login y middleware existen; no logout encontrado; login real y renovación NO VERIFICADOS |
 | 1 — roles / vendedor solo asignado | bloqueada | `admin/orders` acepta `sellerId` del cliente; compradores se consultan sin filtro de vendedor; dashboard muestra agregados globales |
@@ -100,13 +101,28 @@ Estados: **funcional** = evidencia ejecutada en el alcance indicado; **parcial**
 |---|---|---|---|---|---|
 | F0-A01 — auditoría y QA inicial | GPT-6.1 Sol | completado (diagnóstico, no certificación) | Documentación de auditoría | Resultados arriba; inspección independiente de rutas/SQL | Commit raíz pendiente; estabilizar P0 |
 | F0-A02 — auditar emisión (solo lectura) | `gemma-worker`, configurado `ollama/gemma4:26b` | parcial, agotó 12 pasos | Ninguno | Sesión real `ses_e5367bf7dffeFKnx2MYLY4vRN7`; reportó import roto y generador. No leyó el test ni ejecutó pruebas; QA del coordinador detecta carrera de archivo, NO escritura atómica | Sin commit; coordinador revisó los tres archivos al terminar la delegación |
-| F0-G01 — recuperar Git seguro | GPT-6.1 Sol | completado | `.gitignore`, informes | Exclusiones verificadas y escaneo heurístico sin hallazgos; sin historia local recuperable identificada | `9292bc6`, sin remotos/push |
+| F0-G01 — recuperar Git seguro | GPT-6.1 Sol | completado | `.gitignore`, informes | Exclusiones verificadas y escaneo heurístico sin hallazgos; sin historia local recuperable identificada | `04c78d0`, sin remotos/push; posterior depuración F0-P02 |
 
 Ollama responde y tiene `gemma4:26b` instalado. Configuración local define `hybrid-lead`, `gemma-worker` y `local-lead`; el catálogo de modelos de OpenCode solo anuncia Ollama 12B, no 26B. La invocación real del worker produjo respuesta, pero no se obtuvo metadato independiente que certifique el modelo ejecutado. El respaldo `local-lead` no se invocó ni se certifica. No se alteró la configuración local; excluida de Git. No hay edición concurrente: el worker fue de solo lectura; implementación, QA y aprobación corresponden al coordinador.
 
 ## Bloqueos y continuación
 
+### Iteración F0-P02 — depuración histórica autorizada (vigente)
+
+- Autorización: respuesta explícita del usuario «sí, adelante con la depuración», posterior al informe F0-P01. Responsable real: GPT-6.1 Sol, implementación y QA; sin delegaciones nuevas para no distribuir el identificador privado. No se atribuye revisión independiente a Gemma.
+- Alcance: exactamente los ocho commits locales de recuperación en `main`, sin otras refs, remotos, worktrees ni objetos ajenos no alcanzables. Un blob SQL y los campos author/committer de los ocho commits contenían el mismo identificador. Se retira de contenido y se sustituyen las identidades coincidentes por `Rifa Recovery <recovery@example.invalid>`.
+- Respaldo: original previo intacto e ignorado, permisos 0600; bundle predepuración verificado, reglas privadas, metadatos y evidencia en `.local-recovery/history-redaction-2026-11-05/` (directorio 0700, archivos 0600). **Contiene PII original: NO COMPARTIR**. Copia de configuración Git previa privada; nueva identidad solo local, sin alterar configuración global.
+- Herramienta: `git-filter-repo 2.47.0` en venv temporal aislado, sin dependencias nuevas del proyecto. `--prune-empty never --prune-degenerate never` conserva commits; el ensayo sintético inicial detectó poda automática, corregida y probada antes de tocar el proyecto. La prevalidación también detectó PII en identidades: se amplió el alcance exacto antes de ejecutar. Una única reescritura real.
+- Verificación: 8/8 commits preservados; archivos de cada commit iguales salvo sustitución SQL prevista; mensajes y fechas preservados, identidades coincidentes anonimizadas. Árbol HEAD e índice exactamente iguales al previo, hashes de entorno/configuración de agentes/original privado intactos.
+- Git: 217 objetos inspeccionados tras reescribir (129 blobs, 80 árboles, 8 commits), cero coincidencias del identificador conocido; 31 archivos de metadatos fuera de objetos, cero coincidencias; los 8 objetos commit antiguos ausentes. Solo `refs/heads/main`, sin refs de respaldo/reemplazo; `git fsck --full --no-reflogs` sin hallazgos. Respaldo antiguo solo fuera de Git, ignorado.
+- Archivos documentales afectados: `README.md`, `docs/IMPLEMENTATION_STATUS.md`, `docs/DEVELOPMENT_PLAN.md`, `docs/F0_AUDIT.md`, `docs/DEPLOYMENT.md`, `docs/CHANGELOG.md`, `docs/TEST_PLAN.md`, nuevo `docs/GIT_PRIVACY_RECOVERY.md` y observación metodológica. No cambios de código, emisión ni consultas/escrituras Supabase en esta tarea.
+- Regresión reejecutada secuencialmente tras reescritura: frozen install, lint, typecheck, 28 unitarias, build ficticio, 10 E2E smoke y audit sin avisos conocidos, todos exit 0. Evidencia privada `regression-results.json`; no se modificaron dependencias del proyecto. Revisión documental: enlaces locales/hashes y diff; el reescaneo de objetos/metadatos tras commit se guarda en `final-verification.json` privado y se confirma en el reporte final.
+- Estado: completado en alcance conocido. Commit por asunto `chore: verify authorized Git history redaction`; su SHA definitivo se obtiene con `git log -1`, sin inventar autorreferencias. Persisten NO VERIFICADOS SQL/RPC/RLS/concurrencia, login real, dinero y CI remota; no se ejecutaron como parte de esta depuración.
+- Límite: se acredita ausencia del identificador conocido en este Git, no anonimato general ni eliminación en backups privados, conversaciones, snapshots externos o copias no inspeccionadas. Retirado el bloqueo específico F0-P01; no se otorga permiso de push/despliegue/ventas. Siguiente F1-I01 conforme al plan.
+
 ### Iteración F0-D01 — informe y validación final
+
+Registro histórico previo a autorización; el estado de privacidad vigente es F0-P02, no las restricciones pendientes descritas en esta sección.
 
 - Responsable: GPT-6.1 Sol (documentación, QA y revisión; no agente independiente de aprobación).
 - Archivos: `README.md`, `docs/DEVELOPMENT_PLAN.md`, `docs/API.md`, `docs/ARCHITECTURE.md`, `docs/DATABASE.md`, `docs/BUSINESS_RULES.md`, `docs/TEST_PLAN.md`, `docs/DEPLOYMENT.md`, `docs/POKA_YOKES.md`, `docs/CHANGELOG.md` y este estado. Hallazgos/backlog en F0_AUDIT.
@@ -116,6 +132,8 @@ Ollama responde y tiene `gemma4:26b` instalado. Configuración local define `hyb
 - Siguiente: autorización específica para depurar únicamente el historial local creado en recuperación, preservando original local y verificando ausencia histórica. No iniciar funcionalidades nuevas con este bloqueo abierto. Después F1-I01 según plan, con infraestructura desechable nueva.
 
 ### Iteración F0-P01 — privacidad del SQL auxiliar
+
+Registro histórico previo a autorización. La copia actual se anonimizó en esta tarea; el bloqueo de historial se resolvió después mediante F0-P02.
 
 - Responsable: GPT-6.1 Sol; fallo de cobertura inicial reconocido, no atribuible al worker (fuera de su alcance).
 - Archivos: `.gitignore`, SQL auxiliar, `docs/F0_AUDIT.md`, este informe; copia original preservada en `.local-recovery/original-admin-snippet.sql` (ignorada, modo 0600), sin mostrar su contenido. El SQL no fue ejecutado.
@@ -157,7 +175,7 @@ Ollama responde y tiene `gemma4:26b` instalado. Configuración local define `hyb
 ### Iteración F0-T01 — emisor inerte
 
 - Responsable: GPT-6.1 Sol; sin nueva delegación tras el límite del worker.
-- Base segura: commit raíz `9292bc6` (estado recuperado, sin certificar), rama `main`; escaneo de secretos sin hallazgos. `git diff --cached --check` encontró espacios finales preexistentes, conservados deliberadamente en baseline.
+- Base recuperada: commit raíz `04c78d0` (hash vigente tras depuración F0-P02; estado sin certificar), rama `main`; escaneo inicial de secretos sin hallazgos, con posterior fallo de cobertura PII documentado. `git diff --cached --check` encontró espacios finales preexistentes, conservados deliberadamente en baseline.
 - Cambio: `scripts/issue_tickets.ts` deja de importar `arg` y el cliente de BD; conserva solo una constante deshabilitada. **No implementa emisión.**
 - Prueba nueva: `tests/issuance-safety.test.ts` inspecciona AST, no importa/ejecuta el script, y rechaza cualquier sentencia adicional.
 - Validación: 10 unitarias pasan; build aislado pasa; typecheck pasa al reejecutar secuencialmente. Primer typecheck concurrente con build falló TS6053 porque Next regeneraba `.next/types`: no ejecutar esos gates en paralelo. Lint y 2 E2E siguen pendientes de estabilización (no se atribuye éxito a esta tarea).

@@ -2,10 +2,12 @@
 
 Next.js 15, React 19, TypeScript estricto y Supabase/PostgreSQL; Zod 4, Vitest 4 y Playwright.
 **No listo para operar ni cobrar.** Fase 0 auditada y baseline local estabilizada el 2026-11-05.
-**Auditoría PARCIAL: compartir Git está BLOQUEADO por un dato personal en el historial inicial.**
-La copia actual del SQL se anonimizó y el original se preservó ignorado; no hubo
-push. Falta autorización específica para depurar el historial antes de compartir
-repositorio, `.git` o bundles. Ver F0-P01 en el estado de implementación.
+**Depuración local autorizada y verificada:** el identificador detectado se retiró
+del historial, incluidos autor/committer. Los ocho commits se conservaron con
+nuevos hashes; no hubo push. El original y el respaldo privado permanecen
+ignorados en `.local-recovery/`: **no compartir esa carpeta ni el directorio de
+trabajo completo**. Esto no certifica ausencia de toda PII ni autoriza publicar.
+Detalle y correspondencia de commits: [`docs/GIT_PRIVACY_RECOVERY.md`](docs/GIT_PRIVACY_RECOVERY.md).
 El plan maestro sigue siendo [`docs/DEVELOPMENT_PLAN.md`](docs/DEVELOPMENT_PLAN.md).
 
 ## Seguridad antes de iniciar

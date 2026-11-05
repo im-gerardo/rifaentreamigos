@@ -2,9 +2,11 @@
 
 No hay autorización para despliegue público, cobros ni apertura de ventas.
 
-**Bloqueo adicional F0-P01:** no compartir/publicar el repositorio ni crear remotos
-antes de depurar el dato personal del historial inicial con autorización específica.
-La copia actual del SQL está anonimizada; eso no sanea commits anteriores.
+**F0-P01 resuelto mediante F0-P02:** historial local depurado con autorización,
+incluyendo autor/committer, y ausencia del identificador conocido verificada en
+objetos/metadatos. No equivale a permiso para crear remotos, push o desplegar.
+No compartir `.local-recovery/`, sus bundles ni el directorio de trabajo completo:
+conservan PII/secretos privados fuera de Git. Ver `GIT_PRIVACY_RECOVERY.md`.
 
 Antes de desplegar se requiere:
 
