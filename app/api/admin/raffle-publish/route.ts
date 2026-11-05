@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { rpcError } from '@/lib/api-errors';
 import { authError, requireRole } from '@/lib/auth';
 import { db } from '@/lib/supabase';
+import { operationalBlockResponse } from '@/lib/operation-gate';
 
 const publishSchema = z.object({
   raffleId: z.string().uuid(),
@@ -12,6 +13,8 @@ const publishSchema = z.object({
 });
 
 export async function POST(req: Request) {
+  const blocked = operationalBlockResponse();
+  if (blocked) return blocked;
   try {
     const { user } = await requireRole(['admin']);
     const body = publishSchema.parse(await req.json());

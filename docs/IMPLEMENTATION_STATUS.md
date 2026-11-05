@@ -72,6 +72,14 @@ Ollama responde y tiene `gemma4:26b` instalado. Configuración local define `hyb
 
 ## Bloqueos y continuación
 
+### Iteración F0-S01 — contención operativa
+
+- Responsable: GPT-6.1 Sol (implementación y QA); no se delegaron ediciones concurrentes.
+- Archivos: `lib/operation-gate.ts`, las ocho rutas API mutantes (también GET compradores), `vitest.config.ts`, `tests/operation-gate.test.ts`, `docs/API.md` y este informe.
+- Alcance: bloqueo HTTP 503 previo a Auth/BD de 9 handlers; sin interruptor por entorno. Conserva el código recuperado detrás del bloqueo. No corrige ni certifica permisos, RLS, integridad de emisión ni idempotencia.
+- Validación ejecutada: 18 casos de handlers pasan (flag pública false/true), sin llamadas a Auth/DB; suite completa 28/28, typecheck y build aislado pasan. E2E de transporte pendiente en F0-Q02. Estado: completado el bloqueo HTTP, NO los flujos de negocio.
+- Commit previsto: `fix: contain unsafe operational endpoints during audit`. Siguiente: ESLint/CI y smoke E2E.
+
 ### Iteración F0-T01 — emisor inerte
 
 - Responsable: GPT-6.1 Sol; sin nueva delegación tras el límite del worker.

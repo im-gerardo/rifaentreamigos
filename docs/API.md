@@ -1,5 +1,14 @@
 # API
 
+## Contención temporal de Fase 0 (2026-11-05)
+
+**Contrato actual:** todos los POST/PATCH existentes y `GET /api/admin/buyers`
+responden `503`, código `OPERATIONS_DISABLED`, con `Cache-Control: no-store`,
+antes de autenticar o acceder a BD. Incluye publicación y validación de emisión.
+No hay variable de entorno que permita abrir este bloqueo. Los contratos descritos
+abajo son recuperados/objetivo, no autorización para operar. Los defectos subyacentes
+siguen pendientes en `F0_AUDIT.md`; el bloqueo los contiene, no los corrige.
+
 Todas las respuestas de error evitan enviar trazas, credenciales o mensajes internos de PostgreSQL.
 
 | Método | Ruta | Acceso actual | Estado |

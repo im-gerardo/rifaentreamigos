@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { rpcError } from '@/lib/api-errors';
 import { authError, requireRole } from '@/lib/auth';
 import { db } from '@/lib/supabase';
+import { operationalBlockResponse } from '@/lib/operation-gate';
 
 const buyerSchema = z.object({
   name: z.string().min(2).max(100).trim(),
@@ -18,6 +19,8 @@ const searchSchema = z.object({
 });
 
 export async function GET(req: Request) {
+  const blocked = operationalBlockResponse();
+  if (blocked) return blocked;
   try {
     await requireRole(['admin', 'seller']);
     const { searchParams } = new URL(req.url);
@@ -51,6 +54,8 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
+  const blocked = operationalBlockResponse();
+  if (blocked) return blocked;
   try {
     await requireRole(['admin', 'seller']);
     const body = buyerSchema.parse(await req.json());

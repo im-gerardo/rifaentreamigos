@@ -3,8 +3,11 @@ import { rpcError } from '@/lib/api-errors';
 import { authError, requireRole } from '@/lib/auth';
 import { db } from '@/lib/supabase';
 import { reservationSchema } from '@/lib/validation';
+import { operationalBlockResponse } from '@/lib/operation-gate';
 
 export async function POST(req: Request) {
+  const blocked = operationalBlockResponse();
+  if (blocked) return blocked;
   try {
     const { user } = await requireRole(['admin', 'seller']);
     const body = reservationSchema.parse(await req.json());

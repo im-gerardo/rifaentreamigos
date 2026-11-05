@@ -3,6 +3,7 @@ import { rpcError } from '@/lib/api-errors';
 import { authError, requireRole } from '@/lib/auth';
 import { db } from '@/lib/supabase';
 import { reservationSchema } from '@/lib/validation';
+import { operationalBlockResponse } from '@/lib/operation-gate';
 
 const adminOrderSchema = reservationSchema.extend({
   sellerId: z.string().uuid(),
@@ -10,6 +11,8 @@ const adminOrderSchema = reservationSchema.extend({
 });
 
 export async function POST(req: Request) {
+  const blocked = operationalBlockResponse();
+  if (blocked) return blocked;
   try {
     const { user }  = await requireRole(['admin', 'seller']);
     const body = adminOrderSchema.parse(await req.json());

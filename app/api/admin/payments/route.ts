@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { rpcError } from '@/lib/api-errors';
 import { authError, requireRole } from '@/lib/auth';
 import { db } from '@/lib/supabase';
+import { operationalBlockResponse } from '@/lib/operation-gate';
 
 const reviewSchema = z.object({ paymentId: z.string().uuid(), approve: z.boolean() });
 
@@ -21,6 +22,8 @@ export async function GET() {
 }
 
 export async function PATCH(req: Request) {
+  const blocked = operationalBlockResponse();
+  if (blocked) return blocked;
   try {
     const { user } = await requireRole(['admin']);
     const body = reviewSchema.parse(await req.json());
