@@ -18,8 +18,8 @@ function CheckoutContent() {
   const [selectedFolios, setSelectedFolios] = useState<number[]>([]);
   const [buyerName, setBuyerName] = useState('');
   const [phone, setPhone] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState<'transfer' | 'cash'>('transfer');
   const [proofFileName, setProofFileName] = useState('');
+  const [proofFileData, setProofFileData] = useState<string>('');
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [error, setError] = useState('');
   const [successReserved, setSuccessReserved] = useState<number[] | null>(null);
@@ -41,31 +41,43 @@ function CheckoutContent() {
   };
 
   const cleanPhone = phone.replace(/\D/g, '');
+  const hasProof = Boolean(proofFileName || proofFileData);
+
   const isFormValid =
     selectedFolios.length > 0 &&
     buyerName.trim().length >= 3 &&
     cleanPhone.length >= 10 &&
+    hasProof && // Comprobante obligatorio para el público
     termsAccepted;
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setProofFileName(file.name);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProofFileData(reader.result as string || file.name);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!hasProof) {
+      setError('Es obligatorio adjuntar la foto o captura de tu comprobante de pago/transferencia para apartar.');
+      return;
+    }
     if (!isFormValid) return;
 
     const res = reserveMultipleTickets({
       folios: selectedFolios,
       buyerName: buyerName.trim(),
       phone: cleanPhone,
-      paymentMethod,
-      proofFile: proofFileName,
+      paymentMethod: 'transfer', // Exclusivo transferencia SPEI para el portal público
+      proofFile: proofFileData || proofFileName,
       termsAccepted,
-      markPaid: false,
+      markPaid: false, // Queda en validación de pago
     });
 
     if (!res.success) {
@@ -77,7 +89,7 @@ function CheckoutContent() {
   };
 
   const isMultiple = selectedFolios.length > 1;
-  const buttonMainText = isMultiple ? 'Quiero estos boletos' : 'Quiero este boleto';
+  const buttonMainText = isMultiple ? 'Apartar estos boletos' : 'Apartar este boleto';
   const totalPrice = selectedFolios.length * 250;
 
   if (successReserved) {
@@ -87,24 +99,25 @@ function CheckoutContent() {
         <div style={{ background: '#132e22', border: '1px solid #235d45', borderRadius: 16, padding: '32px 24px', marginBottom: 24 }}>
           <div style={{ fontSize: 42, marginBottom: 12 }}>🎉</div>
           <h1 style={{ fontSize: 24, margin: '0 0 10px', color: '#6ee7b7' }}>
-            {isMultipleSuccess ? '¡Boletos Apartados con Éxito!' : '¡Boleto Apartado con Éxito!'}
+            {isMultipleSuccess ? '¡Comprobante Recibido y Boletos Apartados!' : '¡Comprobante Recibido y Boleto Apartado!'}
           </h1>
           <p style={{ color: '#d1fae5', fontSize: 14, lineHeight: 1.6, margin: 0 }}>
             {isMultipleSuccess ? 'Tus boletos con folio ' : 'Tu boleto con folio '}
             <strong>{successReserved.map((f) => getLetterFolio(f)).join(', ')}</strong>{' '}
-            {isMultipleSuccess ? 'han sido apartados.' : 'ha sido apartado.'}
+            {isMultipleSuccess ? 'han quedado apartados con tu comprobante.' : 'ha quedado apartado con tu comprobante.'}
             <br />
-            Un administrador o vendedor verificará tu pago para confirmarlo formalmente.
+            La administración verificará el ingreso en la cuenta para confirmarlo formalmente.
           </p>
         </div>
 
         <div style={{ background: '#1c2223', padding: 20, borderRadius: 12, marginBottom: 24, textAlign: 'left', fontSize: 13, border: '1px solid #282f30' }}>
-          <div style={{ color: '#889492', marginBottom: 8, fontWeight: 700, textTransform: 'uppercase' }}>Resumen de Reserva:</div>
+          <div style={{ color: '#889492', marginBottom: 8, fontWeight: 700, textTransform: 'uppercase' }}>Resumen de Apartado:</div>
           <div style={{ padding: '4px 0' }}><strong>Total a liquidar:</strong> ${totalPrice} MXN ({successReserved.length} × $250)</div>
           <div style={{ padding: '4px 0' }}><strong>Comprador:</strong> {buyerName}</div>
           <div style={{ padding: '4px 0' }}><strong>WhatsApp:</strong> {phone}</div>
+          <div style={{ padding: '4px 0' }}><strong>Comprobante adjuntado:</strong> {proofFileName || 'Archivo recibido ✓'}</div>
           <div style={{ marginTop: 10, padding: '8px 12px', background: '#252110', border: '1px solid #635017', borderRadius: 6, color: '#facc15' }}>
-            Estado: <strong>Pendiente de validación de pago</strong>
+            Estado: <strong>Pendiente de conciliación bancaria</strong>
           </div>
         </div>
 
@@ -136,16 +149,16 @@ function CheckoutContent() {
 
         <section className={styles.formCard}>
           <div className={styles.formHeader}>
-            <p className="route-label">Proceso de Selección</p>
-            <h1>{isMultiple ? 'Quiero estos boletos' : 'Quiero este boleto'}</h1>
+            <p className="route-label">Proceso de Selección y Apartado</p>
+            <h1>{isMultiple ? 'Apartar estos boletos' : 'Apartar este boleto'}</h1>
             <div className={styles.priceTag}>
               $250 MXN por boleto · 5 oportunidades por cada boleto con Lotería Nacional
             </div>
           </div>
 
           {error ? (
-            <div style={{ background: '#7f1d1d', color: '#fca5a5', padding: '10px 14px', borderRadius: 8, marginBottom: 20, fontSize: 13 }}>
-              {error}
+            <div style={{ background: '#7f1d1d', color: '#fca5a5', padding: '12px 14px', borderRadius: 8, marginBottom: 20, fontSize: 13, border: '1px solid #dc2626' }}>
+              ⚠️ {error}
             </div>
           ) : null}
 
@@ -163,7 +176,6 @@ function CheckoutContent() {
                 {tickets.map((t) => {
                   const isAvailable = t.state === 'available';
                   const isSelected = selectedFolios.includes(t.folio);
-                  const isSold = t.state === 'paid' || t.state === 'reconciliation_hold' || t.state === 'reserved';
 
                   return (
                     <button
@@ -171,7 +183,7 @@ function CheckoutContent() {
                       type="button"
                       disabled={!isAvailable}
                       onClick={() => isAvailable && toggleFolioSelection(t.folio)}
-                      title={!isAvailable ? `Folio ${getLetterFolio(t.folio)} (Vendido)` : `Folio ${getLetterFolio(t.folio)}`}
+                      title={!isAvailable ? `Folio ${getLetterFolio(t.folio)} (Vendido/Apartado)` : `Folio ${getLetterFolio(t.folio)}`}
                       className={`${styles.ticketMiniChip} ${
                         isSelected ? styles.ticketMiniChipSelected : ''
                       } ${!isAvailable ? styles.ticketMiniChipDisabled : ''}`}
@@ -203,7 +215,7 @@ function CheckoutContent() {
                     </div>
                   ))}
                   <div style={{ marginTop: 10, fontSize: 14, textAlign: 'right', color: '#ffd21a', fontWeight: 800 }}>
-                    Total a liquidar: ${totalPrice} MXN
+                    Total a pagar: ${totalPrice} MXN
                   </div>
                 </div>
               ) : null}
@@ -212,7 +224,7 @@ function CheckoutContent() {
             {/* Datos del Comprador */}
             <div className={styles.fieldGroup}>
               <label className={styles.fieldLabel} htmlFor="buyerName">
-                Nombre completo (como se muestra en tu INE):
+                2. Nombre completo (como se muestra en tu INE):
               </label>
               <input
                 id="buyerName"
@@ -230,7 +242,7 @@ function CheckoutContent() {
 
             <div className={styles.fieldGroup}>
               <label className={styles.fieldLabel} htmlFor="phone">
-                Número de WhatsApp (10 dígitos):
+                3. Número de WhatsApp (10 dígitos):
               </label>
               <input
                 id="phone"
@@ -244,98 +256,61 @@ function CheckoutContent() {
               <p className={styles.hint}>Recibirás la confirmación de validación a este número.</p>
             </div>
 
-            {/* Método de pago */}
+            {/* Subida forzosa de comprobante */}
             <div className={styles.fieldGroup}>
-              <label className={styles.fieldLabel}>Forma de pago:</label>
-              <div style={{ display: 'flex', gap: 12 }}>
-                <label
-                  style={{
-                    flex: 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 10,
-                    background: paymentMethod === 'transfer' ? '#222b29' : '#171c1d',
-                    border: `1px solid ${paymentMethod === 'transfer' ? '#ffd21a' : '#333e40'}`,
-                    padding: '12px 14px',
-                    borderRadius: 8,
-                    cursor: 'pointer',
-                    fontSize: 13,
-                    color: '#fff',
-                  }}
-                >
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="transfer"
-                    checked={paymentMethod === 'transfer'}
-                    onChange={() => setPaymentMethod('transfer')}
-                    style={{ accentColor: '#ffd21a', width: 16, height: 16 }}
-                  />
-                  <span>Transferencia (SPEI)</span>
-                </label>
-
-                <label
-                  style={{
-                    flex: 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 10,
-                    background: paymentMethod === 'cash' ? '#222b29' : '#171c1d',
-                    border: `1px solid ${paymentMethod === 'cash' ? '#ffd21a' : '#333e40'}`,
-                    padding: '12px 14px',
-                    borderRadius: 8,
-                    cursor: 'pointer',
-                    fontSize: 13,
-                    color: '#fff',
-                  }}
-                >
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="cash"
-                    checked={paymentMethod === 'cash'}
-                    onChange={() => setPaymentMethod('cash')}
-                    style={{ accentColor: '#ffd21a', width: 16, height: 16 }}
-                  />
-                  <span>Efectivo presencial</span>
-                </label>
+              <label className={styles.fieldLabel}>
+                4. Comprobante de pago o transferencia SPEI <strong style={{ color: '#f87171' }}>(Obligatorio)</strong>:
+              </label>
+              <div
+                style={{
+                  background: '#191f21',
+                  border: `1px solid ${hasProof ? '#059669' : '#ca8a04'}`,
+                  borderRadius: 12,
+                  padding: 16,
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                  <label
+                    style={{
+                      background: '#ffd21a',
+                      color: '#13140a',
+                      padding: '10px 18px',
+                      borderRadius: 8,
+                      fontSize: 13,
+                      fontWeight: 900,
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6,
+                    }}
+                  >
+                    <input
+                      type="file"
+                      required
+                      accept="image/*,.pdf"
+                      onChange={handleFileUpload}
+                      style={{ display: 'none' }}
+                    />
+                    <span>📎 Subir Comprobante (Foto/PDF)</span>
+                  </label>
+                  <span
+                    style={{
+                      fontSize: 13,
+                      color: hasProof ? '#4ade80' : '#cfd8d6',
+                      fontWeight: hasProof ? 700 : 400,
+                    }}
+                  >
+                    {proofFileName ? `✓ ${proofFileName}` : 'Ningún archivo seleccionado todavía'}
+                  </span>
+                </div>
+                <p style={{ margin: '10px 0 0', fontSize: 12, color: '#8d9896', lineHeight: 1.5 }}>
+                  Para apartar tus boletos a través de la web es obligatorio adjuntar la captura de tu transferencia o depósito bancario. La administración cotejará el ingreso en cuenta antes de aprobar.
+                </p>
               </div>
             </div>
 
-            {/* Adjuntar comprobante rediseñado, limpio y claro */}
-            {paymentMethod === 'transfer' ? (
-              <div className={styles.fieldGroup}>
-                <label className={styles.fieldLabel}>
-                  Comprobante de pago (opcional ahora o después por WhatsApp):
-                </label>
-                <div className={styles.uploadContainer}>
-                  <div className={styles.uploadActionRow}>
-                    <label className={styles.uploadButton}>
-                      <input
-                        type="file"
-                        accept="image/*,.pdf"
-                        onChange={handleFileUpload}
-                        style={{ display: 'none' }}
-                      />
-                      <span>📎 Adjuntar Archivo</span>
-                    </label>
-                    {proofFileName ? (
-                      <span className={styles.uploadFileName}>✓ {proofFileName}</span>
-                    ) : (
-                      <span className={styles.uploadPlaceholder}>
-                        Ningún archivo seleccionado (JPG, PNG, PDF)
-                      </span>
-                    )}
-                  </div>
-                  <p className={styles.hint} style={{ marginTop: 8 }}>
-                    Si no lo tienes a la mano, puedes apartar y enviarlo después al WhatsApp 442 194 1930.
-                  </p>
-                </div>
-              </div>
-            ) : null}
-
             {/* Check de términos y condiciones */}
-            <label className={styles.termsCheckLabel}>
+            <label className={styles.termsCheckLabel} style={{ marginTop: 20 }}>
               <input
                 type="checkbox"
                 required
@@ -343,11 +318,15 @@ function CheckoutContent() {
                 onChange={(e) => setTermsAccepted(e.target.checked)}
               />
               <span>
-                He leído y acepto las <strong>condiciones generales de la rifa</strong>, la fecha oficial del 12 de diciembre de 2026 y que el boleto debe estar liquidado al 100% 24 horas antes del sorteo.
+                He leído y acepto las{' '}
+                <Link href="/condiciones" target="_blank" style={{ color: '#ffd21a', textDecoration: 'underline' }}>
+                  bases y condiciones generales de la rifa
+                </Link>
+                , la fecha oficial del 12 de diciembre de 2026 y que el boleto debe estar liquidado al 100% 24 horas antes del sorteo.
               </span>
             </label>
 
-            {/* Botón de envío dinámico singular / plural */}
+            {/* Botón de envío dinámico */}
             <button
               type="submit"
               disabled={!isFormValid}
@@ -355,8 +334,10 @@ function CheckoutContent() {
             >
               {selectedFolios.length === 0
                 ? 'Selecciona al menos un boleto'
+                : !hasProof
+                ? 'Sube tu comprobante para apartar'
                 : !isFormValid
-                ? 'Completa los datos para continuar'
+                ? 'Completa los campos requeridos'
                 : `${buttonMainText} (${selectedFolios.length} × $250 = $${totalPrice} MXN)`}
             </button>
           </form>
@@ -394,49 +375,42 @@ function CheckoutContent() {
             <div className={styles.ruleItem}>
               <span className={styles.ruleIcon}>✦</span>
               <div className={styles.ruleContent}>
-                <strong>Premio Oficial:</strong> Motocicleta Bajaj Pulsar N250, modelo 2026, color amarillo, seminueva con poco más de 3,000 km. Documentación en regla lista para emplacar.
+                <strong>Premio Oficial:</strong> Motocicleta Bajaj Pulsar N250, modelo 2026, color amarillo, seminueva (+3,000 km). Factura original endosada al ganador.
               </div>
             </div>
 
             <div className={styles.ruleItem}>
               <span className={styles.ruleIcon}>✦</span>
               <div className={styles.ruleContent}>
-                <strong>Participación:</strong> Emisión limitada de 200 boletos (folios 001 al 200). Cada boleto cuenta con <strong>5 números únicos de 3 cifras</strong> (del 000 al 999).
+                <strong>Participación:</strong> Emisión de 200 folios únicos (series 1AAA y 2AAA). Cada boleto confiere <strong>5 números únicos de 3 cifras</strong> (cobertura total 000 al 999 sin duplicados).
               </div>
             </div>
 
             <div className={styles.ruleItem}>
               <span className={styles.ruleIcon}>✦</span>
               <div className={styles.ruleContent}>
-                <strong>Fecha y Sorteo:</strong> Se llevará a cabo el <strong>12 de diciembre de 2026</strong> tomando como referencia las últimas 3 cifras del Primer Premio de la <strong>Lotería Nacional</strong>.
+                <strong>Fecha y Sorteo:</strong> Se llevará a cabo el <strong>12 de diciembre de 2026</strong> en combinación con las últimas 3 cifras del Primer Premio de la <strong>Lotería Nacional</strong>.
               </div>
             </div>
 
             <div className={styles.ruleItem}>
               <span className={styles.ruleIcon}>✦</span>
               <div className={styles.ruleContent}>
-                <strong>Plazo Límite de Liquidación:</strong> Todo boleto debe estar liquidado al 100% a más tardar <strong>24 horas antes del sorteo</strong> (11 de diciembre de 2026). Boletos con pagos no confirmados serán liberados.
+                <strong>Plazo Límite de Liquidación:</strong> Boletos liquidados al 100% a más tardar <strong>24 horas antes del sorteo</strong> (11 de diciembre de 2026 a las 20:00 hrs).
               </div>
             </div>
 
             <div className={styles.ruleItem}>
               <span className={styles.ruleIcon}>✦</span>
               <div className={styles.ruleContent}>
-                <strong>Conciliación y Validación:</strong> Todo apartado queda en estado <em>Pendiente de Validación</em> hasta que el organizador confirme la recepción del pago vía SPEI o en efectivo.
+                <strong>Entrega del Vehículo y Trámites:</strong> Se entrega físicamente en León, Guanajuato. <strong>Emplacamiento, alta vehicular y cambio de propietario a cargo del ganador</strong>.
               </div>
             </div>
 
             <div className={styles.ruleItem}>
               <span className={styles.ruleIcon}>✦</span>
               <div className={styles.ruleContent}>
-                <strong>Entrega del Vehículo y Trámites:</strong> Se entrega físicamente en León, Guanajuato con factura endosada a favor del ganador. <strong>El trámite de emplacamiento, cambio de propietario y pago de derechos vehiculares corren única y exclusivamente por cuenta del ganador</strong>.
-              </div>
-            </div>
-
-            <div className={styles.ruleItem}>
-              <span className={styles.ruleIcon}>✦</span>
-              <div className={styles.ruleContent}>
-                <strong>Informes y Atención Oficial:</strong> Únicamente por mensaje de <strong>WhatsApp al 442 194 1930</strong> (No se reciben llamadas telefónicas).
+                <strong>Informes y Atención Oficial:</strong> Únicamente por mensaje de <strong>WhatsApp al 442 194 1930</strong> (No se reciben llamadas).
               </div>
             </div>
           </div>
