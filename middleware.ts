@@ -6,39 +6,43 @@ type CookieToSet = { name: string; value: string; options: CookieOptions };
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet: CookieToSet[]) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-          response = NextResponse.next({ request });
-          cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
-        },
-      },
-    },
-  );
 
-  // Bypass local de desarrollo para pruebas si existe la cookie dev_admin_session
+  // 1. Bypass si existe la sesión de administrador
   const devSession = request.cookies.get('dev_admin_session');
   if (devSession?.value) {
     return response;
   }
 
-  try {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+  // 2. Si las variables de Supabase están configuradas, validar sesión de auth
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-    if (user) return response;
-  } catch {
-    // Si Supabase local no responde, continúa a login
+  if (supabaseUrl && supabaseAnonKey) {
+    try {
+      const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll();
+          },
+          setAll(cookiesToSet: CookieToSet[]) {
+            cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
+            response = NextResponse.next({ request });
+            cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
+          },
+        },
+      });
+
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) return response;
+    } catch {
+      // Continuar a redirección de login
+    }
   }
 
+  // Redirigir a iniciar sesión con parámetro de retorno
   const loginUrl = request.nextUrl.clone();
   loginUrl.pathname = '/iniciar-sesion';
   loginUrl.searchParams.set('redirect', `${request.nextUrl.pathname}${request.nextUrl.search}`);

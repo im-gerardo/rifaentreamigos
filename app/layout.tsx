@@ -21,7 +21,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
                 <Link href="/boletos">Boletos</Link>
                 <Link href="/condiciones">Bases y Condiciones</Link>
-                <Link href="/admin">Administración</Link>
               </div>
             </nav>
             {children}
