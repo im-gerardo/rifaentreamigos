@@ -309,7 +309,7 @@ function CheckoutContent() {
               </div>
             </div>
 
-            {/* Check de términos y condiciones */}
+            {/* Check de términos y condiciones con enlace visible a nueva pestaña */}
             <label className={styles.termsCheckLabel} style={{ marginTop: 20 }}>
               <input
                 type="checkbox"
@@ -319,8 +319,18 @@ function CheckoutContent() {
               />
               <span>
                 He leído y acepto las{' '}
-                <Link href="/condiciones" target="_blank" style={{ color: '#ffd21a', textDecoration: 'underline' }}>
-                  bases y condiciones generales de la rifa
+                <Link
+                  href="/condiciones"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#ffd21a',
+                    fontWeight: 800,
+                    textDecoration: 'underline',
+                    textUnderlineOffset: '3px',
+                  }}
+                >
+                  condiciones generales de la rifa ↗
                 </Link>
                 , la fecha oficial del 12 de diciembre de 2026 y que el boleto debe estar liquidado al 100% 24 horas antes del sorteo.
               </span>
