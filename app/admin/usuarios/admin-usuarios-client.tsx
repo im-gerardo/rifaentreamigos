@@ -22,6 +22,13 @@ export default function AdminUsuariosClient() {
   const [newRole, setNewRole] = useState<'seller' | 'admin'>('seller');
   const [formError, setFormError] = useState('');
   const [actionSuccess, setActionSuccess] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [createdCredentials, setCreatedCredentials] = useState<{
+    name: string;
+    email: string;
+    password: string;
+    role: string;
+  } | null>(null);
 
   // Compradores derivados de tickets vendidos o apartados
   const buyerMap = new Map<string, {
@@ -85,10 +92,11 @@ export default function AdminUsuariosClient() {
     setNewRole(roleDefault);
     setFormError('');
     setActionSuccess('');
+    setCreatedCredentials(null);
     setIsModalOpen(true);
   };
 
-  const handleCreateUser = (e: React.FormEvent) => {
+  const handleCreateUser = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newName.trim() || newName.trim().length < 3) {
       setFormError('Ingresa el nombre completo del usuario.');
@@ -104,24 +112,52 @@ export default function AdminUsuariosClient() {
       return;
     }
 
-    const res = addUser({
-      name: newName,
-      email: newEmail,
-      phone: cleanPhone,
-      role: newRole,
-      active: true,
-    });
+    setIsSubmitting(true);
+    setFormError('');
 
-    if (!res.success) {
-      setFormError(res.error || 'Error al guardar el usuario.');
-      return;
+    try {
+      // Llamar a la API para crear usuario en Supabase Auth y Profiles
+      const res = await fetch('/api/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: newName,
+          email: newEmail,
+          phone: cleanPhone,
+          role: newRole,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setFormError(data.error || 'Error al dar de alta el usuario.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Sincronizar en el store local
+      addUser({
+        name: newName,
+        email: newEmail,
+        phone: cleanPhone,
+        role: newRole,
+        active: true,
+      });
+
+      // Mostrar las credenciales generadas para que el admin las copie
+      setCreatedCredentials({
+        name: newName,
+        email: newEmail.trim().toLowerCase(),
+        password: data.generatedPassword,
+        role: newRole === 'seller' ? 'Vendedor' : 'Administrador',
+      });
+      setActionSuccess(`¡Usuario ${newName} creado exitosamente en Supabase!`);
+    } catch (err: unknown) {
+      setFormError(err instanceof Error ? err.message : 'Error de conexión con el servidor.');
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setActionSuccess(`¡Usuario ${newName} (${newRole === 'seller' ? 'Vendedor' : 'Admin'}) guardado con éxito!`);
-    setTimeout(() => {
-      setIsModalOpen(false);
-      setActionSuccess('');
-    }, 1000);
   };
 
   return (
@@ -890,6 +926,64 @@ export default function AdminUsuariosClient() {
               </div>
             ) : null}
 
+            {createdCredentials ? (
+              <div style={{ background: '#121e18', border: '1px solid #059669', borderRadius: 12, padding: 18, marginBottom: 20 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                  <span style={{ fontSize: 20 }}>🎉</span>
+                  <strong style={{ color: '#6ee7b7', fontSize: 16 }}>Usuario Creado en Supabase</strong>
+                </div>
+                <p style={{ color: '#a7f3d0', fontSize: 13, margin: '0 0 14px', lineHeight: 1.4 }}>
+                  Copia y comparte estas credenciales con <strong>{createdCredentials.name}</strong> para que pueda ingresar al panel:
+                </p>
+
+                <div style={{ background: '#0a0d0c', border: '1px solid #1e3a2f', borderRadius: 8, padding: 14, fontFamily: 'monospace', fontSize: 13, color: '#f3f4f6', marginBottom: 16 }}>
+                  <div><strong>Rol:</strong> {createdCredentials.role}</div>
+                  <div style={{ marginTop: 6 }}><strong>Link de acceso:</strong> https://rifaentreamigos.ogba.space/iniciar-sesion</div>
+                  <div style={{ marginTop: 6 }}><strong>Correo:</strong> {createdCredentials.email}</div>
+                  <div style={{ marginTop: 6 }}><strong>Contraseña:</strong> <span style={{ color: '#ffd21a', fontWeight: 'bold' }}>{createdCredentials.password}</span></div>
+                </div>
+
+                <div style={{ display: 'flex', gap: 10 }}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const text = `Hola ${createdCredentials.name}! Ya tienes acceso a la plataforma de la Rifa:\n\n🔗 Link: https://rifaentreamigos.ogba.space/iniciar-sesion\n✉️ Usuario: ${createdCredentials.email}\n🔑 Contraseña: ${createdCredentials.password}\n\nIngresa para registrar tus ventas de boletos.`;
+                      navigator.clipboard.writeText(text);
+                      alert('¡Credenciales copiadas al portapapeles!');
+                    }}
+                    style={{
+                      flex: 1,
+                      padding: '10px 14px',
+                      background: '#059669',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: 8,
+                      fontSize: 13,
+                      fontWeight: 800,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    📋 Copiar para WhatsApp
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                    style={{
+                      padding: '10px 16px',
+                      background: '#242c2d',
+                      color: '#cfd8d6',
+                      border: '1px solid #3e4c4e',
+                      borderRadius: 8,
+                      fontSize: 13,
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Cerrar
+                  </button>
+                </div>
+              </div>
+            ) : (
             <form onSubmit={handleCreateUser}>
               {/* Rol */}
               <div style={{ marginBottom: 16 }}>
@@ -1045,22 +1139,24 @@ export default function AdminUsuariosClient() {
                 </button>
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   style={{
                     flex: 1,
                     padding: '12px',
                     borderRadius: 8,
-                    background: '#ffd21a',
+                    background: isSubmitting ? '#a18816' : '#ffd21a',
                     color: '#13140a',
                     border: 'none',
                     fontSize: 14,
                     fontWeight: 900,
-                    cursor: 'pointer',
+                    cursor: isSubmitting ? 'not-allowed' : 'pointer',
                   }}
                 >
-                  Guardar Usuario
+                  {isSubmitting ? 'Creando en Supabase...' : 'Guardar y Generar Clave'}
                 </button>
               </div>
             </form>
+            )}
           </div>
         </div>
       ) : null}
