@@ -18,8 +18,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Link href="/" className="brand">
                 RIFA <span>ENTRE AMIGOS</span>
               </Link>
-              <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
                 <Link href="/boletos">Boletos</Link>
+                <Link href="/condiciones">Bases y Condiciones</Link>
                 <Link href="/admin">Administración</Link>
               </div>
             </nav>
