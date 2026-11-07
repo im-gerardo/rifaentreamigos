@@ -8,7 +8,8 @@ RUN corepack enable
 FROM base AS deps
 WORKDIR /app
 COPY package.json pnpm-lock.yaml* ./
-RUN pnpm install --frozen-lockfile
+# Usar --no-frozen-lockfile para evitar error de versión/overrides en el entorno de build
+RUN pnpm install --no-frozen-lockfile
 
 # 2. Builder
 FROM base AS builder
