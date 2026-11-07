@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { FormEvent, useState } from 'react';
 
 export default function IniciarSesionForm({ redirectTo }: { redirectTo: string }) {
-  const [email, setEmail] = useState('og.barrios@gmail.com');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,23 +16,21 @@ export default function IniciarSesionForm({ redirectTo }: { redirectTo: string }
     setIsSubmitting(true);
 
     try {
-      // Login directo por API local
       const res = await fetch('/api/auth/dev-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim(), password }),
+        body: JSON.stringify({ email: email.trim(), password: password.trim() }),
       });
 
       const data = await res.json();
       if (res.ok && data.success) {
-        // Redirigir directamente al panel admin
-        window.location.href = redirectTo || '/admin';
+        window.location.href = data.redirect || redirectTo || '/admin';
         return;
       } else {
         setError(data.error || 'Credenciales inválidas.');
       }
-    } catch (err) {
-      setError('Error al conectar con el servidor.');
+    } catch {
+      setError('Error de conexión al autenticar.');
     } finally {
       setIsSubmitting(false);
     }
@@ -41,24 +39,25 @@ export default function IniciarSesionForm({ redirectTo }: { redirectTo: string }
   return (
     <main className="auth-layout">
       <section className="auth-intro" aria-labelledby="login-title">
-        <p className="tag">Acceso de equipo</p>
-        <h1 id="login-title">Administración de la rifa</h1>
+        <p className="tag">Acceso Exclusivo de Equipo</p>
+        <h1 id="login-title">Administración de la Rifa</h1>
         <p>
-          Panel de control para supervisión de inventario, aprobación de pagos y entrega de talones.
+          Panel de control para supervisión de inventario de 200 folios, validación de pagos SPEI y entrega de talones.
         </p>
         <Link href="/" className="text-link">
-          Volver al sitio público
+          ← Volver al sitio público
         </Link>
       </section>
 
       <form className="auth-form" onSubmit={handleSubmit} noValidate>
         <div className="field">
-          <label htmlFor="email">Correo electrónico de Administrador</label>
+          <label htmlFor="email">Correo electrónico</label>
           <input
             id="email"
             name="email"
             type="email"
             autoComplete="email"
+            placeholder="tu-correo@ejemplo.com"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
@@ -73,6 +72,7 @@ export default function IniciarSesionForm({ redirectTo }: { redirectTo: string }
               name="password"
               type={showPassword ? 'text' : 'password'}
               autoComplete="current-password"
+              placeholder="••••••••••••"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               required
@@ -89,10 +89,10 @@ export default function IniciarSesionForm({ redirectTo }: { redirectTo: string }
           </div>
         </div>
 
-        {error ? <p className="field-error" role="alert">{error}</p> : null}
+        {error ? <p className="field-error" role="alert" style={{ color: '#f87171' }}>⚠️ {error}</p> : null}
 
         <button className="btn" type="submit" disabled={!email.trim() || !password || isSubmitting}>
-          {isSubmitting ? 'Entrando al panel…' : 'Iniciar sesión como Administrador'}
+          {isSubmitting ? 'Verificando credenciales…' : 'Iniciar Sesión'}
         </button>
       </form>
     </main>
