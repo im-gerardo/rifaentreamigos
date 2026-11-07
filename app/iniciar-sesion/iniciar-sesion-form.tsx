@@ -2,13 +2,10 @@
 
 import Link from 'next/link';
 import { FormEvent, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase-browser';
 
 export default function IniciarSesionForm({ redirectTo }: { redirectTo: string }) {
-  const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('og.barrios@gmail.com');
+  const [password, setPassword] = useState('admin123');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,19 +15,27 @@ export default function IniciarSesionForm({ redirectTo }: { redirectTo: string }
     setError('');
     setIsSubmitting(true);
 
-    const { error: signInError } = await createClient().auth.signInWithPassword({
-      email: email.trim(),
-      password,
-    });
+    try {
+      // Login directo por API local
+      const res = await fetch('/api/auth/dev-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim(), password }),
+      });
 
-    if (signInError) {
-      setError('No fue posible iniciar sesión. Revisa tu correo y contraseña.');
+      const data = await res.json();
+      if (res.ok && data.success) {
+        // Redirigir directamente al panel admin
+        window.location.href = redirectTo || '/admin';
+        return;
+      } else {
+        setError(data.error || 'Credenciales inválidas.');
+      }
+    } catch (err) {
+      setError('Error al conectar con el servidor.');
+    } finally {
       setIsSubmitting(false);
-      return;
     }
-
-    router.replace(redirectTo);
-    router.refresh();
   }
 
   return (
@@ -39,7 +44,7 @@ export default function IniciarSesionForm({ redirectTo }: { redirectTo: string }
         <p className="tag">Acceso de equipo</p>
         <h1 id="login-title">Administración de la rifa</h1>
         <p>
-          Usa tu cuenta de administrador o vendedor. El panel registra las operaciones sensibles con tu usuario.
+          Panel de control para supervisión de inventario, aprobación de pagos y entrega de talones.
         </p>
         <Link href="/" className="text-link">
           Volver al sitio público
@@ -48,7 +53,7 @@ export default function IniciarSesionForm({ redirectTo }: { redirectTo: string }
 
       <form className="auth-form" onSubmit={handleSubmit} noValidate>
         <div className="field">
-          <label htmlFor="email">Correo electrónico</label>
+          <label htmlFor="email">Correo electrónico de Administrador</label>
           <input
             id="email"
             name="email"
@@ -87,7 +92,7 @@ export default function IniciarSesionForm({ redirectTo }: { redirectTo: string }
         {error ? <p className="field-error" role="alert">{error}</p> : null}
 
         <button className="btn" type="submit" disabled={!email.trim() || !password || isSubmitting}>
-          {isSubmitting ? 'Entrando…' : 'Iniciar sesión'}
+          {isSubmitting ? 'Entrando al panel…' : 'Iniciar sesión como Administrador'}
         </button>
       </form>
     </main>

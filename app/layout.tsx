@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ClientProviders } from '@/components/client-providers';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -11,18 +12,20 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="es-MX">
       <body>
-        <div className="wrap">
-          <nav className="nav" aria-label="Navegación principal">
-            <Link href="/" className="brand">
-              RIFA <span>ENTRE AMIGOS</span>
-            </Link>
-            <div>
-              <Link href="/boletos">Boletos</Link>
-              <Link href="/admin">Administración</Link>
-            </div>
-          </nav>
-          {children}
-        </div>
+        <ClientProviders>
+          <div className="wrap">
+            <nav className="nav" aria-label="Navegación principal">
+              <Link href="/" className="brand">
+                RIFA <span>ENTRE AMIGOS</span>
+              </Link>
+              <div>
+                <Link href="/boletos">Boletos</Link>
+                <Link href="/admin">Administración</Link>
+              </div>
+            </nav>
+            {children}
+          </div>
+        </ClientProviders>
       </body>
     </html>
   );

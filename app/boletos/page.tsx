@@ -1,134 +1,151 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import Link from 'next/link';
+import { useTicketStore } from '@/lib/ticket-store';
+import { getLetterFolio } from '@/lib/folio-letters';
 import styles from './boletos.module.css';
 
-type Ticket = {
-  id: string;
-  folio: number;
-  state: 'available' | 'reserved' | 'reconciliation_hold' | 'paid' | 'blocked';
-  ticket_numbers: { number: number }[];
-};
-
 export default function Boletos() {
-  const [tickets, setTickets] = useState<Ticket[]>([]);
-  const [filter, setFilter] = useState('all');
-  const [selected, setSelected] = useState<string[]>([]);
-  const [status, setStatus] = useState<'loading' | 'ready' | 'empty' | 'error'>('loading');
-  const [error, setError] = useState('');
+  const { tickets } = useTicketStore();
+  const [filter, setFilter] = useState<'all' | 'available' | 'reserved' | 'paid'>('all');
+  const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    async function loadTickets() {
-      try {
-        const response = await fetch('/api/tickets');
-        const data = await response.json();
+  const visible = tickets.filter((ticket) => {
+    const matchesFilter = filter === 'all' || ticket.state === filter;
+    const folioStr = String(ticket.folio).padStart(3, '0');
+    const letterFolio = getLetterFolio(ticket.folio);
+    const matchesSearch =
+      !search ||
+      folioStr.includes(search) ||
+      letterFolio.toLowerCase().includes(search.toLowerCase()) ||
+      ticket.ticket_numbers?.some((n) => String(n.number).padStart(3, '0').includes(search));
+    return matchesFilter && matchesSearch;
+  });
 
-        if (!response.ok || data.error) {
-          setError('Los folios todavía no se han publicado. Vuelve más tarde para consultar la emisión verificada.');
-          setStatus('error');
-          return;
-        }
-
-        setTickets(data.tickets);
-        setStatus(data.tickets.length ? 'ready' : 'empty');
-      } catch {
-        setError('No fue posible consultar el inventario en este momento.');
-        setStatus('error');
-      }
-    }
-
-    void loadTickets();
-  }, []);
-
-  const visible = tickets.filter((ticket) => filter === 'all' || ticket.state === filter);
-
-  function toggleTicket(ticketId: string) {
-    setSelected((current) =>
-      current.includes(ticketId) ? current.filter((id) => id !== ticketId) : [...current, ticketId],
-    );
-  }
+  const availableCount = tickets.filter((t) => t.state === 'available').length;
+  const reservedCount = tickets.filter((t) => t.state === 'reserved').length;
+  const paidCount = tickets.filter((t) => t.state === 'paid').length;
 
   return (
-    <main className={`${styles.page} ticket-page`}>
-      <p className="route-label">Catálogo consultivo</p>
-      <h1>Consulta los folios de la emisión.</h1>
-      <p className="ticket-page-summary">
-        Las ventas públicas todavía no están habilitadas. Aquí aparecerán los números una vez que se
-        cotejen con los boletos físicos.
-      </p>
+    <main className={styles.page}>
+      <header className={styles.heroHeader}>
+        <p className="route-label">Edición Oficial 2026</p>
+        <h1>Catálogo de Boletos</h1>
+        <p className={styles.summary}>
+          200 boletos numerados con <strong>5 oportunidades de ganar</strong> cada uno con la <strong>Lotería Nacional</strong> (12 de diciembre de 2026). Selecciona tu folio preferido y apártalo en línea.
+        </p>
+        <Link href="/checkout" className="btn btn-primary" style={{ padding: '12px 24px', fontSize: '15px' }}>
+          Apartar un Boleto ($250 MXN)
+        </Link>
+      </header>
 
-      {status === 'loading' ? (
-        <section className="inventory-state" aria-live="polite">
-          <span className="inventory-spinner" aria-hidden="true" />
-          <div>
-            <h2>Consultando la emisión</h2>
-            <p>Estamos verificando los folios disponibles.</p>
-          </div>
-        </section>
-      ) : null}
+      {/* Barra de Filtros y Búsqueda */}
+      <section className={styles.controlBar} aria-label="Filtros de búsqueda">
+        <div className={styles.searchBox}>
+          <span className={styles.searchIcon} aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            placeholder="Buscar por folio (ej. 001) o por número..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
 
-      {status === 'empty' || status === 'error' ? (
-        <section className="inventory-state inventory-empty" aria-live="polite">
-          <span className="inventory-index" aria-hidden="true">000</span>
-          <div>
-            <h2>La emisión aún no está publicada</h2>
-            <p>{error || 'Aún no hay folios verificados para mostrar.'}</p>
-          </div>
-        </section>
-      ) : null}
+        <div className={styles.filterGroup}>
+          <button
+            type="button"
+            className={`${styles.filterChip} ${filter === 'all' ? styles.filterChipActive : ''}`}
+            onClick={() => setFilter('all')}
+          >
+            Todos ({tickets.length})
+          </button>
+          <button
+            type="button"
+            className={`${styles.filterChip} ${filter === 'available' ? styles.filterChipActive : ''}`}
+            onClick={() => setFilter('available')}
+          >
+            Disponibles ({availableCount})
+          </button>
+          <button
+            type="button"
+            className={`${styles.filterChip} ${filter === 'reserved' ? styles.filterChipActive : ''}`}
+            onClick={() => setFilter('reserved')}
+          >
+            Apartados ({reservedCount})
+          </button>
+          <button
+            type="button"
+            className={`${styles.filterChip} ${filter === 'paid' ? styles.filterChipActive : ''}`}
+            onClick={() => setFilter('paid')}
+          >
+            Pagados ({paidCount})
+          </button>
+        </div>
+      </section>
 
-      {status === 'ready' ? (
-        <>
-          <div className="toolbar">
-            <span>{tickets.length} folios registrados</span>
-            <label className="filter-control">
-              <span>Mostrar</span>
-              <select aria-label="Filtrar estado" value={filter} onChange={(event) => setFilter(event.target.value)}>
-                <option value="all">Todos</option>
-                <option value="available">Disponibles</option>
-                <option value="reserved">Apartados</option>
-                <option value="reconciliation_hold">En revisión</option>
-                <option value="paid">Pagados</option>
-              </select>
-            </label>
-          </div>
+      {/* Grid de Boletos */}
+      {visible.length === 0 ? (
+        <div className={styles.emptyState}>
+          <h3>No se encontraron folios con este criterio de búsqueda</h3>
+          <p>Intenta con otro número de 3 dígitos o borra el filtro de búsqueda.</p>
+        </div>
+      ) : (
+        <section className={styles.ticketGrid} aria-label="Lista de boletos">
+          {visible.map((ticket) => {
+            const folioStr = String(ticket.folio).padStart(3, '0');
+            const isAvailable = ticket.state === 'available';
 
-          {visible.length ? (
-            <div className="ticket-grid">
-              {visible.map((ticket) => (
-                <button
-                  key={ticket.id}
-                  className={`ticket ${ticket.state}${selected.includes(ticket.id) ? ' selected' : ''}`}
-                  disabled={ticket.state !== 'available'}
-                  onClick={() => toggleTicket(ticket.id)}
-                >
-                  <strong>{String(ticket.folio).padStart(3, '0')}</strong>
-                  <small>{ticket.state === 'available' ? 'Disponible' : ticket.state === 'paid' ? 'Pagado' : 'No disponible'}</small>
-                  <span className="ticket-numbers">
-                    {ticket.ticket_numbers.map((number) => String(number.number).padStart(3, '0')).join(' · ')}
+            return (
+              <article key={ticket.id} className={styles.ticketCard}>
+                <div className={styles.ticketHeader}>
+                  <span className={styles.folioNumber}>FOLIO {getLetterFolio(ticket.folio)}</span>
+                  <span
+                    className={`${styles.badge} ${
+                      ticket.state === 'available'
+                        ? styles.badgeAvailable
+                        : ticket.state === 'paid'
+                        ? styles.badgePaid
+                        : styles.badgeReserved
+                    }`}
+                  >
+                    {ticket.state === 'available' ? 'Disponible' : ticket.state === 'paid' ? 'Pagado' : 'Apartado'}
                   </span>
-                </button>
-              ))}
-            </div>
-          ) : (
-            <section className="inventory-state inventory-empty">
-              <div>
-                <h2>No hay folios con ese estado</h2>
-                <p>Cambia el filtro para ver otros folios.</p>
-              </div>
-            </section>
-          )}
+                </div>
 
-          <div className="bottom">
-            <div>
-              {selected.length} seleccionados · <b>${selected.length * 250} MXN</b>
-            </div>
-            <button className="btn" disabled>
-              Reservar próximamente
-            </button>
-          </div>
-        </>
-      ) : null}
+                <div className={styles.ticketBody}>
+                  <div className={styles.numbersLabel}>5 Números de participación:</div>
+                  <div className={styles.numbersRow}>
+                    {ticket.ticket_numbers?.map((n) => (
+                      <span key={n.number} className={styles.numberPill}>
+                        {String(n.number).padStart(3, '0')}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className={styles.ticketFooter}>
+                  {isAvailable ? (
+                    <Link
+                      href={`/checkout?folio=${ticket.folio}`}
+                      className={`${styles.actionButton} ${styles.btnApartar}`}
+                    >
+                      Quiero este boleto →
+                    </Link>
+                  ) : (
+                    <Link
+                      href={`/comprobante/${ticket.folio}`}
+                      className={`${styles.actionButton} ${styles.btnConsultar}`}
+                    >
+                      Ver Comprobante Digital
+                    </Link>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </section>
+      )}
     </main>
   );
 }

@@ -6,18 +6,16 @@ import { reservationSchema } from '@/lib/validation';
 import { operationalBlockResponse } from '@/lib/operation-gate';
 
 const adminOrderSchema = reservationSchema.extend({
-  sellerId: z.string().uuid(),
   idempotencyKey: z.string().uuid(),
-});
+}).strict();
 
 export async function POST(req: Request) {
   const blocked = operationalBlockResponse();
   if (blocked) return blocked;
   try {
-    // Pendiente: derivar el actor de sesión, nunca reabrir esta ruta tal como está.
-    await requireRole(['admin', 'seller']);
+    const { user } = await requireRole(['admin', 'seller']);
     const body = adminOrderSchema.parse(await req.json());
-    const { buyerName, phone, ticketIds, sellerId, idempotencyKey } = body;
+    const { buyerName, phone, ticketIds, idempotencyKey } = body;
     
     const raffleId = process.env.RAFFLE_ID;
     if (!raffleId) {
@@ -30,7 +28,7 @@ export async function POST(req: Request) {
       p_phone: phone,
       p_ticket_ids: ticketIds,
       p_source: 'seller',
-      p_seller: sellerId,
+      p_seller: user.id,
       p_idempotency_key: idempotencyKey,
     });
 

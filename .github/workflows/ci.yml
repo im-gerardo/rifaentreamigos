@@ -32,6 +32,7 @@ jobs:
       - run: pnpm run lint
       - run: pnpm run typecheck
       - run: pnpm run test
+      - run: pnpm run test:db
       # No paralelizar build, typecheck y dev: comparten .next/types.
       - run: pnpm run build
       - run: pnpm exec playwright install --with-deps chromium

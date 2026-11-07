@@ -1,2 +1,12 @@
-import {requireRole} from '@/lib/auth';import {db} from '@/lib/supabase';import PaymentReview from './review';
-export default async function Page(){try{await requireRole(['admin'])}catch{return <p>Acceso exclusivo del administrador.</p>};const {data}=await db().from('payments').select('id,amount_cents,method,reference,state,created_at').order('created_at',{ascending:false}).limit(100);return <main><h1>Conciliación de pagos</h1><p>Verifica cada ingreso antes de aprobar. La imagen del comprobante por sí sola no acredita pago.</p><PaymentReview initial={data||[]}/></main>}
+import { requireRole } from '@/lib/auth';
+import AdminPagosClient from './admin-pagos-client';
+
+export default async function Page() {
+  try {
+    await requireRole(['admin']);
+  } catch {
+    return <p className="p-8 text-neutral-400">Acceso exclusivo del administrador.</p>;
+  }
+
+  return <AdminPagosClient />;
+}

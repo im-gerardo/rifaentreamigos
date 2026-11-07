@@ -5,6 +5,8 @@ node_modules/
 playwright-report/
 test-results/
 artifacts/issuance/
+artifacts/db-tests/
+artifacts/auth-tests/
 
 # Entornos locales, cachés y secretos generados por Supabase/OpenCode.
 .opencode/
@@ -23,3 +25,5 @@ dist/
 *.pfx
 supabase/signing_keys.json
 .local-recovery/
+__pycache__/
+*.pyc

@@ -1,1 +1,268 @@
-.page{padding:64px 0 88px}.page h1{max-width:16ch;margin-bottom:18px}.page :global(.ticket-page-summary){max-width:62ch;font-size:1.05rem}.page :global(.inventory-state){display:flex;align-items:center;gap:18px;min-height:176px;margin-top:40px;padding:28px;border:1px solid #3d4647;background:linear-gradient(135deg,#171b1c,#111414);border-radius:12px}.page :global(.inventory-state h2){margin-bottom:6px;font-size:clamp(1.45rem,3vw,2rem)}.page :global(.inventory-state p){margin-bottom:0}.page :global(.inventory-empty){position:relative;overflow:hidden}.page :global(.inventory-index){margin-left:auto;color:rgba(255,210,26,.17);font-size:clamp(4rem,13vw,8rem);font-weight:900;letter-spacing:-.1em;line-height:1}.page :global(.inventory-spinner){width:26px;height:26px;border:3px solid #3d4647;border-top-color:#ffd21a;border-radius:50%;animation:spin .8s linear infinite;flex:0 0 auto}.page :global(.filter-control){display:flex;align-items:center;gap:10px;color:#aeb7b4;font-size:13px}.page :global(.filter-control select){max-width:190px}.page :global(.ticket-numbers){display:block;margin-top:8px;font-size:10px;color:#d4dbd2}.page :global(.ticket.reconciliation_hold){background:#382f17;opacity:.8}@keyframes spin{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.page :global(.inventory-spinner){animation:none}}@media(max-width:560px){.page{padding:42px 0 70px}.page :global(.inventory-state){min-height:150px;padding:20px}.page :global(.inventory-index){font-size:5rem}}
+.page {
+  padding: 40px 0 80px;
+}
+
+.heroHeader {
+  margin-bottom: 32px;
+  max-width: 800px;
+}
+
+.heroHeader h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin: 8px 0 16px;
+  color: #ffffff;
+}
+
+.summary {
+  font-size: 1.1rem;
+  color: #aeb7b4;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Barra de control flotante / superior */
+.controlBar {
+  background: #141718;
+  border: 1px solid #282f30;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.searchBox {
+  flex: 1;
+  min-width: 260px;
+  position: relative;
+}
+
+.searchBox input {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
+  background: #1c2122;
+  border: 1px solid #3d4647;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.searchBox input:focus {
+  border-color: #ffd21a;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #717d7b;
+  pointer-events: none;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filterChip {
+  background: transparent;
+  border: 1px solid #3d4647;
+  color: #aeb7b4;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filterChip:hover {
+  background: #202728;
+  color: #fff;
+}
+
+.filterChipActive {
+  background: #ffd21a !important;
+  color: #121415 !important;
+  border-color: #ffd21a !important;
+}
+
+/* Grid de Boletos - Estilo Ticket Fisico */
+.ticketGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 20px;
+}
+
+.ticketCard {
+  background: #161a1b;
+  border: 1px solid #2d3536;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.ticketCard:hover {
+  transform: translateY(-3px);
+  border-color: #4f5b5c;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.ticketHeader {
+  background: #1c2223;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #343d3e;
+  position: relative;
+}
+
+/* Muescas de ticket perforado en los extremos */
+.ticketHeader::before,
+.ticketHeader::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  width: 16px;
+  height: 16px;
+  background: var(--asphalt, #0b0d0e);
+  border-radius: 50%;
+}
+
+.ticketHeader::before {
+  left: -8px;
+}
+
+.ticketHeader::after {
+  right: -8px;
+}
+
+.folioNumber {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.badgeAvailable {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badgeReserved {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badgePaid {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.ticketBody {
+  padding: 20px 18px 16px;
+  flex: 1;
+}
+
+.numbersLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #7b8886;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.numbersRow {
+  display: flex;
+  gap: 6px;
+  justify-content: space-between;
+}
+
+.numberPill {
+  flex: 1;
+  text-align: center;
+  background: #0f1213;
+  border: 1px solid #282f30;
+  padding: 8px 4px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #ffd21a;
+  letter-spacing: 0.02em;
+}
+
+.ticketFooter {
+  padding: 12px 18px 16px;
+  border-top: 1px solid #232a2b;
+}
+
+.actionButton {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btnApartar {
+  background: #ffd21a;
+  color: #121415;
+}
+
+.btnApartar:hover {
+  background: #ffe054;
+  transform: translateY(-1px);
+}
+
+.btnConsultar {
+  background: #232a2b;
+  color: #cfd6d4;
+  border: 1px solid #3d4647;
+}
+
+.btnConsultar:hover {
+  background: #2d3637;
+  color: #fff;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  background: #141718;
+  border-radius: 12px;
+  border: 1px solid #282f30;
+  color: #889492;
+}

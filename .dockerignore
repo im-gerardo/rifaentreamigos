@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.opencode
+.impeccable
+.local-recovery
+test-results
+tests
+coverage
+*.log

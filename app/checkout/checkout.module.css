@@ -1,0 +1,383 @@
+.checkoutLayout {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.15fr) minmax(280px, 0.85fr);
+  gap: 36px;
+  align-items: start;
+  padding: 32px 0 80px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #aeb7b4;
+  font-size: 13px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: #ffd21a;
+}
+
+.formCard {
+  background: #141718;
+  border: 1px solid #282f30;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.formHeader h1 {
+  font-size: 26px;
+  margin: 0 0 8px;
+  color: #fff;
+}
+
+.priceTag {
+  color: #ffd21a;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* Selector múltiple de boletos */
+.ticketSelectorBox {
+  margin-bottom: 24px;
+  background: #191e1f;
+  border: 1px solid #323c3d;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.selectorTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #cfd8d6;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticketMiniGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(62px, 1fr));
+  gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 2px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE y Edge */
+}
+
+.ticketMiniGrid::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Opera */
+  width: 0;
+  height: 0;
+}
+
+.ticketMiniChip {
+  background: #111415;
+  border: 1px solid #2d3536;
+  border-radius: 8px;
+  color: #cfd8d6;
+  padding: 8px 4px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+}
+
+.ticketMiniChip:hover {
+  border-color: #ffd21a;
+}
+
+.ticketMiniChipSelected {
+  background: #ffd21a !important;
+  color: #121415 !important;
+  border-color: #ffd21a !important;
+}
+
+.ticketMiniChipDisabled {
+  background: #191c1d !important;
+  border: 1px dashed #3a4244 !important;
+  color: #556160 !important;
+  cursor: not-allowed !important;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Lista de números de los boletos seleccionados */
+.selectedDetailsBox {
+  margin-top: 14px;
+  padding: 12px;
+  background: #111415;
+  border-radius: 8px;
+  border-left: 3px solid #ffd21a;
+}
+
+.selectedTicketRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #22292a;
+}
+
+.selectedTicketRow:last-child {
+  border-bottom: none;
+}
+
+.numbersMiniRow {
+  display: flex;
+  gap: 4px;
+}
+
+.numberTag {
+  background: #1e2425;
+  color: #ffd21a;
+  font-family: monospace;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Campos de formulario */
+.fieldGroup {
+  margin-bottom: 22px;
+}
+
+.fieldLabel {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #cfd8d6;
+  margin-bottom: 8px;
+}
+
+.textInput {
+  width: 100%;
+  padding: 12px 14px;
+  background: #1c2122;
+  border: 1px solid #374143;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.textInput:focus {
+  border-color: #ffd21a;
+}
+
+.hint {
+  font-size: 12px;
+  color: #889492;
+  margin-top: 6px;
+}
+
+/* Subida de Comprobante Limpia y Confiable */
+.uploadContainer {
+  background: #171c1d;
+  border: 1px solid #2e3738;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.uploadActionRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.uploadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #232b2c;
+  color: #e2e8e7;
+  border: 1px solid #445153;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.uploadButton:hover {
+  background: #2d3839;
+  border-color: #ffd21a;
+  color: #fff;
+}
+
+.uploadFileName {
+  font-size: 13px;
+  color: #34d399;
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.uploadPlaceholder {
+  font-size: 13px;
+  color: #7b8886;
+}
+
+/* Checkbox de términos y condiciones */
+.termsCheckLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+  color: #cfd8d6;
+  cursor: pointer;
+  margin: 24px 0;
+  line-height: 1.5;
+  background: #171c1d;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #2c3536;
+}
+
+.termsCheckLabel input {
+  margin-top: 2px;
+  accent-color: #ffd21a;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Botón de acción principal */
+.submitBtn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 800;
+  background: #ffd21a;
+  color: #121415;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.submitBtnDisabled {
+  background: #2b3233 !important;
+  color: #6a7674 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  opacity: 0.6;
+}
+
+/* Panel derecho: Reglas de la rifa y Premio */
+.rulesSidebar {
+  position: sticky;
+  top: 24px;
+}
+
+.motoCard {
+  background: #141718;
+  border: 1px solid #282f30;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.motoImage {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.motoDetails {
+  padding: 20px;
+}
+
+.motoTitle {
+  font-size: 19px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 4px;
+}
+
+.motoSub {
+  font-size: 13px;
+  color: #ffd21a;
+  font-weight: 700;
+}
+
+/* Bases y Reglas Formales y Destacadas */
+.rulesCard {
+  background: #131718;
+  border: 1px solid #2d3638;
+  border-radius: 16px;
+  padding: 26px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.rulesHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #2a3334;
+  margin-bottom: 18px;
+}
+
+.rulesTitle {
+  font-size: 17px;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.ruleItem {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+.ruleItem:last-child {
+  margin-bottom: 0;
+}
+
+.ruleIcon {
+  font-size: 16px;
+  color: #ffd21a;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.ruleContent {
+  font-size: 13px;
+  color: #d1dbd9;
+  line-height: 1.55;
+}
+
+.ruleContent strong {
+  color: #ffffff;
+}
+
+/* Adaptación responsive en móvil */
+@media (max-width: 900px) {
+  .checkoutLayout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .rulesSidebar {
+    position: static;
+  }
+  .formCard {
+    padding: 20px;
+  }
+}
