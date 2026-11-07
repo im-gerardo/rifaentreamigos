@@ -79,3 +79,54 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
+
+export async function PATCH(req: Request) {
+  try {
+    const { email, newPassword, autoGenerate } = await req.json();
+
+    const normalizedEmail = (email || '').trim().toLowerCase();
+    if (!normalizedEmail) {
+      return NextResponse.json({ error: 'El correo electrónico es requerido.' }, { status: 400 });
+    }
+
+    const supabase = db();
+
+    // Buscar el usuario por email
+    const { data: usersData, error: listError } = await supabase.auth.admin.listUsers();
+    if (listError) {
+      return NextResponse.json({ error: 'Error al buscar usuario en Supabase.' }, { status: 500 });
+    }
+
+    const targetUser = usersData.users.find((u) => u.email?.toLowerCase() === normalizedEmail);
+    if (!targetUser) {
+      return NextResponse.json({ error: 'No se encontró un usuario con ese correo electrónico en Supabase.' }, { status: 404 });
+    }
+
+    // Definir contraseña: auto-generada o personalizada
+    const passwordToSet = autoGenerate || !newPassword ? generateSecurePassword() : newPassword.trim();
+
+    if (passwordToSet.length < 6) {
+      return NextResponse.json({ error: 'La contraseña debe tener al menos 6 caracteres.' }, { status: 400 });
+    }
+
+    // Actualizar contraseña mediante la API admin de Supabase Auth
+    const { error: updateError } = await supabase.auth.admin.updateUserById(targetUser.id, {
+      password: passwordToSet,
+    });
+
+    if (updateError) {
+      return NextResponse.json({ error: updateError.message || 'Error al actualizar la contraseña.' }, { status: 500 });
+    }
+
+    return NextResponse.json({
+      success: true,
+      email: normalizedEmail,
+      updatedPassword: passwordToSet,
+      message: 'Contraseña actualizada con éxito.',
+    });
+  } catch (error: unknown) {
+    console.error('Error en PATCH /api/admin/users:', error);
+    const message = error instanceof Error ? error.message : 'Error interno del servidor.';
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
+}

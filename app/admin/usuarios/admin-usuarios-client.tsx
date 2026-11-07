@@ -30,6 +30,14 @@ export default function AdminUsuariosClient() {
     role: string;
   } | null>(null);
 
+  // Modal para cambiar contraseña
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [selectedUserForPassword, setSelectedUserForPassword] = useState<{ name: string; email: string } | null>(null);
+  const [customPassword, setCustomPassword] = useState('');
+  const [passwordActionSuccess, setPasswordActionSuccess] = useState<{ email: string; password: string } | null>(null);
+  const [passwordError, setPasswordError] = useState('');
+  const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
+
   // Compradores derivados de tickets vendidos o apartados
   const buyerMap = new Map<string, {
     name: string;
@@ -157,6 +165,53 @@ export default function AdminUsuariosClient() {
       setFormError(err instanceof Error ? err.message : 'Error de conexión con el servidor.');
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleOpenPasswordModal = (user: { name: string; email: string }) => {
+    setSelectedUserForPassword(user);
+    setCustomPassword('');
+    setPasswordActionSuccess(null);
+    setPasswordError('');
+    setIsPasswordModalOpen(true);
+  };
+
+  const handleChangePassword = async (autoGenerate: boolean) => {
+    if (!selectedUserForPassword) return;
+    if (!autoGenerate && customPassword.trim().length < 6) {
+      setPasswordError('La contraseña debe tener al menos 6 caracteres.');
+      return;
+    }
+
+    setIsUpdatingPassword(true);
+    setPasswordError('');
+
+    try {
+      const res = await fetch('/api/admin/users', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: selectedUserForPassword.email,
+          newPassword: autoGenerate ? undefined : customPassword.trim(),
+          autoGenerate,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        setPasswordError(data.error || 'Error al actualizar contraseña.');
+        setIsUpdatingPassword(false);
+        return;
+      }
+
+      setPasswordActionSuccess({
+        email: selectedUserForPassword.email,
+        password: data.updatedPassword,
+      });
+    } catch (err: unknown) {
+      setPasswordError(err instanceof Error ? err.message : 'Error de conexión.');
+    } finally {
+      setIsUpdatingPassword(false);
     }
   };
 
@@ -649,6 +704,26 @@ export default function AdminUsuariosClient() {
 
                   {/* BOTONES CON ALTO CONTRASTE */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+                    <button
+                      type="button"
+                      onClick={() => handleOpenPasswordModal({ name: user.name, email: user.email })}
+                      style={{
+                        padding: '9px 14px',
+                        fontSize: 13,
+                        fontWeight: 700,
+                        borderRadius: 8,
+                        background: '#1e293b',
+                        color: '#93c5fd',
+                        border: '1px solid #3b82f6',
+                        cursor: 'pointer',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 6,
+                      }}
+                    >
+                      <span>🔑</span> Cambiar Clave
+                    </button>
+
                     <button
                       type="button"
                       onClick={() => toggleUserStatus(user.id)}
@@ -1156,6 +1231,199 @@ export default function AdminUsuariosClient() {
                 </button>
               </div>
             </form>
+            )}
+          </div>
+        </div>
+      ) : null}
+
+      {/* MODAL PARA CAMBIAR CONTRASEÑA */}
+      {isPasswordModalOpen && selectedUserForPassword ? (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0, 0, 0, 0.85)',
+            backdropFilter: 'blur(4px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 16,
+            zIndex: 100,
+          }}
+          onClick={() => setIsPasswordModalOpen(false)}
+        >
+          <div
+            style={{
+              background: '#16191a',
+              border: '1px solid #364244',
+              borderRadius: 16,
+              maxWidth: 460,
+              width: '100%',
+              padding: 26,
+              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+              <h2 style={{ fontSize: 20, margin: 0, color: '#fff', fontWeight: 900, display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span>🔑</span> Cambiar Contraseña
+              </h2>
+              <button
+                type="button"
+                onClick={() => setIsPasswordModalOpen(false)}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: '#8d9896',
+                  fontSize: 24,
+                  cursor: 'pointer',
+                  padding: 4,
+                }}
+              >
+                ✕
+              </button>
+            </div>
+
+            <p style={{ color: '#8d9896', fontSize: 13, margin: '0 0 16px', lineHeight: 1.5 }}>
+              Usuario: <strong style={{ color: '#fff' }}>{selectedUserForPassword.name}</strong> ({selectedUserForPassword.email})
+            </p>
+
+            {passwordError ? (
+              <div
+                style={{
+                  background: 'rgba(127, 29, 29, 0.5)',
+                  border: '1px solid #dc2626',
+                  color: '#fca5a5',
+                  padding: '10px 14px',
+                  borderRadius: 8,
+                  marginBottom: 16,
+                  fontSize: 13,
+                  fontWeight: 600,
+                }}
+              >
+                {passwordError}
+              </div>
+            ) : null}
+
+            {passwordActionSuccess ? (
+              <div style={{ background: '#121e18', border: '1px solid #059669', borderRadius: 12, padding: 18, marginBottom: 16 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                  <span style={{ fontSize: 20 }}>✅</span>
+                  <strong style={{ color: '#6ee7b7', fontSize: 15 }}>Contraseña Actualizada</strong>
+                </div>
+                <p style={{ color: '#a7f3d0', fontSize: 13, margin: '0 0 12px' }}>
+                  Comparte la nueva contraseña con el vendedor:
+                </p>
+
+                <div style={{ background: '#0a0d0c', border: '1px solid #1e3a2f', borderRadius: 8, padding: 12, fontFamily: 'monospace', fontSize: 13, color: '#f3f4f6', marginBottom: 14 }}>
+                  <div><strong>Correo:</strong> {passwordActionSuccess.email}</div>
+                  <div style={{ marginTop: 6 }}><strong>Nueva Clave:</strong> <span style={{ color: '#ffd21a', fontWeight: 'bold' }}>{passwordActionSuccess.password}</span></div>
+                </div>
+
+                <div style={{ display: 'flex', gap: 10 }}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const text = `Hola ${selectedUserForPassword.name}! Tu contraseña de la Rifa ha sido restablecida:\n\n🔗 Link: https://rifaentreamigos.ogba.space/iniciar-sesion\n✉️ Usuario: ${passwordActionSuccess.email}\n🔑 Nueva Contraseña: ${passwordActionSuccess.password}`;
+                      navigator.clipboard.writeText(text);
+                      alert('¡Nueva clave copiada al portapapeles!');
+                    }}
+                    style={{
+                      flex: 1,
+                      padding: '10px 14px',
+                      background: '#059669',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: 8,
+                      fontSize: 13,
+                      fontWeight: 800,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    📋 Copiar para WhatsApp
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsPasswordModalOpen(false)}
+                    style={{
+                      padding: '10px 16px',
+                      background: '#242c2d',
+                      color: '#cfd8d6',
+                      border: '1px solid #3e4c4e',
+                      borderRadius: 8,
+                      fontSize: 13,
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Cerrar
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div style={{ marginBottom: 16 }}>
+                  <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#d0d7d5', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                    Escribir contraseña manual (mín. 6 caracteres):
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Ej. MiClave2026!"
+                    value={customPassword}
+                    onChange={(e) => setCustomPassword(e.target.value)}
+                    style={{
+                      width: '100%',
+                      padding: '11px 14px',
+                      background: '#0e1213',
+                      border: '1px solid #2e3a3c',
+                      color: '#fff',
+                      borderRadius: 8,
+                      fontSize: 14,
+                      outline: 'none',
+                    }}
+                  />
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  <button
+                    type="button"
+                    disabled={isUpdatingPassword || !customPassword.trim()}
+                    onClick={() => handleChangePassword(false)}
+                    style={{
+                      padding: '11px',
+                      borderRadius: 8,
+                      background: !customPassword.trim() ? '#293233' : '#3b82f6',
+                      color: !customPassword.trim() ? '#707c7a' : '#fff',
+                      border: 'none',
+                      fontSize: 13,
+                      fontWeight: 800,
+                      cursor: !customPassword.trim() || isUpdatingPassword ? 'not-allowed' : 'pointer',
+                    }}
+                  >
+                    {isUpdatingPassword ? 'Actualizando...' : 'Guardar Esta Contraseña Manual'}
+                  </button>
+
+                  <div style={{ textAlign: 'center', color: '#6a7674', fontSize: 12, margin: '4px 0' }}>o también puedes</div>
+
+                  <button
+                    type="button"
+                    disabled={isUpdatingPassword}
+                    onClick={() => handleChangePassword(true)}
+                    style={{
+                      padding: '11px',
+                      borderRadius: 8,
+                      background: '#ffd21a',
+                      color: '#13140a',
+                      border: 'none',
+                      fontSize: 13,
+                      fontWeight: 900,
+                      cursor: isUpdatingPassword ? 'not-allowed' : 'pointer',
+                    }}
+                  >
+                    🎲 Generar Nueva Clave Aleatoria Segura
+                  </button>
+                </div>
+              </div>
             )}
           </div>
         </div>
