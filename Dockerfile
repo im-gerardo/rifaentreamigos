@@ -1,15 +1,14 @@
-# Dockerfile multi-stage ultraligero para producción Next.js
+# Dockerfile optimizado para producción Next.js usando npm nativo
 FROM node:20-alpine AS base
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+WORKDIR /app
+RUN apk add --no-cache libc6-compat
 
 # 1. Dependencias
 FROM base AS deps
 WORKDIR /app
-COPY package.json pnpm-lock.yaml* ./
-# Usar --no-frozen-lockfile para evitar error de versión/overrides en el entorno de build
-RUN pnpm install --no-frozen-lockfile
+COPY package.json package-lock.json* ./
+# Usamos npm install para garantizar compatibilidad total en Alpine Linux sin bloqueos de pnpm
+RUN npm install
 
 # 2. Builder
 FROM base AS builder
@@ -18,7 +17,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
-RUN pnpm run build
+RUN npm run build
 
 # 3. Runner de producción
 FROM node:20-alpine AS runner
