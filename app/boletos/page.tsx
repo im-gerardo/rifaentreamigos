@@ -38,6 +38,55 @@ export default function Boletos() {
         <Link href="/checkout" className="btn btn-primary" style={{ padding: '12px 24px', fontSize: '15px' }}>
           Apartar un Boleto ($250 MXN)
         </Link>
+
+        {/* Banner de datos bancarios para depósito */}
+        <div
+          style={{
+            marginTop: 24,
+            background: 'linear-gradient(180deg, #18222c 0%, #121921 100%)',
+            border: '1px solid #fac802',
+            borderRadius: 12,
+            padding: '16px 20px',
+            textAlign: 'left',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+            <div>
+              <span style={{ fontSize: 11, fontWeight: 800, color: '#fac802', letterSpacing: 1, textTransform: 'uppercase' }}>
+                💳 Datos oficiales para depósito o transferencia ($250 MXN por boleto):
+              </span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 4, flexWrap: 'wrap' }}>
+                <span style={{ color: '#fff', fontSize: 14 }}>
+                  Tarjeta: <strong style={{ fontFamily: 'monospace', fontSize: 17, color: '#ffd21a', letterSpacing: 1.5 }}>5401 0402 2126 5895</strong>
+                </span>
+                <span style={{ color: '#8fa1b3', fontSize: 13 }}>·</span>
+                <span style={{ color: '#fff', fontSize: 14 }}>
+                  Banco: <strong>Klar</strong>
+                </span>
+                <span style={{ color: '#8fa1b3', fontSize: 13 }}>·</span>
+                <span style={{ color: '#fff', fontSize: 14 }}>
+                  Beneficiario: <strong>Oscar Gerardo Barrios Arenas</strong>
+                </span>
+              </div>
+            </div>
+            <Link
+              href="/checkout"
+              style={{
+                background: '#fac802',
+                color: '#000',
+                padding: '8px 14px',
+                borderRadius: 6,
+                fontWeight: 800,
+                fontSize: 12,
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Apartar y Subir Comprobante →
+            </Link>
+          </div>
+        </div>
       </header>
 
       {/* Barra de Filtros y Búsqueda */}

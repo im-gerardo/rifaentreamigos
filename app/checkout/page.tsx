@@ -256,6 +256,97 @@ function CheckoutContent() {
               <p className={styles.hint}>Recibirás la confirmación de validación a este número.</p>
             </div>
 
+            {/* Datos Bancarios para Depósito / Transferencia */}
+            <div
+              style={{
+                background: 'linear-gradient(180deg, #18222c 0%, #121921 100%)',
+                border: '1px solid #fac802',
+                borderRadius: 12,
+                padding: '18px 20px',
+                marginBottom: 24,
+                boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                <span style={{ fontSize: 22 }}>💳</span>
+                <div>
+                  <div style={{ fontSize: 11, fontWeight: 800, color: '#fac802', letterSpacing: 1, textTransform: 'uppercase' }}>
+                    Cuenta Oficial para Pago
+                  </div>
+                  <div style={{ fontSize: 15, fontWeight: 900, color: '#ffffff' }}>
+                    Deposita o Transfiere para Apartar tu Boleto
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ background: '#0a0e13', borderRadius: 8, padding: '14px 16px', border: '1px solid #233140' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10, flexWrap: 'wrap', gap: 8 }}>
+                  <div>
+                    <span style={{ fontSize: 11, color: '#8fa1b3', textTransform: 'uppercase', display: 'block', fontWeight: 700 }}>
+                      Número de Tarjeta / Débito:
+                    </span>
+                    <strong
+                      style={{
+                        fontFamily: 'monospace, monospace',
+                        fontSize: 20,
+                        color: '#ffd21a',
+                        letterSpacing: 2,
+                        userSelect: 'all',
+                      }}
+                    >
+                      5401 0402 2126 5895
+                    </strong>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (navigator.clipboard) {
+                        navigator.clipboard.writeText('5401040221265895');
+                        alert('Número de tarjeta copiado al portapapeles: 5401 0402 2126 5895');
+                      }
+                    }}
+                    style={{
+                      background: '#fac802',
+                      border: 'none',
+                      color: '#000',
+                      padding: '6px 12px',
+                      borderRadius: 6,
+                      fontSize: 12,
+                      fontWeight: 800,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    📋 Copiar
+                  </button>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 10, paddingTop: 10, borderTop: '1px solid #1a2532' }}>
+                  <div>
+                    <span style={{ fontSize: 11, color: '#8fa1b3', textTransform: 'uppercase', display: 'block', fontWeight: 600 }}>
+                      Banco / Institución:
+                    </span>
+                    <strong style={{ color: '#fff', fontSize: 14 }}>Klar</strong>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: 11, color: '#8fa1b3', textTransform: 'uppercase', display: 'block', fontWeight: 600 }}>
+                      Beneficiario:
+                    </span>
+                    <strong style={{ color: '#fff', fontSize: 14 }}>Oscar Gerardo Barrios Arenas</strong>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: 11, color: '#8fa1b3', textTransform: 'uppercase', display: 'block', fontWeight: 600 }}>
+                      Monto exacto:
+                    </span>
+                    <strong style={{ color: '#4ade80', fontSize: 14 }}>${totalPrice} MXN ({selectedFolios.length || 1} boleto{selectedFolios.length > 1 ? 's' : ''})</strong>
+                  </div>
+                </div>
+              </div>
+
+              <p style={{ margin: '10px 0 0', fontSize: 12, color: '#a0aab0', lineHeight: 1.4 }}>
+                ⚠️ <em>Realiza tu pago en practicaja, tienda de conveniencia o transferencia SPEI y adjunta tu comprobante abajo para apartar tu boleto de inmediato.</em>
+              </p>
+            </div>
+
             {/* Subida forzosa de comprobante */}
             <div className={styles.fieldGroup}>
               <label className={styles.fieldLabel}>
