@@ -37,23 +37,17 @@ type TicketStoreContextType = {
 
 const TicketStoreContext = createContext<TicketStoreContextType | null>(null);
 
-const STORAGE_KEY = 'rifa_tickets_store_v2';
+const STORAGE_KEY = 'rifa_tickets_store_v3';
 
 export function TicketStoreProvider({ children }: { children: ReactNode }) {
   const [tickets, setTickets] = useState<TicketItem[]>(() => {
     return manifest.tickets.map((t) => {
       const folioInt = parseInt(t.folio, 10);
-      const isSold = folioInt === 3 || folioInt === 7;
       return {
         id: `ticket-${t.folio}`,
         folio: folioInt,
-        state: (isSold ? 'paid' : 'available') as TicketState, // Vendido y liquidado
+        state: 'available' as TicketState, // Todos los 200 boletos disponibles para venta
         ticket_numbers: t.numbers.map((n) => ({ number: parseInt(n, 10) })),
-        buyerName: isSold ? (folioInt === 3 ? 'Carlos Mendoza' : 'Mariana López') : undefined,
-        phone: isSold ? '4421941930' : undefined,
-        paymentMethod: isSold ? 'transfer' : undefined,
-        termsAccepted: isSold ? true : undefined,
-        updatedAt: isSold ? new Date().toISOString() : undefined,
       };
     });
   });
