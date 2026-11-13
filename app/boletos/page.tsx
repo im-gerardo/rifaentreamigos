@@ -43,44 +43,69 @@ export default function Boletos() {
         <div
           style={{
             marginTop: 24,
-            background: 'linear-gradient(180deg, #18222c 0%, #121921 100%)',
-            border: '1px solid #fac802',
+            background: '#15191d',
+            border: '1px solid #283442',
             borderRadius: 12,
             padding: '16px 20px',
             textAlign: 'left',
             boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
-            <div>
-              <span style={{ fontSize: 11, fontWeight: 800, color: '#fac802', letterSpacing: 1, textTransform: 'uppercase' }}>
-                💳 Datos oficiales para depósito o transferencia ($250 MXN por boleto):
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 14 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 32,
+                  height: 32,
+                  borderRadius: 6,
+                  background: 'rgba(255, 210, 26, 0.12)',
+                  color: '#ffd21a',
+                  fontSize: 16,
+                }}
+              >
+                💳
               </span>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 4, flexWrap: 'wrap' }}>
-                <span style={{ color: '#fff', fontSize: 14 }}>
-                  Tarjeta: <strong style={{ fontFamily: 'monospace', fontSize: 17, color: '#ffd21a', letterSpacing: 1.5 }}>5401 0402 2126 5895</strong>
+              <div>
+                <span style={{ fontSize: 11, fontWeight: 700, color: '#7e8b9b', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'block' }}>
+                  Cuenta Oficial para Depósito o Transferencia ($250 MXN)
                 </span>
-                <span style={{ color: '#8fa1b3', fontSize: 13 }}>·</span>
-                <span style={{ color: '#fff', fontSize: 14 }}>
-                  Banco: <strong>Klar</strong>
-                </span>
-                <span style={{ color: '#8fa1b3', fontSize: 13 }}>·</span>
-                <span style={{ color: '#fff', fontSize: 14 }}>
-                  Beneficiario: <strong>Oscar Gerardo Barrios Arenas</strong>
-                </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 3, flexWrap: 'wrap' }}>
+                  <span style={{ color: '#fff', fontSize: 14 }}>
+                    Tarjeta (Klar):{' '}
+                    <strong
+                      style={{
+                        fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+                        fontSize: 17,
+                        color: '#ffd21a',
+                        letterSpacing: '0.06em',
+                      }}
+                    >
+                      5401 0402 2126 5895
+                    </strong>
+                  </span>
+                  <span style={{ color: '#445160' }}>·</span>
+                  <span style={{ color: '#aeb7b4', fontSize: 13 }}>
+                    Dudas o confirmación vía WhatsApp: <strong style={{ color: '#e6eceb' }}>442 194 1930</strong>
+                  </span>
+                </div>
               </div>
             </div>
+
             <Link
               href="/checkout"
               style={{
-                background: '#fac802',
-                color: '#000',
-                padding: '8px 14px',
-                borderRadius: 6,
+                background: '#ffd21a',
+                color: '#121415',
+                padding: '10px 18px',
+                borderRadius: 7,
                 fontWeight: 800,
-                fontSize: 12,
+                fontSize: 13,
                 textDecoration: 'none',
                 whiteSpace: 'nowrap',
+                transition: 'background 0.15s ease',
               }}
             >
               Apartar y Subir Comprobante →

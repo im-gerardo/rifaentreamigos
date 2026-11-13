@@ -259,92 +259,140 @@ function CheckoutContent() {
             {/* Datos Bancarios para Depósito / Transferencia */}
             <div
               style={{
-                background: 'linear-gradient(180deg, #18222c 0%, #121921 100%)',
-                border: '1px solid #fac802',
+                background: '#15191d',
+                border: '1px solid #283442',
                 borderRadius: 12,
-                padding: '18px 20px',
+                padding: '20px',
                 marginBottom: 24,
-                boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-                <span style={{ fontSize: 22 }}>💳</span>
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 800, color: '#fac802', letterSpacing: 1, textTransform: 'uppercase' }}>
-                    Cuenta Oficial para Pago
-                  </div>
-                  <div style={{ fontSize: 15, fontWeight: 900, color: '#ffffff' }}>
-                    Deposita o Transfiere para Apartar tu Boleto
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ background: '#0a0e13', borderRadius: 8, padding: '14px 16px', border: '1px solid #233140' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10, flexWrap: 'wrap', gap: 8 }}>
-                  <div>
-                    <span style={{ fontSize: 11, color: '#8fa1b3', textTransform: 'uppercase', display: 'block', fontWeight: 700 }}>
-                      Número de Tarjeta / Débito:
-                    </span>
-                    <strong
-                      style={{
-                        fontFamily: 'monospace, monospace',
-                        fontSize: 20,
-                        color: '#ffd21a',
-                        letterSpacing: 2,
-                        userSelect: 'all',
-                      }}
-                    >
-                      5401 0402 2126 5895
-                    </strong>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (navigator.clipboard) {
-                        navigator.clipboard.writeText('5401040221265895');
-                        alert('Número de tarjeta copiado al portapapeles: 5401 0402 2126 5895');
-                      }
-                    }}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 14 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span
                     style={{
-                      background: '#fac802',
-                      border: 'none',
-                      color: '#000',
-                      padding: '6px 12px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: 28,
+                      height: 28,
                       borderRadius: 6,
-                      fontSize: 12,
+                      background: 'rgba(255, 210, 26, 0.12)',
+                      color: '#ffd21a',
+                      fontSize: 14,
                       fontWeight: 800,
-                      cursor: 'pointer',
                     }}
                   >
-                    📋 Copiar
-                  </button>
+                    💳
+                  </span>
+                  <div>
+                    <h3 style={{ margin: 0, fontSize: 14, fontWeight: 800, color: '#ffffff', letterSpacing: '-0.01em' }}>
+                      Datos para depósito o transferencia SPEI
+                    </h3>
+                    <p style={{ margin: 0, fontSize: 12, color: '#8d9896' }}>
+                      Paga en practicaja, tienda o banca móvil y adjunta tu comprobante
+                    </p>
+                  </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 10, paddingTop: 10, borderTop: '1px solid #1a2532' }}>
-                  <div>
-                    <span style={{ fontSize: 11, color: '#8fa1b3', textTransform: 'uppercase', display: 'block', fontWeight: 600 }}>
-                      Banco / Institución:
-                    </span>
-                    <strong style={{ color: '#fff', fontSize: 14 }}>Klar</strong>
-                  </div>
-                  <div>
-                    <span style={{ fontSize: 11, color: '#8fa1b3', textTransform: 'uppercase', display: 'block', fontWeight: 600 }}>
-                      Beneficiario:
-                    </span>
-                    <strong style={{ color: '#fff', fontSize: 14 }}>Oscar Gerardo Barrios Arenas</strong>
-                  </div>
-                  <div>
-                    <span style={{ fontSize: 11, color: '#8fa1b3', textTransform: 'uppercase', display: 'block', fontWeight: 600 }}>
-                      Monto exacto:
-                    </span>
-                    <strong style={{ color: '#4ade80', fontSize: 14 }}>${totalPrice} MXN ({selectedFolios.length || 1} boleto{selectedFolios.length > 1 ? 's' : ''})</strong>
-                  </div>
+                <div
+                  style={{
+                    background: '#1c252f',
+                    border: '1px solid #2f3e4e',
+                    borderRadius: 6,
+                    padding: '4px 10px',
+                    fontSize: 12,
+                    fontWeight: 700,
+                    color: '#ffd21a',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  ${totalPrice} MXN ({selectedFolios.length || 1} boleto{selectedFolios.length > 1 ? 's' : ''})
                 </div>
               </div>
 
-              <p style={{ margin: '10px 0 0', fontSize: 12, color: '#a0aab0', lineHeight: 1.4 }}>
-                ⚠️ <em>Realiza tu pago en practicaja, tienda de conveniencia o transferencia SPEI y adjunta tu comprobante abajo para apartar tu boleto de inmediato.</em>
-              </p>
+              {/* Fila principal con número de tarjeta y botón de copiado */}
+              <div
+                style={{
+                  background: '#0d1115',
+                  border: '1px solid #212c38',
+                  borderRadius: 10,
+                  padding: '14px 16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  gap: 12,
+                }}
+              >
+                <div>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: '#7e8b9b', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'block', marginBottom: 2 }}>
+                    Número de Tarjeta / Débito (Klar)
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+                      fontSize: 20,
+                      fontWeight: 800,
+                      color: '#ffd21a',
+                      letterSpacing: '0.08em',
+                      userSelect: 'all',
+                    }}
+                  >
+                    5401 0402 2126 5895
+                  </span>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (navigator.clipboard) {
+                      navigator.clipboard.writeText('5401040221265895');
+                      alert('Número de tarjeta copiado: 5401 0402 2126 5895');
+                    }
+                  }}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    background: '#24303c',
+                    color: '#ffffff',
+                    border: '1px solid #3d4f61',
+                    borderRadius: 6,
+                    padding: '8px 14px',
+                    fontSize: 12,
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#ffd21a';
+                    e.currentTarget.style.color = '#121415';
+                    e.currentTarget.style.borderColor = '#ffd21a';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#24303c';
+                    e.currentTarget.style.color = '#ffffff';
+                    e.currentTarget.style.borderColor = '#3d4f61';
+                  }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Copiar número</span>
+                </button>
+              </div>
+
+              {/* Nota sutil sobre confirmación */}
+              <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, fontSize: 12, color: '#8d9896' }}>
+                <span>
+                  Banco receptor: <strong style={{ color: '#e6eceb' }}>Klar</strong> · Cuenta Débito
+                </span>
+                <span style={{ color: '#ffd21a', fontWeight: 600 }}>
+                  ¿Dudas con tu pago? WhatsApp: 442 194 1930
+                </span>
+              </div>
             </div>
 
             {/* Subida forzosa de comprobante */}
