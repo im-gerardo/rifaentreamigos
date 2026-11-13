@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import invertedManifest from '@/public/relacion_numeros_a_boletos.json';
 import { useTicketStore } from '@/lib/ticket-store';
+import styles from './numeros.module.css';
 
 type NumberEntry = {
   numeroParticipante: string;
@@ -77,50 +78,31 @@ export default function NumerosParticipantesPage() {
   }, [allEntries, search, selectedCentena]);
 
   return (
-    <div style={{ maxWidth: 1100, margin: '0 auto', padding: '24px 16px 80px' }}>
+    <div className={styles.page}>
       {/* Cabecera */}
-      <div style={{ marginBottom: 28 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
-          <span
-            style={{
-              background: '#fac802',
-              color: '#000',
-              fontWeight: 800,
-              fontSize: 12,
-              padding: '4px 10px',
-              borderRadius: 6,
-              letterSpacing: 1,
-              textTransform: 'uppercase',
-            }}
-          >
+      <div className={styles.header}>
+        <div className={styles.tagRow}>
+          <span className={styles.tagBadge}>
             Guía Oficial Ascendente
           </span>
-          <span style={{ color: '#8d9896', fontSize: 13 }}>
+          <span className={styles.tagSub}>
             Sorteo 12 de diciembre de 2026 · Lotería Nacional
           </span>
         </div>
-        <h1 style={{ fontSize: 32, fontWeight: 900, margin: '0 0 8px', color: '#fff' }}>
+        <h1 className={styles.title}>
           Relación de Números a Boletos (000 al 999)
         </h1>
-        <p style={{ margin: 0, color: '#a0aab0', fontSize: 15, lineHeight: 1.5 }}>
+        <p className={styles.description}>
           Localiza de forma inmediata en qué boleto físico y folio alfanumérico se encuentra cada uno de los 1,000 números participantes, en estricto orden ascendente.
         </p>
       </div>
 
       {/* Controles de Búsqueda */}
-      <div
-        style={{
-          background: '#131920',
-          border: '1px solid #24303c',
-          borderRadius: 12,
-          padding: '20px',
-          marginBottom: 24,
-        }}
-      >
+      <div className={styles.cardContainer}>
         <div style={{ position: 'relative' }}>
           <label
             htmlFor="search-number"
-            style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#fac802', marginBottom: 6, textTransform: 'uppercase', letterSpacing: 0.5 }}
+            style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#fac802', marginBottom: 8, textTransform: 'uppercase', letterSpacing: 0.5 }}
           >
             Buscar por número o folio
           </label>
@@ -128,20 +110,10 @@ export default function NumerosParticipantesPage() {
             <input
               id="search-number"
               type="text"
-              placeholder="Ej: 000, 043, 344, 777, 1AAA, 2ADV o 156..."
+              placeholder="Ej: 000, 043, 344, 777, 1AAA, 2ADV..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              style={{
-                width: '100%',
-                background: '#0a0d11',
-                border: '1px solid #324354',
-                borderRadius: 8,
-                padding: '12px 16px',
-                color: '#fff',
-                fontSize: 15,
-                outline: 'none',
-                boxSizing: 'border-box',
-              }}
+              className={styles.inputSearch}
             />
             {search && (
               <button
@@ -156,14 +128,33 @@ export default function NumerosParticipantesPage() {
                   border: 'none',
                   color: '#8d9896',
                   cursor: 'pointer',
-                  fontSize: 14,
+                  fontSize: 13,
                   fontWeight: 'bold',
+                  padding: '6px',
                 }}
               >
                 ✕ Limpiar
               </button>
             )}
           </div>
+        </div>
+
+        {/* Búsquedas Rápidas */}
+        <div className={styles.quickFilters}>
+          <span className={styles.quickFiltersLabel}>Prueba rápida:</span>
+          {['000', '777', '999', '1AAA', '2ADV'].map((example) => (
+            <button
+              key={example}
+              type="button"
+              onClick={() => {
+                setSelectedCentena(null);
+                setSearch(example);
+              }}
+              className={styles.quickFilterBtn}
+            >
+              {example}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -172,7 +163,7 @@ export default function NumerosParticipantesPage() {
         <div style={{ fontSize: 12, fontWeight: 700, color: '#8d9896', marginBottom: 8, textTransform: 'uppercase', letterSpacing: 0.5 }}>
           Filtrar por bloque de números:
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        <div className={styles.centenaGroup}>
           {CENTENAS.map((c, idx) => {
             const isActive = selectedCentena === (c.min !== undefined ? c.min : null);
             return (
@@ -182,17 +173,7 @@ export default function NumerosParticipantesPage() {
                 onClick={() => {
                   setSelectedCentena(c.min !== undefined ? c.min : null);
                 }}
-                style={{
-                  background: isActive ? '#fac802' : '#17202a',
-                  color: isActive ? '#000' : '#c9d1d9',
-                  border: `1px solid ${isActive ? '#fac802' : '#273544'}`,
-                  borderRadius: 6,
-                  padding: '6px 12px',
-                  fontSize: 12,
-                  fontWeight: isActive ? 800 : 600,
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
-                }}
+                className={`${styles.centenaBtn} ${isActive ? styles.centenaBtnActive : ''}`}
               >
                 {c.label}
               </button>
@@ -202,45 +183,37 @@ export default function NumerosParticipantesPage() {
       </div>
 
       {/* Contador de resultados */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+      <div className={styles.statusBar}>
         <span style={{ fontSize: 13, color: '#8d9896' }}>
           Mostrando <strong style={{ color: '#fff' }}>{filteredEntries.length}</strong> de 1,000 números
         </span>
         <Link
           href="/boletos"
-          style={{ fontSize: 13, color: '#fac802', textDecoration: 'none', fontWeight: 600 }}
+          style={{ fontSize: 13, color: '#fac802', textDecoration: 'none', fontWeight: 700 }}
         >
           ← Ir a la cuadrícula de Boletos
         </Link>
       </div>
 
       {/* Tabla Oficial de Relación */}
-      <div
-        style={{
-          background: '#0d1217',
-          border: '1px solid #24303c',
-          borderRadius: 12,
-          overflow: 'hidden',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
-        }}
-      >
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+      <div className={styles.tableWrap}>
+        <div className={styles.tableScroll}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: 620 }}>
             <thead>
               <tr style={{ background: '#161f28', borderBottom: '2px solid #2e3e4e' }}>
-                <th style={{ padding: '14px 18px', color: '#fac802', fontSize: 13, fontWeight: 800, width: 120 }}>
+                <th style={{ padding: '12px 14px', color: '#fac802', fontSize: 12, fontWeight: 800, width: 100 }}>
                   NÚMERO
                 </th>
-                <th style={{ padding: '14px 18px', color: '#fff', fontSize: 13, fontWeight: 800, width: 140 }}>
+                <th style={{ padding: '12px 14px', color: '#fff', fontSize: 12, fontWeight: 800, width: 110 }}>
                   FOLIO
                 </th>
-                <th style={{ padding: '14px 18px', color: '#fff', fontSize: 13, fontWeight: 800, width: 120 }}>
+                <th style={{ padding: '12px 14px', color: '#fff', fontSize: 12, fontWeight: 800, width: 90 }}>
                   BOLETO
                 </th>
-                <th style={{ padding: '14px 18px', color: '#fff', fontSize: 13, fontWeight: 800 }}>
+                <th style={{ padding: '12px 14px', color: '#fff', fontSize: 12, fontWeight: 800 }}>
                   TODAS LAS COMBINACIONES DEL BOLETO
                 </th>
-                <th style={{ padding: '14px 18px', color: '#fff', fontSize: 13, fontWeight: 800, textAlign: 'right', width: 120 }}>
+                <th style={{ padding: '12px 14px', color: '#fff', fontSize: 12, fontWeight: 800, textAlign: 'right', width: 110 }}>
                   ESTADO
                 </th>
               </tr>
@@ -268,16 +241,16 @@ export default function NumerosParticipantesPage() {
                       }}
                     >
                       {/* Número Participante Destacado */}
-                      <td style={{ padding: '12px 18px' }}>
+                      <td style={{ padding: '10px 14px' }}>
                         <span
                           style={{
                             display: 'inline-block',
                             background: '#fac802',
                             color: '#000',
                             fontFamily: 'monospace, monospace',
-                            fontSize: 16,
+                            fontSize: 15,
                             fontWeight: 900,
-                            padding: '4px 10px',
+                            padding: '3px 8px',
                             borderRadius: 6,
                             letterSpacing: 1,
                           }}
@@ -287,11 +260,11 @@ export default function NumerosParticipantesPage() {
                       </td>
 
                       {/* Folio Alfanumérico */}
-                      <td style={{ padding: '12px 18px' }}>
+                      <td style={{ padding: '10px 14px' }}>
                         <span
                           style={{
                             fontWeight: 800,
-                            fontSize: 15,
+                            fontSize: 14,
                             color: '#ffffff',
                             letterSpacing: 0.5,
                           }}
@@ -301,13 +274,13 @@ export default function NumerosParticipantesPage() {
                       </td>
 
                       {/* Boleto Físico */}
-                      <td style={{ padding: '12px 18px', color: '#a0aab0', fontSize: 14 }}>
+                      <td style={{ padding: '10px 14px', color: '#a0aab0', fontSize: 13 }}>
                         #{row.folio}
                       </td>
 
                       {/* Las 5 combinaciones completas */}
-                      <td style={{ padding: '12px 18px' }}>
-                        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+                      <td style={{ padding: '10px 14px' }}>
+                        <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap', alignItems: 'center' }}>
                           {row.combinacionesBoleto.map((num) => {
                             const isCurrent = num === row.numeroParticipante;
                             const isSearched = search.trim() && num.includes(search.trim());
@@ -318,8 +291,8 @@ export default function NumerosParticipantesPage() {
                                   background: isCurrent ? '#fac802' : isSearched ? '#e6af00' : '#1c2633',
                                   color: isCurrent || isSearched ? '#000' : '#8fa1b3',
                                   fontWeight: isCurrent || isSearched ? 900 : 600,
-                                  fontSize: 13,
-                                  padding: '3px 8px',
+                                  fontSize: 12,
+                                  padding: '2px 6px',
                                   borderRadius: 4,
                                   border: isCurrent || isSearched ? '1px solid #e0b402' : '1px solid #2a3848',
                                   fontFamily: 'monospace, monospace',
@@ -333,7 +306,7 @@ export default function NumerosParticipantesPage() {
                       </td>
 
                       {/* Estado */}
-                      <td style={{ padding: '12px 18px', textAlign: 'right' }}>
+                      <td style={{ padding: '10px 14px', textAlign: 'right' }}>
                         {isPaid ? (
                           <span
                             style={{
@@ -345,6 +318,7 @@ export default function NumerosParticipantesPage() {
                               borderRadius: 4,
                               textTransform: 'uppercase',
                               letterSpacing: 0.5,
+                              whiteSpace: 'nowrap',
                             }}
                           >
                             Pagado
@@ -360,6 +334,7 @@ export default function NumerosParticipantesPage() {
                               borderRadius: 4,
                               textTransform: 'uppercase',
                               letterSpacing: 0.5,
+                              whiteSpace: 'nowrap',
                             }}
                           >
                             Apartado
@@ -375,6 +350,7 @@ export default function NumerosParticipantesPage() {
                               borderRadius: 4,
                               textTransform: 'uppercase',
                               letterSpacing: 0.5,
+                              whiteSpace: 'nowrap',
                             }}
                           >
                             Disponible

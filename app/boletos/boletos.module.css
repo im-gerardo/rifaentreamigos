@@ -259,3 +259,82 @@
   border: 1px solid #282f30;
   color: #889492;
 }
+
+/* Responsive Design Optimization */
+@media (max-width: 640px) {
+  .page {
+    padding: 24px 0 60px;
+  }
+
+  .heroHeader {
+    margin-bottom: 24px;
+  }
+
+  .controlBar {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .searchBox {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .searchBox input {
+    font-size: 16px; /* Evita auto-zoom en iOS Safari */
+    padding: 10px 14px 10px 38px;
+  }
+
+  .filterGroup {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filterGroup::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filterChip {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .ticketGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ticketCard {
+    /* Ajuste en móvil para un flujo suave */
+    --notch-size: 12px;
+    --notch-y: 50px;
+  }
+
+  .numbersRow {
+    gap: 4px;
+  }
+
+  .numberPill {
+    font-size: 13px;
+    padding: 6px 2px;
+  }
+
+  .actionButton {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 860px) {
+  .ticketGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}

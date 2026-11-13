@@ -552,3 +552,24 @@
     font-size: 11px;
   }
 }
+
+
+@media (max-width: 640px) {
+  .page {
+    padding: 20px 12px 60px;
+  }
+
+  .stepSection {
+    padding: 20px 16px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+  }
+
+  .officialLinksGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .transparencySection {
+    padding: 20px 16px;
+  }
+}

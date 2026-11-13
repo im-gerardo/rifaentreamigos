@@ -43,7 +43,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Link href="/" className="brand">
                 RIFA <span>ENTRE AMIGOS</span>
               </Link>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+              <div className="navLinks">
                 <Link href="/boletos">Boletos</Link>
                 <Link href="/numeros">Números</Link>
                 <Link href="/como-se-elige-al-ganador">¿Cómo se Gana?</Link>

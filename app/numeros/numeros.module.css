@@ -1,0 +1,212 @@
+.page {
+  padding: 24px 0 64px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.tagRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.tagBadge {
+  background: #fac802;
+  color: #000;
+  font-weight: 800;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tagSub {
+  color: #8d9896;
+  font-size: 13px;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin: 0 0 12px;
+  color: #f4f6f4;
+}
+
+.description {
+  color: #8d9896;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 72ch;
+  margin: 0;
+}
+
+.cardContainer {
+  background: #12181f;
+  border: 1px solid #233140;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.inputSearch {
+  width: 100%;
+  padding: 12px 14px;
+  background: #090e13;
+  border: 1px solid #334455;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px; /* Evita zoom automático en Safari iOS */
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.inputSearch:focus {
+  border-color: #fac802;
+}
+
+.quickFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+.quickFiltersLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: #8d9896;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 4px;
+}
+
+.quickFilterBtn {
+  background: #17202a;
+  color: #8fa1b3;
+  border: 1px solid #273544;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.quickFilterBtn:hover {
+  background: #222f3e;
+  color: #fff;
+}
+
+.centenaGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.centenaBtn {
+  background: #17202a;
+  color: #c9d1d9;
+  border: 1px solid #273544;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centenaBtnActive {
+  background: #fac802 !important;
+  color: #000 !important;
+  border-color: #fac802 !important;
+  font-weight: 800 !important;
+}
+
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tableWrap {
+  background: #0d1217;
+  border: 1px solid #24303c;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.tableScroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Responsividad en móvil */
+@media (max-width: 640px) {
+  .page {
+    padding: 16px 0 60px;
+  }
+
+  .cardContainer {
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+
+  .quickFilters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .quickFilters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .quickFilterBtn {
+    flex-shrink: 0;
+  }
+
+  .centenaGroup {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .centenaGroup::-webkit-scrollbar {
+    display: none;
+  }
+
+  .centenaBtn {
+    flex-shrink: 0;
+    padding: 6px 10px;
+    font-size: 11px;
+    min-height: 36px;
+  }
+
+  .statusBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

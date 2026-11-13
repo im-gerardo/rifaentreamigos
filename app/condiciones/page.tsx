@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import styles from './condiciones.module.css';
 
 export const metadata: Metadata = {
   title: 'Bases y Condiciones Generales | Rifa Entre Amigos 2026',
@@ -9,59 +10,45 @@ export const metadata: Metadata = {
 
 export default function BasesYCondicionesPage() {
   return (
-    <main style={{ padding: '32px 0 96px', maxWidth: 880, margin: '0 auto' }}>
+    <main className={styles.page}>
       {/* Header */}
-      <div style={{ marginBottom: 32, borderBottom: '1px solid #283233', paddingBottom: 24 }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#191f20', border: '1px solid #2b3536', padding: '4px 12px', borderRadius: 9999, marginBottom: 12 }}>
-          <span style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#ffd21a' }}>
+      <div className={styles.header}>
+        <div className={styles.badge}>
+          <span className={styles.badgeText}>
             Documento Oficial
           </span>
         </div>
-        <h1 style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', fontWeight: 900, letterSpacing: '-0.04em', margin: '0 0 10px', color: '#f4f6f4' }}>
+        <h1 className={styles.title}>
           Bases y Condiciones Generales
         </h1>
-        <p style={{ color: '#8d9896', fontSize: 15, margin: 0, lineHeight: 1.5 }}>
+        <p className={styles.subtitle}>
           Rifa Entre Amigos · Motocicleta Bajaj Pulsar N250 (Seminueva, mod. 2026).
         </p>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <div className={styles.sectionsList}>
         {/* 1. Objeto y Premio */}
-        <section
-          style={{
-            background: 'linear-gradient(180deg, #181c1d 0%, #131617 100%)',
-            border: '1px solid #262e30',
-            borderRadius: 14,
-            padding: '24px 28px',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+        <section className={styles.sectionCard}>
+          <div className={styles.sectionHeader}>
             <span style={{ fontSize: 20 }}>🏍️</span>
-            <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0, color: '#ffd21a' }}>
+            <h2 className={styles.sectionTitle}>
               1. Objeto y Descripción del Premio
             </h2>
           </div>
-          <p style={{ color: '#c7d0ce', fontSize: 14, lineHeight: 1.7, margin: 0 }}>
+          <p className={styles.content}>
             El premio objeto del presente sorteo es una motocicleta <strong>Bajaj Pulsar N250</strong>, color amarillo con negro, modelo <strong>2026</strong>, en condición <strong>seminueva</strong> (+3,000 km recorridos comprobables). Se entrega con su factura original endosada a favor de la persona ganadora.
           </p>
         </section>
 
         {/* 2. Emisión y Cobertura */}
-        <section
-          style={{
-            background: 'linear-gradient(180deg, #181c1d 0%, #131617 100%)',
-            border: '1px solid #262e30',
-            borderRadius: 14,
-            padding: '24px 28px',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+        <section className={styles.sectionCard}>
+          <div className={styles.sectionHeader}>
             <span style={{ fontSize: 20 }}>🎟️</span>
-            <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0, color: '#ffd21a' }}>
+            <h2 className={styles.sectionTitle}>
               2. Emisión, Folios y Cobertura Matemática
             </h2>
           </div>
-          <div style={{ color: '#c7d0ce', fontSize: 14, lineHeight: 1.7 }}>
+          <div className={styles.content}>
             <p style={{ margin: '0 0 10px' }}>
               La emisión oficial está conformada por <strong>200 folios alfanuméricos únicos</strong> organizados en dos series:
             </p>
@@ -76,21 +63,14 @@ export default function BasesYCondicionesPage() {
         </section>
 
         {/* 3. Costo y Plazos */}
-        <section
-          style={{
-            background: 'linear-gradient(180deg, #181c1d 0%, #131617 100%)',
-            border: '1px solid #262e30',
-            borderRadius: 14,
-            padding: '24px 28px',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+        <section className={styles.sectionCard}>
+          <div className={styles.sectionHeader}>
             <span style={{ fontSize: 20 }}>💰</span>
-            <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0, color: '#ffd21a' }}>
+            <h2 className={styles.sectionTitle}>
               3. Costo del Boleto y Plazo Límite de Pago
             </h2>
           </div>
-          <div style={{ color: '#c7d0ce', fontSize: 14, lineHeight: 1.7 }}>
+          <div className={styles.content}>
             <p style={{ margin: '0 0 10px' }}>
               El costo de aportación por cada boleto (folio) es de <strong>$250.00 MXN</strong> (doscientos cincuenta pesos mexicanos).
             </p>
@@ -100,114 +80,131 @@ export default function BasesYCondicionesPage() {
           </div>
         </section>
 
-        {/* 4. Mecánica del Sorteo */}
-        <section
-          style={{
-            background: 'linear-gradient(180deg, #181c1d 0%, #131617 100%)',
-            border: '1px solid #262e30',
-            borderRadius: 14,
-            padding: '24px 28px',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+        {/* 4. Sorteo de Referencia y Determinación del Ganador */}
+        <section className={styles.sectionCard}>
+          <div className={styles.sectionHeader}>
             <span style={{ fontSize: 20 }}>🎰</span>
-            <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0, color: '#ffd21a' }}>
-              4. Determinación del Ganador (Lotería Nacional)
+            <h2 className={styles.sectionTitle}>
+              4. Sorteo Oficial de Referencia y Determinación del Ganador
             </h2>
           </div>
-          <p style={{ color: '#c7d0ce', fontSize: 14, lineHeight: 1.7, margin: 0 }}>
-            El sorteo se celebrará el día <strong>12 de diciembre de 2026</strong>. El número ganador se determinará de forma pública e inapelable en combinación con las <strong>últimas 3 cifras del Primer Premio (Premio Mayor)</strong> del sorteo oficial de la <strong>Lotería Nacional</strong> celebrado en dicha fecha.
-          </p>
+          <div className={styles.content}>
+            <p style={{ margin: '0 0 10px' }}>
+              La persona ganadora se determinará con base en los resultados del <strong>Sorteo Especial No. 319</strong> de la <strong>Lotería Nacional para la Asistencia Pública</strong> de México, a celebrarse el día <strong>sábado 12 de diciembre de 2026 a las 20:00 hrs</strong> (tiempo del centro de México).
+            </p>
+            <p style={{ margin: '0 0 10px' }}>
+              <strong>Mecánica estricta de premiación:</strong>
+            </p>
+            <ul style={{ margin: '0 0 12px', paddingLeft: 24, color: '#8d9896' }}>
+              <li>
+                El boleto ganador será aquel que contenga entre sus 5 combinaciones asignadas las <strong>últimas 3 cifras</strong> del número premiado con el <strong>Premio Mayor</strong> de la Lotería Nacional.
+              </li>
+              <li>
+                <em>Ejemplo demostrativo:</em> Si el número ganador del Premio Mayor de la Lotería Nacional resulta ser el <strong>34827</strong>, el número premiado de nuestra rifa será el <strong>827</strong>. El poseedor legítimo y verificado del folio que contenga el 827 será declarado ganador oficial.
+              </li>
+              <li>
+                El sorteo es transparente y puede ser verificado en vivo a través de la transmisión pública oficial en el canal de YouTube de la Lotería Nacional y su pizarra electrónica oficial.
+              </li>
+            </ul>
+          </div>
         </section>
 
-        {/* 5. Entrega y Trámites */}
-        <section
-          style={{
-            background: 'linear-gradient(180deg, #181c1d 0%, #131617 100%)',
-            border: '1px solid #262e30',
-            borderRadius: 14,
-            padding: '24px 28px',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-            <span style={{ fontSize: 20 }}>📍</span>
-            <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0, color: '#ffd21a' }}>
-              5. Lugar de Entrega y Trámites Vehiculares
+        {/* 5. Regla de Pospuesta por Emisión Incompleta */}
+        <section className={styles.sectionCard}>
+          <div className={styles.sectionHeader}>
+            <span style={{ fontSize: 20 }}>⚠️</span>
+            <h2 className={styles.sectionTitle}>
+              5. Regla de Pospuesta por Porcentaje Mínimo de Emisión Vendida
             </h2>
           </div>
-          <div style={{ color: '#c7d0ce', fontSize: 14, lineHeight: 1.7 }}>
+          <div className={styles.content}>
             <p style={{ margin: '0 0 10px' }}>
-              La entrega física de la motocicleta se llevará a cabo en la ciudad de <strong>León, Guanajuato</strong>, en un punto público y seguro previamente acordado con el ganador.
+              Para garantizar la viabilidad y entrega efectiva del premio pactado, la rifa se encuentra <strong>sujeta a la venta y liquidación de al menos el 80% de los boletos emitidos (160 de 200 folios)</strong> antes del 11 de diciembre de 2026.
             </p>
-            <div style={{ background: 'rgba(250, 204, 21, 0.08)', border: '1px solid rgba(250, 204, 21, 0.25)', padding: '14px 16px', borderRadius: 8, marginTop: 12 }}>
-              <span style={{ fontSize: 13, color: '#fde047', lineHeight: 1.5, display: 'block' }}>
-                ⚠️ <strong>Cláusula vehicular indispensable:</strong> Los gastos, pagos de derechos, alta de placas nuevas, cambio de propietario y tarjeta de circulación ante las autoridades de tránsito corren exclusivamente por cuenta y costo de la persona ganadora.
-              </span>
+            <p style={{ margin: 0 }}>
+              En caso de no alcanzarse dicho porcentaje mínimo en la fecha fijada, el sorteo <strong>se pospondrá para el sorteo mayor inmediato posterior de la Lotería Nacional</strong>, notificando a todos los participantes registrados mediante WhatsApp y correo electrónico. <strong>Ningún boleto pagado pierde su validez ni sus números asignados</strong>.
+            </p>
+          </div>
+        </section>
+
+        {/* 6. Entrega del Premio y Requisitos */}
+        <section className={styles.sectionCard}>
+          <div className={styles.sectionHeader}>
+            <span style={{ fontSize: 20 }}>🏆</span>
+            <h2 className={styles.sectionTitle}>
+              6. Reclamación y Entrega del Premio
+            </h2>
+          </div>
+          <div className={styles.content}>
+            <p style={{ margin: '0 0 10px' }}>
+              Para la entrega física y legal de la motocicleta, la persona ganadora deberá cumplir con los siguientes requisitos indispensables:
+            </p>
+            <ol style={{ margin: '0 0 12px', paddingLeft: 24, color: '#8d9896' }}>
+              <li>Presentar <strong>identificación oficial vigente con fotografía</strong> (INE o Pasaporte mexicano).</li>
+              <li>Presentar el <strong>comprobante oficial digital del boleto</strong> emitido en esta plataforma con su folio alfanumérico correspondiente.</li>
+              <li>Acreditar la titularidad de la línea telefónica y/o comprobante bancario con el que se liquidó el boleto.</li>
+            </ol>
+            <p style={{ margin: 0 }}>
+              La entrega se realizará de forma presencial acordando el punto con la persona ganadora. Los gastos de traslado fuera de la entidad organizadora o trámite de alta de placas correrán por cuenta de la persona ganadora.
+            </p>
+          </div>
+        </section>
+
+        {/* 7. Contacto y Aclaraciones */}
+        <section className={styles.sectionCard}>
+          <div className={styles.sectionHeader}>
+            <span style={{ fontSize: 20 }}>📱</span>
+            <h2 className={styles.sectionTitle}>
+              7. Atención y Canales Oficiales
+            </h2>
+          </div>
+          <div className={styles.content}>
+            <p style={{ margin: '0 0 16px' }}>
+              Cualquier duda, solicitud de aclaración sobre folios o envío de comprobantes de pago debe canalizarse exclusivamente a través del canal oficial de atención al participante:
+            </p>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <a
+                href="https://wa.me/5217772151603?text=Hola,%20tengo%20una%20duda%20sobre%20las%20bases%20de%20la%20Rifa%20Entre%20Amigos"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  background: '#25D366',
+                  color: '#000',
+                  padding: '10px 18px',
+                  borderRadius: 8,
+                  fontWeight: 800,
+                  fontSize: 14,
+                  textDecoration: 'none',
+                  minHeight: 44,
+                }}
+              >
+                <span>💬</span> Contactar por WhatsApp Oficial
+              </a>
+              <Link
+                href="/boletos"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  background: '#1f2526',
+                  color: '#fff',
+                  border: '1px solid #3d4a4c',
+                  padding: '10px 18px',
+                  borderRadius: 8,
+                  fontWeight: 700,
+                  fontSize: 14,
+                  textDecoration: 'none',
+                  minHeight: 44,
+                }}
+              >
+                Ver Boletos Disponibles →
+              </Link>
             </div>
           </div>
         </section>
-
-        {/* 6. Contacto y Aclaraciones */}
-        <section
-          style={{
-            background: 'linear-gradient(180deg, #181c1d 0%, #131617 100%)',
-            border: '1px solid #262e30',
-            borderRadius: 14,
-            padding: '24px 28px',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-            <span style={{ fontSize: 20 }}>💬</span>
-            <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0, color: '#ffd21a' }}>
-              6. Canal Único de Atención y Aclaraciones
-            </h2>
-          </div>
-          <p style={{ color: '#c7d0ce', fontSize: 14, lineHeight: 1.7, margin: '0 0 14px' }}>
-            Para dudas sobre reservaciones, comprobantes de pago o estatus de folios, el único canal oficial de atención es vía mensaje de WhatsApp al número <strong>442 194 1930</strong>.
-          </p>
-          <p style={{ color: '#8d9896', fontSize: 13, margin: 0 }}>
-            * No se atienden llamadas telefónicas para mantener registro escrito y trazabilidad de cada consulta.
-          </p>
-        </section>
-      </div>
-
-      {/* CTA inferior */}
-      <div style={{ marginTop: 40, textAlign: 'center', display: 'flex', justifyContent: 'center', gap: 14, flexWrap: 'wrap' }}>
-        <Link
-          href="/boletos"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 8,
-            background: '#ffd21a',
-            color: '#13140a',
-            borderRadius: 10,
-            padding: '14px 28px',
-            fontSize: 14,
-            fontWeight: 900,
-            textDecoration: 'none',
-            boxShadow: '0 4px 14px rgba(255, 210, 26, 0.25)',
-          }}
-        >
-          <span>🎟️</span> Ir a Elegir Boletos ($250 MXN)
-        </Link>
-        <Link
-          href="/"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            background: '#191f21',
-            color: '#d0d7d5',
-            border: '1px solid #334042',
-            borderRadius: 10,
-            padding: '14px 22px',
-            fontSize: 14,
-            fontWeight: 700,
-            textDecoration: 'none',
-          }}
-        >
-          Volver a la Página Principal
-        </Link>
       </div>
     </main>
   );

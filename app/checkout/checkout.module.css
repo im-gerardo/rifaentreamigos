@@ -115,7 +115,7 @@
   padding: 12px;
   background: #111415;
   border-radius: 8px;
-  border-left: 3px solid #ffd21a;
+  border: 1px solid #2d3536;
 }
 
 .selectedTicketRow {
@@ -379,5 +379,51 @@
   }
   .formCard {
     padding: 20px;
+  }
+}
+
+
+@media (max-width: 640px) {
+  .checkoutLayout {
+    padding: 16px 0 60px;
+    gap: 20px;
+  }
+
+  .formCard {
+    padding: 16px 14px;
+    border-radius: 14px;
+  }
+
+  .formHeader h1 {
+    font-size: 22px;
+  }
+
+  .ticketMiniGrid {
+    grid-template-columns: repeat(auto-fill, minmax(54px, 1fr));
+    gap: 6px;
+    max-height: 180px;
+  }
+
+  .ticketMiniChip {
+    padding: 6px 2px;
+    font-size: 12px;
+  }
+
+  .inputField {
+    font-size: 16px; /* Evita auto-zoom en iOS Safari */
+    padding: 12px;
+  }
+
+  .rulesCard {
+    padding: 18px 14px;
+    border-radius: 14px;
+  }
+
+  .rulesTitle {
+    font-size: 16px;
+  }
+
+  .ruleContent {
+    font-size: 12.5px;
   }
 }

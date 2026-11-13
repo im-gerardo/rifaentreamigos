@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useTicketStore } from '@/lib/ticket-store';
 import { getLetterFolio } from '@/lib/folio-letters';
+import styles from './admin-boletos.module.css';
 
 export default function AdminBoletosPage() {
   const { tickets, reserveMultipleTickets, markAsPaid, releaseTicket } = useTicketStore();
@@ -159,14 +160,14 @@ export default function AdminBoletosPage() {
   return (
     <main className="admin-boletos" style={{ padding: '24px 0 64px' }}>
       {/* Encabezado y acciones */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16, marginBottom: 24 }}>
+      <div className={styles.adminHeader}>
         <div>
-          <h1 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.8rem)', margin: 0 }}>Gestión y Venta de Boletos</h1>
+          <h1 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', margin: 0 }}>Gestión y Venta de Boletos</h1>
           <p style={{ color: 'var(--text-muted, #aaa)', margin: '6px 0 0' }}>
             Supervisa el inventario de 200 folios alfabéticos y registra ventas directas o en equipo.
           </p>
         </div>
-        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+        <div className={styles.adminActions}>
           <button
             type="button"
             onClick={() => handleOpenSaleModal()}
@@ -188,7 +189,7 @@ export default function AdminBoletosPage() {
             className="btn btn-quiet"
             style={{ padding: '10px 16px', fontSize: 13, textDecoration: 'none' }}
           >
-            Descargar CSV (Imprenta)
+            Descargar CSV
           </a>
           <Link
             href="/admin"
@@ -227,34 +228,18 @@ export default function AdminBoletosPage() {
       </div>
 
       {/* Barra de Filtros */}
-      <div style={{ display: 'flex', gap: 16, marginBottom: 20, flexWrap: 'wrap' }}>
+      <div className={styles.searchBar}>
         <input
           type="search"
           placeholder="Buscar por letra (ej. 1AAA, 1AAC), número (ej. 034) o comprador..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          style={{
-            flex: 1,
-            minWidth: 280,
-            padding: '12px 14px',
-            background: '#141414',
-            border: '1px solid #333',
-            color: '#fff',
-            borderRadius: 8,
-            fontSize: 14,
-          }}
+          className={styles.searchInput}
         />
         <select
           value={filterState}
           onChange={(e) => setFilterState(e.target.value)}
-          style={{
-            padding: '12px 14px',
-            background: '#141414',
-            border: '1px solid #333',
-            color: '#fff',
-            borderRadius: 8,
-            fontSize: 14,
-          }}
+          className={styles.filterSelect}
         >
           <option value="all">Todos los estados</option>
           <option value="available">Disponibles</option>
@@ -264,13 +249,7 @@ export default function AdminBoletosPage() {
       </div>
 
       {/* Grid de Boletos de Administración */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: 16,
-        }}
-      >
+      <div className={styles.ticketGrid}>
         {filtered.map((t) => {
           const letterCode = getLetterFolio(t.folio);
           const isAvailable = t.state === 'available';
