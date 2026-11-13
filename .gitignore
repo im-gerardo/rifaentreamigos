@@ -27,3 +27,5 @@ supabase/signing_keys.json
 .local-recovery/
 __pycache__/
 *.pyc
+public/boletos-oficiales-200.pdf
+Rifa_Entre_Amigos_Diseno_A4.pdf

@@ -1,0 +1,2611 @@
+{
+  "rifa": "Rifa Entre Amigos - Bajaj Pulsar N250 Modelo 2026",
+  "fechaSorteo": "12 de diciembre de 2026",
+  "fechaLimitePago": "11 de diciembre de 2026 20:00 hrs",
+  "loteria": "Lotería Nacional",
+  "totalBoletos": 200,
+  "numerosPorBoleto": 5,
+  "universoNumeros": "000 al 999 (1,000 combinaciones)",
+  "boletos": [
+    {
+      "numero": 1,
+      "folio": "001",
+      "codigo": "1AAA",
+      "folioCompleto": "1AAA (001)",
+      "numeros": [
+        "043",
+        "187",
+        "356",
+        "671",
+        "928"
+      ]
+    },
+    {
+      "numero": 2,
+      "folio": "002",
+      "codigo": "1AAB",
+      "folioCompleto": "1AAB (002)",
+      "numeros": [
+        "015",
+        "208",
+        "427",
+        "690",
+        "953"
+      ]
+    },
+    {
+      "numero": 3,
+      "folio": "003",
+      "codigo": "1AAC",
+      "folioCompleto": "1AAC (003)",
+      "numeros": [
+        "034",
+        "166",
+        "389",
+        "742",
+        "990"
+      ]
+    },
+    {
+      "numero": 4,
+      "folio": "004",
+      "codigo": "1AAD",
+      "folioCompleto": "1AAD (004)",
+      "numeros": [
+        "020",
+        "145",
+        "308",
+        "687",
+        "901"
+      ]
+    },
+    {
+      "numero": 5,
+      "folio": "005",
+      "codigo": "1AAE",
+      "folioCompleto": "1AAE (005)",
+      "numeros": [
+        "028",
+        "037",
+        "583",
+        "879",
+        "947"
+      ]
+    },
+    {
+      "numero": 6,
+      "folio": "006",
+      "codigo": "1AAF",
+      "folioCompleto": "1AAF (006)",
+      "numeros": [
+        "262",
+        "313",
+        "478",
+        "700",
+        "892"
+      ]
+    },
+    {
+      "numero": 7,
+      "folio": "007",
+      "codigo": "1AAG",
+      "folioCompleto": "1AAG (007)",
+      "numeros": [
+        "024",
+        "185",
+        "186",
+        "680",
+        "948"
+      ]
+    },
+    {
+      "numero": 8,
+      "folio": "008",
+      "codigo": "1AAH",
+      "folioCompleto": "1AAH (008)",
+      "numeros": [
+        "069",
+        "260",
+        "278",
+        "416",
+        "713"
+      ]
+    },
+    {
+      "numero": 9,
+      "folio": "009",
+      "codigo": "1AAI",
+      "folioCompleto": "1AAI (009)",
+      "numeros": [
+        "139",
+        "169",
+        "432",
+        "454",
+        "919"
+      ]
+    },
+    {
+      "numero": 10,
+      "folio": "010",
+      "codigo": "1AAJ",
+      "folioCompleto": "1AAJ (010)",
+      "numeros": [
+        "255",
+        "332",
+        "452",
+        "531",
+        "675"
+      ]
+    },
+    {
+      "numero": 11,
+      "folio": "011",
+      "codigo": "1AAK",
+      "folioCompleto": "1AAK (011)",
+      "numeros": [
+        "209",
+        "465",
+        "639",
+        "712",
+        "733"
+      ]
+    },
+    {
+      "numero": 12,
+      "folio": "012",
+      "codigo": "1AAL",
+      "folioCompleto": "1AAL (012)",
+      "numeros": [
+        "022",
+        "709",
+        "799",
+        "833",
+        "993"
+      ]
+    },
+    {
+      "numero": 13,
+      "folio": "013",
+      "codigo": "1AAM",
+      "folioCompleto": "1AAM (013)",
+      "numeros": [
+        "063",
+        "117",
+        "275",
+        "556",
+        "904"
+      ]
+    },
+    {
+      "numero": 14,
+      "folio": "014",
+      "codigo": "1AAN",
+      "folioCompleto": "1AAN (014)",
+      "numeros": [
+        "221",
+        "528",
+        "652",
+        "764",
+        "890"
+      ]
+    },
+    {
+      "numero": 15,
+      "folio": "015",
+      "codigo": "1AAO",
+      "folioCompleto": "1AAO (015)",
+      "numeros": [
+        "223",
+        "341",
+        "502",
+        "686",
+        "807"
+      ]
+    },
+    {
+      "numero": 16,
+      "folio": "016",
+      "codigo": "1AAP",
+      "folioCompleto": "1AAP (016)",
+      "numeros": [
+        "086",
+        "107",
+        "326",
+        "575",
+        "804"
+      ]
+    },
+    {
+      "numero": 17,
+      "folio": "017",
+      "codigo": "1AAQ",
+      "folioCompleto": "1AAQ (017)",
+      "numeros": [
+        "274",
+        "306",
+        "366",
+        "581",
+        "979"
+      ]
+    },
+    {
+      "numero": 18,
+      "folio": "018",
+      "codigo": "1AAR",
+      "folioCompleto": "1AAR (018)",
+      "numeros": [
+        "450",
+        "476",
+        "506",
+        "856",
+        "972"
+      ]
+    },
+    {
+      "numero": 19,
+      "folio": "019",
+      "codigo": "1AAS",
+      "folioCompleto": "1AAS (019)",
+      "numeros": [
+        "144",
+        "234",
+        "257",
+        "775",
+        "985"
+      ]
+    },
+    {
+      "numero": 20,
+      "folio": "020",
+      "codigo": "1AAT",
+      "folioCompleto": "1AAT (020)",
+      "numeros": [
+        "076",
+        "109",
+        "321",
+        "541",
+        "751"
+      ]
+    },
+    {
+      "numero": 21,
+      "folio": "021",
+      "codigo": "1AAU",
+      "folioCompleto": "1AAU (021)",
+      "numeros": [
+        "070",
+        "158",
+        "244",
+        "428",
+        "900"
+      ]
+    },
+    {
+      "numero": 22,
+      "folio": "022",
+      "codigo": "1AAV",
+      "folioCompleto": "1AAV (022)",
+      "numeros": [
+        "101",
+        "370",
+        "632",
+        "653",
+        "873"
+      ]
+    },
+    {
+      "numero": 23,
+      "folio": "023",
+      "codigo": "1AAW",
+      "folioCompleto": "1AAW (023)",
+      "numeros": [
+        "044",
+        "305",
+        "415",
+        "822",
+        "908"
+      ]
+    },
+    {
+      "numero": 24,
+      "folio": "024",
+      "codigo": "1AAX",
+      "folioCompleto": "1AAX (024)",
+      "numeros": [
+        "414",
+        "425",
+        "573",
+        "631",
+        "852"
+      ]
+    },
+    {
+      "numero": 25,
+      "folio": "025",
+      "codigo": "1AAY",
+      "folioCompleto": "1AAY (025)",
+      "numeros": [
+        "331",
+        "796",
+        "811",
+        "840",
+        "959"
+      ]
+    },
+    {
+      "numero": 26,
+      "folio": "026",
+      "codigo": "1AAZ",
+      "folioCompleto": "1AAZ (026)",
+      "numeros": [
+        "016",
+        "171",
+        "182",
+        "456",
+        "759"
+      ]
+    },
+    {
+      "numero": 27,
+      "folio": "027",
+      "codigo": "1ABA",
+      "folioCompleto": "1ABA (027)",
+      "numeros": [
+        "046",
+        "211",
+        "383",
+        "576",
+        "913"
+      ]
+    },
+    {
+      "numero": 28,
+      "folio": "028",
+      "codigo": "1ABB",
+      "folioCompleto": "1ABB (028)",
+      "numeros": [
+        "119",
+        "268",
+        "312",
+        "422",
+        "431"
+      ]
+    },
+    {
+      "numero": 29,
+      "folio": "029",
+      "codigo": "1ABC",
+      "folioCompleto": "1ABC (029)",
+      "numeros": [
+        "300",
+        "436",
+        "597",
+        "630",
+        "685"
+      ]
+    },
+    {
+      "numero": 30,
+      "folio": "030",
+      "codigo": "1ABD",
+      "folioCompleto": "1ABD (030)",
+      "numeros": [
+        "299",
+        "406",
+        "491",
+        "615",
+        "758"
+      ]
+    },
+    {
+      "numero": 31,
+      "folio": "031",
+      "codigo": "1ABE",
+      "folioCompleto": "1ABE (031)",
+      "numeros": [
+        "162",
+        "254",
+        "539",
+        "546",
+        "569"
+      ]
+    },
+    {
+      "numero": 32,
+      "folio": "032",
+      "codigo": "1ABF",
+      "folioCompleto": "1ABF (032)",
+      "numeros": [
+        "304",
+        "533",
+        "550",
+        "607",
+        "795"
+      ]
+    },
+    {
+      "numero": 33,
+      "folio": "033",
+      "codigo": "1ABG",
+      "folioCompleto": "1ABG (033)",
+      "numeros": [
+        "433",
+        "654",
+        "728",
+        "937",
+        "939"
+      ]
+    },
+    {
+      "numero": 34,
+      "folio": "034",
+      "codigo": "1ABH",
+      "folioCompleto": "1ABH (034)",
+      "numeros": [
+        "131",
+        "487",
+        "495",
+        "500",
+        "808"
+      ]
+    },
+    {
+      "numero": 35,
+      "folio": "035",
+      "codigo": "1ABI",
+      "folioCompleto": "1ABI (035)",
+      "numeros": [
+        "264",
+        "360",
+        "526",
+        "846",
+        "861"
+      ]
+    },
+    {
+      "numero": 36,
+      "folio": "036",
+      "codigo": "1ABJ",
+      "folioCompleto": "1ABJ (036)",
+      "numeros": [
+        "083",
+        "177",
+        "309",
+        "551",
+        "750"
+      ]
+    },
+    {
+      "numero": 37,
+      "folio": "037",
+      "codigo": "1ABK",
+      "folioCompleto": "1ABK (037)",
+      "numeros": [
+        "110",
+        "150",
+        "195",
+        "439",
+        "523"
+      ]
+    },
+    {
+      "numero": 38,
+      "folio": "038",
+      "codigo": "1ABL",
+      "folioCompleto": "1ABL (038)",
+      "numeros": [
+        "027",
+        "731",
+        "767",
+        "841",
+        "889"
+      ]
+    },
+    {
+      "numero": 39,
+      "folio": "039",
+      "codigo": "1ABM",
+      "folioCompleto": "1ABM (039)",
+      "numeros": [
+        "078",
+        "249",
+        "390",
+        "755",
+        "999"
+      ]
+    },
+    {
+      "numero": 40,
+      "folio": "040",
+      "codigo": "1ABN",
+      "folioCompleto": "1ABN (040)",
+      "numeros": [
+        "008",
+        "065",
+        "282",
+        "349",
+        "353"
+      ]
+    },
+    {
+      "numero": 41,
+      "folio": "041",
+      "codigo": "1ABO",
+      "folioCompleto": "1ABO (041)",
+      "numeros": [
+        "047",
+        "220",
+        "347",
+        "380",
+        "787"
+      ]
+    },
+    {
+      "numero": 42,
+      "folio": "042",
+      "codigo": "1ABP",
+      "folioCompleto": "1ABP (042)",
+      "numeros": [
+        "143",
+        "199",
+        "510",
+        "749",
+        "850"
+      ]
+    },
+    {
+      "numero": 43,
+      "folio": "043",
+      "codigo": "1ABQ",
+      "folioCompleto": "1ABQ (043)",
+      "numeros": [
+        "056",
+        "082",
+        "453",
+        "474",
+        "596"
+      ]
+    },
+    {
+      "numero": 44,
+      "folio": "044",
+      "codigo": "1ABR",
+      "folioCompleto": "1ABR (044)",
+      "numeros": [
+        "061",
+        "196",
+        "563",
+        "827",
+        "920"
+      ]
+    },
+    {
+      "numero": 45,
+      "folio": "045",
+      "codigo": "1ABS",
+      "folioCompleto": "1ABS (045)",
+      "numeros": [
+        "322",
+        "438",
+        "574",
+        "918",
+        "975"
+      ]
+    },
+    {
+      "numero": 46,
+      "folio": "046",
+      "codigo": "1ABT",
+      "folioCompleto": "1ABT (046)",
+      "numeros": [
+        "240",
+        "449",
+        "598",
+        "825",
+        "903"
+      ]
+    },
+    {
+      "numero": 47,
+      "folio": "047",
+      "codigo": "1ABU",
+      "folioCompleto": "1ABU (047)",
+      "numeros": [
+        "122",
+        "544",
+        "656",
+        "714",
+        "788"
+      ]
+    },
+    {
+      "numero": 48,
+      "folio": "048",
+      "codigo": "1ABV",
+      "folioCompleto": "1ABV (048)",
+      "numeros": [
+        "021",
+        "132",
+        "365",
+        "402",
+        "492"
+      ]
+    },
+    {
+      "numero": 49,
+      "folio": "049",
+      "codigo": "1ABW",
+      "folioCompleto": "1ABW (049)",
+      "numeros": [
+        "002",
+        "041",
+        "176",
+        "657",
+        "893"
+      ]
+    },
+    {
+      "numero": 50,
+      "folio": "050",
+      "codigo": "1ABX",
+      "folioCompleto": "1ABX (050)",
+      "numeros": [
+        "247",
+        "285",
+        "480",
+        "663",
+        "721"
+      ]
+    },
+    {
+      "numero": 51,
+      "folio": "051",
+      "codigo": "1ABY",
+      "folioCompleto": "1ABY (051)",
+      "numeros": [
+        "088",
+        "636",
+        "735",
+        "763",
+        "848"
+      ]
+    },
+    {
+      "numero": 52,
+      "folio": "052",
+      "codigo": "1ABZ",
+      "folioCompleto": "1ABZ (052)",
+      "numeros": [
+        "129",
+        "473",
+        "692",
+        "824",
+        "988"
+      ]
+    },
+    {
+      "numero": 53,
+      "folio": "053",
+      "codigo": "1ACA",
+      "folioCompleto": "1ACA (053)",
+      "numeros": [
+        "197",
+        "357",
+        "399",
+        "430",
+        "867"
+      ]
+    },
+    {
+      "numero": 54,
+      "folio": "054",
+      "codigo": "1ACB",
+      "folioCompleto": "1ACB (054)",
+      "numeros": [
+        "483",
+        "520",
+        "648",
+        "809",
+        "876"
+      ]
+    },
+    {
+      "numero": 55,
+      "folio": "055",
+      "codigo": "1ACC",
+      "folioCompleto": "1ACC (055)",
+      "numeros": [
+        "142",
+        "157",
+        "379",
+        "644",
+        "754"
+      ]
+    },
+    {
+      "numero": 56,
+      "folio": "056",
+      "codigo": "1ACD",
+      "folioCompleto": "1ACD (056)",
+      "numeros": [
+        "159",
+        "401",
+        "662",
+        "789",
+        "957"
+      ]
+    },
+    {
+      "numero": 57,
+      "folio": "057",
+      "codigo": "1ACE",
+      "folioCompleto": "1ACE (057)",
+      "numeros": [
+        "246",
+        "314",
+        "482",
+        "870",
+        "969"
+      ]
+    },
+    {
+      "numero": 58,
+      "folio": "058",
+      "codigo": "1ACF",
+      "folioCompleto": "1ACF (058)",
+      "numeros": [
+        "012",
+        "343",
+        "726",
+        "806",
+        "909"
+      ]
+    },
+    {
+      "numero": 59,
+      "folio": "059",
+      "codigo": "1ACG",
+      "folioCompleto": "1ACG (059)",
+      "numeros": [
+        "014",
+        "238",
+        "319",
+        "488",
+        "729"
+      ]
+    },
+    {
+      "numero": 60,
+      "folio": "060",
+      "codigo": "1ACH",
+      "folioCompleto": "1ACH (060)",
+      "numeros": [
+        "007",
+        "463",
+        "466",
+        "497",
+        "626"
+      ]
+    },
+    {
+      "numero": 61,
+      "folio": "061",
+      "codigo": "1ACI",
+      "folioCompleto": "1ACI (061)",
+      "numeros": [
+        "018",
+        "228",
+        "284",
+        "384",
+        "429"
+      ]
+    },
+    {
+      "numero": 62,
+      "folio": "062",
+      "codigo": "1ACJ",
+      "folioCompleto": "1ACJ (062)",
+      "numeros": [
+        "126",
+        "245",
+        "609",
+        "614",
+        "853"
+      ]
+    },
+    {
+      "numero": 63,
+      "folio": "063",
+      "codigo": "1ACK",
+      "folioCompleto": "1ACK (063)",
+      "numeros": [
+        "001",
+        "058",
+        "163",
+        "620",
+        "996"
+      ]
+    },
+    {
+      "numero": 64,
+      "folio": "064",
+      "codigo": "1ACL",
+      "folioCompleto": "1ACL (064)",
+      "numeros": [
+        "009",
+        "079",
+        "084",
+        "302",
+        "834"
+      ]
+    },
+    {
+      "numero": 65,
+      "folio": "065",
+      "codigo": "1ACM",
+      "folioCompleto": "1ACM (065)",
+      "numeros": [
+        "095",
+        "174",
+        "549",
+        "762",
+        "844"
+      ]
+    },
+    {
+      "numero": 66,
+      "folio": "066",
+      "codigo": "1ACN",
+      "folioCompleto": "1ACN (066)",
+      "numeros": [
+        "091",
+        "263",
+        "527",
+        "743",
+        "872"
+      ]
+    },
+    {
+      "numero": 67,
+      "folio": "067",
+      "codigo": "1ACO",
+      "folioCompleto": "1ACO (067)",
+      "numeros": [
+        "237",
+        "248",
+        "393",
+        "805",
+        "929"
+      ]
+    },
+    {
+      "numero": 68,
+      "folio": "068",
+      "codigo": "1ACP",
+      "folioCompleto": "1ACP (068)",
+      "numeros": [
+        "029",
+        "218",
+        "423",
+        "836",
+        "998"
+      ]
+    },
+    {
+      "numero": 69,
+      "folio": "069",
+      "codigo": "1ACQ",
+      "folioCompleto": "1ACQ (069)",
+      "numeros": [
+        "156",
+        "280",
+        "361",
+        "820",
+        "845"
+      ]
+    },
+    {
+      "numero": 70,
+      "folio": "070",
+      "codigo": "1ACR",
+      "folioCompleto": "1ACR (070)",
+      "numeros": [
+        "118",
+        "127",
+        "192",
+        "207",
+        "440"
+      ]
+    },
+    {
+      "numero": 71,
+      "folio": "071",
+      "codigo": "1ACS",
+      "folioCompleto": "1ACS (071)",
+      "numeros": [
+        "363",
+        "499",
+        "661",
+        "724",
+        "863"
+      ]
+    },
+    {
+      "numero": 72,
+      "folio": "072",
+      "codigo": "1ACT",
+      "folioCompleto": "1ACT (072)",
+      "numeros": [
+        "062",
+        "342",
+        "358",
+        "448",
+        "524"
+      ]
+    },
+    {
+      "numero": 73,
+      "folio": "073",
+      "codigo": "1ACU",
+      "folioCompleto": "1ACU (073)",
+      "numeros": [
+        "137",
+        "498",
+        "623",
+        "640",
+        "711"
+      ]
+    },
+    {
+      "numero": 74,
+      "folio": "074",
+      "codigo": "1ACV",
+      "folioCompleto": "1ACV (074)",
+      "numeros": [
+        "013",
+        "071",
+        "205",
+        "378",
+        "958"
+      ]
+    },
+    {
+      "numero": 75,
+      "folio": "075",
+      "codigo": "1ACW",
+      "folioCompleto": "1ACW (075)",
+      "numeros": [
+        "089",
+        "446",
+        "697",
+        "740",
+        "770"
+      ]
+    },
+    {
+      "numero": 76,
+      "folio": "076",
+      "codigo": "1ACX",
+      "folioCompleto": "1ACX (076)",
+      "numeros": [
+        "149",
+        "181",
+        "315",
+        "460",
+        "496"
+      ]
+    },
+    {
+      "numero": 77,
+      "folio": "077",
+      "codigo": "1ACY",
+      "folioCompleto": "1ACY (077)",
+      "numeros": [
+        "040",
+        "049",
+        "426",
+        "532",
+        "940"
+      ]
+    },
+    {
+      "numero": 78,
+      "folio": "078",
+      "codigo": "1ACZ",
+      "folioCompleto": "1ACZ (078)",
+      "numeros": [
+        "227",
+        "338",
+        "339",
+        "538",
+        "887"
+      ]
+    },
+    {
+      "numero": 79,
+      "folio": "079",
+      "codigo": "1ADA",
+      "folioCompleto": "1ADA (079)",
+      "numeros": [
+        "213",
+        "292",
+        "345",
+        "702",
+        "944"
+      ]
+    },
+    {
+      "numero": 80,
+      "folio": "080",
+      "codigo": "1ADB",
+      "folioCompleto": "1ADB (080)",
+      "numeros": [
+        "010",
+        "397",
+        "517",
+        "798",
+        "934"
+      ]
+    },
+    {
+      "numero": 81,
+      "folio": "081",
+      "codigo": "1ADC",
+      "folioCompleto": "1ADC (081)",
+      "numeros": [
+        "080",
+        "334",
+        "407",
+        "552",
+        "580"
+      ]
+    },
+    {
+      "numero": 82,
+      "folio": "082",
+      "codigo": "1ADD",
+      "folioCompleto": "1ADD (082)",
+      "numeros": [
+        "178",
+        "252",
+        "468",
+        "588",
+        "761"
+      ]
+    },
+    {
+      "numero": 83,
+      "folio": "083",
+      "codigo": "1ADE",
+      "folioCompleto": "1ADE (083)",
+      "numeros": [
+        "273",
+        "535",
+        "570",
+        "672",
+        "708"
+      ]
+    },
+    {
+      "numero": 84,
+      "folio": "084",
+      "codigo": "1ADF",
+      "folioCompleto": "1ADF (084)",
+      "numeros": [
+        "060",
+        "168",
+        "586",
+        "703",
+        "882"
+      ]
+    },
+    {
+      "numero": 85,
+      "folio": "085",
+      "codigo": "1ADG",
+      "folioCompleto": "1ADG (085)",
+      "numeros": [
+        "100",
+        "371",
+        "445",
+        "494",
+        "682"
+      ]
+    },
+    {
+      "numero": 86,
+      "folio": "086",
+      "codigo": "1ADH",
+      "folioCompleto": "1ADH (086)",
+      "numeros": [
+        "074",
+        "204",
+        "699",
+        "802",
+        "823"
+      ]
+    },
+    {
+      "numero": 87,
+      "folio": "087",
+      "codigo": "1ADI",
+      "folioCompleto": "1ADI (087)",
+      "numeros": [
+        "147",
+        "239",
+        "386",
+        "888",
+        "923"
+      ]
+    },
+    {
+      "numero": 88,
+      "folio": "088",
+      "codigo": "1ADJ",
+      "folioCompleto": "1ADJ (088)",
+      "numeros": [
+        "103",
+        "261",
+        "625",
+        "683",
+        "741"
+      ]
+    },
+    {
+      "numero": 89,
+      "folio": "089",
+      "codigo": "1ADK",
+      "folioCompleto": "1ADK (089)",
+      "numeros": [
+        "017",
+        "077",
+        "212",
+        "364",
+        "842"
+      ]
+    },
+    {
+      "numero": 90,
+      "folio": "090",
+      "codigo": "1ADL",
+      "folioCompleto": "1ADL (090)",
+      "numeros": [
+        "230",
+        "279",
+        "566",
+        "605",
+        "936"
+      ]
+    },
+    {
+      "numero": 91,
+      "folio": "091",
+      "codigo": "1ADM",
+      "folioCompleto": "1ADM (091)",
+      "numeros": [
+        "054",
+        "096",
+        "325",
+        "477",
+        "974"
+      ]
+    },
+    {
+      "numero": 92,
+      "folio": "092",
+      "codigo": "1ADN",
+      "folioCompleto": "1ADN (092)",
+      "numeros": [
+        "064",
+        "066",
+        "627",
+        "819",
+        "960"
+      ]
+    },
+    {
+      "numero": 93,
+      "folio": "093",
+      "codigo": "1ADO",
+      "folioCompleto": "1ADO (093)",
+      "numeros": [
+        "068",
+        "377",
+        "503",
+        "865",
+        "997"
+      ]
+    },
+    {
+      "numero": 94,
+      "folio": "094",
+      "codigo": "1ADP",
+      "folioCompleto": "1ADP (094)",
+      "numeros": [
+        "003",
+        "112",
+        "351",
+        "396",
+        "555"
+      ]
+    },
+    {
+      "numero": 95,
+      "folio": "095",
+      "codigo": "1ADQ",
+      "folioCompleto": "1ADQ (095)",
+      "numeros": [
+        "113",
+        "387",
+        "617",
+        "779",
+        "902"
+      ]
+    },
+    {
+      "numero": 96,
+      "folio": "096",
+      "codigo": "1ADR",
+      "folioCompleto": "1ADR (096)",
+      "numeros": [
+        "329",
+        "424",
+        "519",
+        "752",
+        "772"
+      ]
+    },
+    {
+      "numero": 97,
+      "folio": "097",
+      "codigo": "1ADS",
+      "folioCompleto": "1ADS (097)",
+      "numeros": [
+        "303",
+        "355",
+        "530",
+        "874",
+        "964"
+      ]
+    },
+    {
+      "numero": 98,
+      "folio": "098",
+      "codigo": "1ADT",
+      "folioCompleto": "1ADT (098)",
+      "numeros": [
+        "104",
+        "333",
+        "359",
+        "534",
+        "578"
+      ]
+    },
+    {
+      "numero": 99,
+      "folio": "099",
+      "codigo": "1ADU",
+      "folioCompleto": "1ADU (099)",
+      "numeros": [
+        "019",
+        "490",
+        "855",
+        "910",
+        "942"
+      ]
+    },
+    {
+      "numero": 100,
+      "folio": "100",
+      "codigo": "1ADV",
+      "folioCompleto": "1ADV (100)",
+      "numeros": [
+        "135",
+        "152",
+        "403",
+        "746",
+        "813"
+      ]
+    },
+    {
+      "numero": 101,
+      "folio": "101",
+      "codigo": "2AAA",
+      "folioCompleto": "2AAA (101)",
+      "numeros": [
+        "026",
+        "515",
+        "600",
+        "732",
+        "933"
+      ]
+    },
+    {
+      "numero": 102,
+      "folio": "102",
+      "codigo": "2AAB",
+      "folioCompleto": "2AAB (102)",
+      "numeros": [
+        "188",
+        "266",
+        "664",
+        "715",
+        "768"
+      ]
+    },
+    {
+      "numero": 103,
+      "folio": "103",
+      "codigo": "2AAC",
+      "folioCompleto": "2AAC (103)",
+      "numeros": [
+        "130",
+        "411",
+        "521",
+        "907",
+        "927"
+      ]
+    },
+    {
+      "numero": 104,
+      "folio": "104",
+      "codigo": "2AAD",
+      "folioCompleto": "2AAD (104)",
+      "numeros": [
+        "201",
+        "216",
+        "287",
+        "290",
+        "593"
+      ]
+    },
+    {
+      "numero": 105,
+      "folio": "105",
+      "codigo": "2AAE",
+      "folioCompleto": "2AAE (105)",
+      "numeros": [
+        "206",
+        "233",
+        "376",
+        "582",
+        "780"
+      ]
+    },
+    {
+      "numero": 106,
+      "folio": "106",
+      "codigo": "2AAF",
+      "folioCompleto": "2AAF (106)",
+      "numeros": [
+        "215",
+        "225",
+        "324",
+        "493",
+        "849"
+      ]
+    },
+    {
+      "numero": 107,
+      "folio": "107",
+      "codigo": "2AAG",
+      "folioCompleto": "2AAG (107)",
+      "numeros": [
+        "128",
+        "562",
+        "565",
+        "932",
+        "962"
+      ]
+    },
+    {
+      "numero": 108,
+      "folio": "108",
+      "codigo": "2AAH",
+      "folioCompleto": "2AAH (108)",
+      "numeros": [
+        "362",
+        "646",
+        "725",
+        "835",
+        "915"
+      ]
+    },
+    {
+      "numero": 109,
+      "folio": "109",
+      "codigo": "2AAI",
+      "folioCompleto": "2AAI (109)",
+      "numeros": [
+        "599",
+        "817",
+        "826",
+        "869",
+        "896"
+      ]
+    },
+    {
+      "numero": 110,
+      "folio": "110",
+      "codigo": "2AAJ",
+      "folioCompleto": "2AAJ (110)",
+      "numeros": [
+        "258",
+        "293",
+        "604",
+        "760",
+        "781"
+      ]
+    },
+    {
+      "numero": 111,
+      "folio": "111",
+      "codigo": "2AAK",
+      "folioCompleto": "2AAK (111)",
+      "numeros": [
+        "106",
+        "222",
+        "880",
+        "954",
+        "966"
+      ]
+    },
+    {
+      "numero": 112,
+      "folio": "112",
+      "codigo": "2AAL",
+      "folioCompleto": "2AAL (112)",
+      "numeros": [
+        "053",
+        "388",
+        "643",
+        "658",
+        "989"
+      ]
+    },
+    {
+      "numero": 113,
+      "folio": "113",
+      "codigo": "2AAM",
+      "folioCompleto": "2AAM (113)",
+      "numeros": [
+        "180",
+        "235",
+        "776",
+        "794",
+        "851"
+      ]
+    },
+    {
+      "numero": 114,
+      "folio": "114",
+      "codigo": "2AAN",
+      "folioCompleto": "2AAN (114)",
+      "numeros": [
+        "259",
+        "267",
+        "536",
+        "665",
+        "914"
+      ]
+    },
+    {
+      "numero": 115,
+      "folio": "115",
+      "codigo": "2AAO",
+      "folioCompleto": "2AAO (115)",
+      "numeros": [
+        "210",
+        "214",
+        "622",
+        "669",
+        "899"
+      ]
+    },
+    {
+      "numero": 116,
+      "folio": "116",
+      "codigo": "2AAP",
+      "folioCompleto": "2AAP (116)",
+      "numeros": [
+        "102",
+        "154",
+        "590",
+        "821",
+        "847"
+      ]
+    },
+    {
+      "numero": 117,
+      "folio": "117",
+      "codigo": "2AAQ",
+      "folioCompleto": "2AAQ (117)",
+      "numeros": [
+        "265",
+        "316",
+        "408",
+        "589",
+        "748"
+      ]
+    },
+    {
+      "numero": 118,
+      "folio": "118",
+      "codigo": "2AAR",
+      "folioCompleto": "2AAR (118)",
+      "numeros": [
+        "114",
+        "170",
+        "559",
+        "619",
+        "704"
+      ]
+    },
+    {
+      "numero": 119,
+      "folio": "119",
+      "codigo": "2AAS",
+      "folioCompleto": "2AAS (119)",
+      "numeros": [
+        "011",
+        "052",
+        "093",
+        "310",
+        "790"
+      ]
+    },
+    {
+      "numero": 120,
+      "folio": "120",
+      "codigo": "2AAT",
+      "folioCompleto": "2AAT (120)",
+      "numeros": [
+        "138",
+        "558",
+        "696",
+        "906",
+        "931"
+      ]
+    },
+    {
+      "numero": 121,
+      "folio": "121",
+      "codigo": "2AAU",
+      "folioCompleto": "2AAU (121)",
+      "numeros": [
+        "437",
+        "472",
+        "481",
+        "548",
+        "765"
+      ]
+    },
+    {
+      "numero": 122,
+      "folio": "122",
+      "codigo": "2AAV",
+      "folioCompleto": "2AAV (122)",
+      "numeros": [
+        "352",
+        "560",
+        "606",
+        "810",
+        "951"
+      ]
+    },
+    {
+      "numero": 123,
+      "folio": "123",
+      "codigo": "2AAW",
+      "folioCompleto": "2AAW (123)",
+      "numeros": [
+        "184",
+        "485",
+        "601",
+        "610",
+        "679"
+      ]
+    },
+    {
+      "numero": 124,
+      "folio": "124",
+      "codigo": "2AAX",
+      "folioCompleto": "2AAX (124)",
+      "numeros": [
+        "030",
+        "385",
+        "616",
+        "678",
+        "924"
+      ]
+    },
+    {
+      "numero": 125,
+      "folio": "125",
+      "codigo": "2AAY",
+      "folioCompleto": "2AAY (125)",
+      "numeros": [
+        "367",
+        "629",
+        "707",
+        "839",
+        "866"
+      ]
+    },
+    {
+      "numero": 126,
+      "folio": "126",
+      "codigo": "2AAZ",
+      "folioCompleto": "2AAZ (126)",
+      "numeros": [
+        "097",
+        "161",
+        "444",
+        "634",
+        "987"
+      ]
+    },
+    {
+      "numero": 127,
+      "folio": "127",
+      "codigo": "2ABA",
+      "folioCompleto": "2ABA (127)",
+      "numeros": [
+        "092",
+        "311",
+        "545",
+        "756",
+        "871"
+      ]
+    },
+    {
+      "numero": 128,
+      "folio": "128",
+      "codigo": "2ABB",
+      "folioCompleto": "2ABB (128)",
+      "numeros": [
+        "250",
+        "253",
+        "434",
+        "512",
+        "898"
+      ]
+    },
+    {
+      "numero": 129,
+      "folio": "129",
+      "codigo": "2ABC",
+      "folioCompleto": "2ABC (129)",
+      "numeros": [
+        "116",
+        "337",
+        "677",
+        "717",
+        "730"
+      ]
+    },
+    {
+      "numero": 130,
+      "folio": "130",
+      "codigo": "2ABD",
+      "folioCompleto": "2ABD (130)",
+      "numeros": [
+        "443",
+        "635",
+        "720",
+        "922",
+        "941"
+      ]
+    },
+    {
+      "numero": 131,
+      "folio": "131",
+      "codigo": "2ABE",
+      "folioCompleto": "2ABE (131)",
+      "numeros": [
+        "270",
+        "542",
+        "571",
+        "650",
+        "744"
+      ]
+    },
+    {
+      "numero": 132,
+      "folio": "132",
+      "codigo": "2ABF",
+      "folioCompleto": "2ABF (132)",
+      "numeros": [
+        "111",
+        "269",
+        "297",
+        "525",
+        "814"
+      ]
+    },
+    {
+      "numero": 133,
+      "folio": "133",
+      "codigo": "2ABG",
+      "folioCompleto": "2ABG (133)",
+      "numeros": [
+        "075",
+        "125",
+        "514",
+        "885",
+        "983"
+      ]
+    },
+    {
+      "numero": 134,
+      "folio": "134",
+      "codigo": "2ABH",
+      "folioCompleto": "2ABH (134)",
+      "numeros": [
+        "320",
+        "420",
+        "608",
+        "828",
+        "978"
+      ]
+    },
+    {
+      "numero": 135,
+      "folio": "135",
+      "codigo": "2ABI",
+      "folioCompleto": "2ABI (135)",
+      "numeros": [
+        "133",
+        "774",
+        "843",
+        "943",
+        "986"
+      ]
+    },
+    {
+      "numero": 136,
+      "folio": "136",
+      "codigo": "2ABJ",
+      "folioCompleto": "2ABJ (136)",
+      "numeros": [
+        "513",
+        "613",
+        "875",
+        "916",
+        "930"
+      ]
+    },
+    {
+      "numero": 137,
+      "folio": "137",
+      "codigo": "2ABK",
+      "folioCompleto": "2ABK (137)",
+      "numeros": [
+        "073",
+        "108",
+        "335",
+        "373",
+        "815"
+      ]
+    },
+    {
+      "numero": 138,
+      "folio": "138",
+      "codigo": "2ABL",
+      "folioCompleto": "2ABL (138)",
+      "numeros": [
+        "123",
+        "226",
+        "394",
+        "579",
+        "992"
+      ]
+    },
+    {
+      "numero": 139,
+      "folio": "139",
+      "codigo": "2ABM",
+      "folioCompleto": "2ABM (139)",
+      "numeros": [
+        "051",
+        "115",
+        "382",
+        "455",
+        "883"
+      ]
+    },
+    {
+      "numero": 140,
+      "folio": "140",
+      "codigo": "2ABN",
+      "folioCompleto": "2ABN (140)",
+      "numeros": [
+        "036",
+        "374",
+        "400",
+        "645",
+        "862"
+      ]
+    },
+    {
+      "numero": 141,
+      "folio": "141",
+      "codigo": "2ABO",
+      "folioCompleto": "2ABO (141)",
+      "numeros": [
+        "042",
+        "200",
+        "553",
+        "612",
+        "739"
+      ]
+    },
+    {
+      "numero": 142,
+      "folio": "142",
+      "codigo": "2ABP",
+      "folioCompleto": "2ABP (142)",
+      "numeros": [
+        "085",
+        "146",
+        "219",
+        "296",
+        "982"
+      ]
+    },
+    {
+      "numero": 143,
+      "folio": "143",
+      "codigo": "2ABQ",
+      "folioCompleto": "2ABQ (143)",
+      "numeros": [
+        "031",
+        "277",
+        "295",
+        "547",
+        "734"
+      ]
+    },
+    {
+      "numero": 144,
+      "folio": "144",
+      "codigo": "2ABR",
+      "folioCompleto": "2ABR (144)",
+      "numeros": [
+        "045",
+        "317",
+        "668",
+        "676",
+        "946"
+      ]
+    },
+    {
+      "numero": 145,
+      "folio": "145",
+      "codigo": "2ABS",
+      "folioCompleto": "2ABS (145)",
+      "numeros": [
+        "243",
+        "537",
+        "594",
+        "897",
+        "994"
+      ]
+    },
+    {
+      "numero": 146,
+      "folio": "146",
+      "codigo": "2ABT",
+      "folioCompleto": "2ABT (146)",
+      "numeros": [
+        "023",
+        "404",
+        "508",
+        "705",
+        "736"
+      ]
+    },
+    {
+      "numero": 147,
+      "folio": "147",
+      "codigo": "2ABU",
+      "folioCompleto": "2ABU (147)",
+      "numeros": [
+        "294",
+        "451",
+        "516",
+        "684",
+        "949"
+      ]
+    },
+    {
+      "numero": 148,
+      "folio": "148",
+      "codigo": "2ABV",
+      "folioCompleto": "2ABV (148)",
+      "numeros": [
+        "038",
+        "318",
+        "554",
+        "638",
+        "837"
+      ]
+    },
+    {
+      "numero": 149,
+      "folio": "149",
+      "codigo": "2ABW",
+      "folioCompleto": "2ABW (149)",
+      "numeros": [
+        "081",
+        "340",
+        "603",
+        "647",
+        "745"
+      ]
+    },
+    {
+      "numero": 150,
+      "folio": "150",
+      "codigo": "2ABX",
+      "folioCompleto": "2ABX (150)",
+      "numeros": [
+        "050",
+        "236",
+        "618",
+        "868",
+        "945"
+      ]
+    },
+    {
+      "numero": 151,
+      "folio": "151",
+      "codigo": "2ABY",
+      "folioCompleto": "2ABY (151)",
+      "numeros": [
+        "048",
+        "369",
+        "540",
+        "592",
+        "628"
+      ]
+    },
+    {
+      "numero": 152,
+      "folio": "152",
+      "codigo": "2ABZ",
+      "folioCompleto": "2ABZ (152)",
+      "numeros": [
+        "105",
+        "457",
+        "673",
+        "757",
+        "935"
+      ]
+    },
+    {
+      "numero": 153,
+      "folio": "153",
+      "codigo": "2ACA",
+      "folioCompleto": "2ACA (153)",
+      "numeros": [
+        "005",
+        "120",
+        "121",
+        "413",
+        "917"
+      ]
+    },
+    {
+      "numero": 154,
+      "folio": "154",
+      "codigo": "2ACB",
+      "folioCompleto": "2ACB (154)",
+      "numeros": [
+        "256",
+        "766",
+        "955",
+        "973",
+        "977"
+      ]
+    },
+    {
+      "numero": 155,
+      "folio": "155",
+      "codigo": "2ACC",
+      "folioCompleto": "2ACC (155)",
+      "numeros": [
+        "350",
+        "372",
+        "864",
+        "881",
+        "950"
+      ]
+    },
+    {
+      "numero": 156,
+      "folio": "156",
+      "codigo": "2ACD",
+      "folioCompleto": "2ACD (156)",
+      "numeros": [
+        "000",
+        "291",
+        "577",
+        "963",
+        "980"
+      ]
+    },
+    {
+      "numero": 157,
+      "folio": "157",
+      "codigo": "2ACE",
+      "folioCompleto": "2ACE (157)",
+      "numeros": [
+        "217",
+        "229",
+        "301",
+        "479",
+        "693"
+      ]
+    },
+    {
+      "numero": 158,
+      "folio": "158",
+      "codigo": "2ACF",
+      "folioCompleto": "2ACF (158)",
+      "numeros": [
+        "484",
+        "543",
+        "783",
+        "792",
+        "970"
+      ]
+    },
+    {
+      "numero": 159,
+      "folio": "159",
+      "codigo": "2ACG",
+      "folioCompleto": "2ACG (159)",
+      "numeros": [
+        "059",
+        "087",
+        "412",
+        "769",
+        "785"
+      ]
+    },
+    {
+      "numero": 160,
+      "folio": "160",
+      "codigo": "2ACH",
+      "folioCompleto": "2ACH (160)",
+      "numeros": [
+        "032",
+        "189",
+        "323",
+        "475",
+        "505"
+      ]
+    },
+    {
+      "numero": 161,
+      "folio": "161",
+      "codigo": "2ACI",
+      "folioCompleto": "2ACI (161)",
+      "numeros": [
+        "421",
+        "773",
+        "786",
+        "801",
+        "968"
+      ]
+    },
+    {
+      "numero": 162,
+      "folio": "162",
+      "codigo": "2ACJ",
+      "folioCompleto": "2ACJ (162)",
+      "numeros": [
+        "072",
+        "529",
+        "649",
+        "832",
+        "860"
+      ]
+    },
+    {
+      "numero": 163,
+      "folio": "163",
+      "codigo": "2ACK",
+      "folioCompleto": "2ACK (163)",
+      "numeros": [
+        "190",
+        "286",
+        "470",
+        "722",
+        "877"
+      ]
+    },
+    {
+      "numero": 164,
+      "folio": "164",
+      "codigo": "2ACL",
+      "folioCompleto": "2ACL (164)",
+      "numeros": [
+        "392",
+        "522",
+        "568",
+        "706",
+        "727"
+      ]
+    },
+    {
+      "numero": 165,
+      "folio": "165",
+      "codigo": "2ACM",
+      "folioCompleto": "2ACM (165)",
+      "numeros": [
+        "134",
+        "442",
+        "695",
+        "778",
+        "812"
+      ]
+    },
+    {
+      "numero": 166,
+      "folio": "166",
+      "codigo": "2ACN",
+      "folioCompleto": "2ACN (166)",
+      "numeros": [
+        "298",
+        "511",
+        "633",
+        "818",
+        "886"
+      ]
+    },
+    {
+      "numero": 167,
+      "folio": "167",
+      "codigo": "2ACO",
+      "folioCompleto": "2ACO (167)",
+      "numeros": [
+        "198",
+        "469",
+        "681",
+        "694",
+        "984"
+      ]
+    },
+    {
+      "numero": 168,
+      "folio": "168",
+      "codigo": "2ACP",
+      "folioCompleto": "2ACP (168)",
+      "numeros": [
+        "172",
+        "202",
+        "418",
+        "464",
+        "961"
+      ]
+    },
+    {
+      "numero": 169,
+      "folio": "169",
+      "codigo": "2ACQ",
+      "folioCompleto": "2ACQ (169)",
+      "numeros": [
+        "405",
+        "447",
+        "504",
+        "967",
+        "971"
+      ]
+    },
+    {
+      "numero": 170,
+      "folio": "170",
+      "codigo": "2ACR",
+      "folioCompleto": "2ACR (170)",
+      "numeros": [
+        "289",
+        "462",
+        "670",
+        "816",
+        "858"
+      ]
+    },
+    {
+      "numero": 171,
+      "folio": "171",
+      "codigo": "2ACS",
+      "folioCompleto": "2ACS (171)",
+      "numeros": [
+        "098",
+        "141",
+        "567",
+        "698",
+        "965"
+      ]
+    },
+    {
+      "numero": 172,
+      "folio": "172",
+      "codigo": "2ACT",
+      "folioCompleto": "2ACT (172)",
+      "numeros": [
+        "621",
+        "641",
+        "753",
+        "800",
+        "830"
+      ]
+    },
+    {
+      "numero": 173,
+      "folio": "173",
+      "codigo": "2ACU",
+      "folioCompleto": "2ACU (173)",
+      "numeros": [
+        "193",
+        "307",
+        "375",
+        "747",
+        "912"
+      ]
+    },
+    {
+      "numero": 174,
+      "folio": "174",
+      "codigo": "2ACV",
+      "folioCompleto": "2ACV (174)",
+      "numeros": [
+        "067",
+        "391",
+        "564",
+        "829",
+        "905"
+      ]
+    },
+    {
+      "numero": 175,
+      "folio": "175",
+      "codigo": "2ACW",
+      "folioCompleto": "2ACW (175)",
+      "numeros": [
+        "231",
+        "283",
+        "330",
+        "782",
+        "859"
+      ]
+    },
+    {
+      "numero": 176,
+      "folio": "176",
+      "codigo": "2ACX",
+      "folioCompleto": "2ACX (176)",
+      "numeros": [
+        "232",
+        "348",
+        "467",
+        "585",
+        "854"
+      ]
+    },
+    {
+      "numero": 177,
+      "folio": "177",
+      "codigo": "2ACY",
+      "folioCompleto": "2ACY (177)",
+      "numeros": [
+        "179",
+        "667",
+        "803",
+        "838",
+        "884"
+      ]
+    },
+    {
+      "numero": 178,
+      "folio": "178",
+      "codigo": "2ACZ",
+      "folioCompleto": "2ACZ (178)",
+      "numeros": [
+        "033",
+        "410",
+        "691",
+        "894",
+        "895"
+      ]
+    },
+    {
+      "numero": 179,
+      "folio": "179",
+      "codigo": "2ADA",
+      "folioCompleto": "2ADA (179)",
+      "numeros": [
+        "651",
+        "666",
+        "719",
+        "737",
+        "925"
+      ]
+    },
+    {
+      "numero": 180,
+      "folio": "180",
+      "codigo": "2ADB",
+      "folioCompleto": "2ADB (180)",
+      "numeros": [
+        "148",
+        "281",
+        "288",
+        "381",
+        "701"
+      ]
+    },
+    {
+      "numero": 181,
+      "folio": "181",
+      "codigo": "2ADC",
+      "folioCompleto": "2ADC (181)",
+      "numeros": [
+        "057",
+        "136",
+        "271",
+        "723",
+        "991"
+      ]
+    },
+    {
+      "numero": 182,
+      "folio": "182",
+      "codigo": "2ADD",
+      "folioCompleto": "2ADD (182)",
+      "numeros": [
+        "241",
+        "344",
+        "718",
+        "926",
+        "956"
+      ]
+    },
+    {
+      "numero": 183,
+      "folio": "183",
+      "codigo": "2ADE",
+      "folioCompleto": "2ADE (183)",
+      "numeros": [
+        "368",
+        "461",
+        "471",
+        "674",
+        "710"
+      ]
+    },
+    {
+      "numero": 184,
+      "folio": "184",
+      "codigo": "2ADF",
+      "folioCompleto": "2ADF (184)",
+      "numeros": [
+        "090",
+        "435",
+        "637",
+        "784",
+        "831"
+      ]
+    },
+    {
+      "numero": 185,
+      "folio": "185",
+      "codigo": "2ADG",
+      "folioCompleto": "2ADG (185)",
+      "numeros": [
+        "155",
+        "160",
+        "167",
+        "251",
+        "738"
+      ]
+    },
+    {
+      "numero": 186,
+      "folio": "186",
+      "codigo": "2ADH",
+      "folioCompleto": "2ADH (186)",
+      "numeros": [
+        "459",
+        "557",
+        "561",
+        "572",
+        "891"
+      ]
+    },
+    {
+      "numero": 187,
+      "folio": "187",
+      "codigo": "2ADI",
+      "folioCompleto": "2ADI (187)",
+      "numeros": [
+        "094",
+        "354",
+        "771",
+        "976",
+        "995"
+      ]
+    },
+    {
+      "numero": 188,
+      "folio": "188",
+      "codigo": "2ADJ",
+      "folioCompleto": "2ADJ (188)",
+      "numeros": [
+        "099",
+        "194",
+        "660",
+        "793",
+        "921"
+      ]
+    },
+    {
+      "numero": 189,
+      "folio": "189",
+      "codigo": "2ADK",
+      "folioCompleto": "2ADK (189)",
+      "numeros": [
+        "140",
+        "242",
+        "328",
+        "395",
+        "642"
+      ]
+    },
+    {
+      "numero": 190,
+      "folio": "190",
+      "codigo": "2ADL",
+      "folioCompleto": "2ADL (190)",
+      "numeros": [
+        "035",
+        "183",
+        "458",
+        "797",
+        "911"
+      ]
+    },
+    {
+      "numero": 191,
+      "folio": "191",
+      "codigo": "2ADM",
+      "folioCompleto": "2ADM (191)",
+      "numeros": [
+        "272",
+        "419",
+        "507",
+        "655",
+        "952"
+      ]
+    },
+    {
+      "numero": 192,
+      "folio": "192",
+      "codigo": "2ADN",
+      "folioCompleto": "2ADN (192)",
+      "numeros": [
+        "039",
+        "124",
+        "173",
+        "501",
+        "587"
+      ]
+    },
+    {
+      "numero": 193,
+      "folio": "193",
+      "codigo": "2ADO",
+      "folioCompleto": "2ADO (193)",
+      "numeros": [
+        "518",
+        "611",
+        "659",
+        "791",
+        "981"
+      ]
+    },
+    {
+      "numero": 194,
+      "folio": "194",
+      "codigo": "2ADP",
+      "folioCompleto": "2ADP (194)",
+      "numeros": [
+        "055",
+        "336",
+        "441",
+        "486",
+        "591"
+      ]
+    },
+    {
+      "numero": 195,
+      "folio": "195",
+      "codigo": "2ADQ",
+      "folioCompleto": "2ADQ (195)",
+      "numeros": [
+        "151",
+        "398",
+        "777",
+        "878",
+        "938"
+      ]
+    },
+    {
+      "numero": 196,
+      "folio": "196",
+      "codigo": "2ADR",
+      "folioCompleto": "2ADR (196)",
+      "numeros": [
+        "025",
+        "165",
+        "175",
+        "203",
+        "688"
+      ]
+    },
+    {
+      "numero": 197,
+      "folio": "197",
+      "codigo": "2ADS",
+      "folioCompleto": "2ADS (197)",
+      "numeros": [
+        "191",
+        "327",
+        "489",
+        "584",
+        "602"
+      ]
+    },
+    {
+      "numero": 198,
+      "folio": "198",
+      "codigo": "2ADT",
+      "folioCompleto": "2ADT (198)",
+      "numeros": [
+        "153",
+        "276",
+        "509",
+        "595",
+        "624"
+      ]
+    },
+    {
+      "numero": 199,
+      "folio": "199",
+      "codigo": "2ADU",
+      "folioCompleto": "2ADU (199)",
+      "numeros": [
+        "164",
+        "224",
+        "409",
+        "689",
+        "857"
+      ]
+    },
+    {
+      "numero": 200,
+      "folio": "200",
+      "codigo": "2ADV",
+      "folioCompleto": "2ADV (200)",
+      "numeros": [
+        "004",
+        "006",
+        "346",
+        "417",
+        "716"
+      ]
+    }
+  ]
+}

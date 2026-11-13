@@ -20,6 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               </Link>
               <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
                 <Link href="/boletos">Boletos</Link>
+                <Link href="/numeros">Números</Link>
                 <Link href="/condiciones">Bases y Condiciones</Link>
               </div>
             </nav>
