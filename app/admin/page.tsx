@@ -77,6 +77,24 @@ export default async function Admin() {
 
         <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
           <Link
+            href="/como-se-elige-al-ganador"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              background: '#242b1a',
+              color: '#ffd21a',
+              border: '1px solid #5a4b16',
+              borderRadius: 10,
+              padding: '11px 18px',
+              fontSize: 13,
+              fontWeight: 800,
+              textDecoration: 'none',
+              transition: 'background 0.15s ease',
+            }}
+          >
+            🎯 Explicar al Cliente (Simulador)
+          </Link>
+          <Link
             href="/boletos"
             style={{
               display: 'inline-flex',

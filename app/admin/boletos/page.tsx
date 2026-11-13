@@ -175,6 +175,13 @@ export default function AdminBoletosPage() {
           >
             + Vender Boleto(s)
           </button>
+          <Link
+            href="/como-se-elige-al-ganador"
+            className="btn btn-quiet"
+            style={{ padding: '10px 16px', fontSize: 13, textDecoration: 'none', color: '#ffd21a', borderColor: '#5a4b16' }}
+          >
+            🎯 Simulador para Clientes
+          </Link>
           <a
             href="/boletos-emision-oficial.csv"
             download
