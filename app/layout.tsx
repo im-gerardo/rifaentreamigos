@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { ClientProviders } from '@/components/client-providers';
+import { NavHeader } from '@/components/nav-header';
 import './globals.css';
 
 const siteUrl = 'https://rifaentreamigos.ogba.space';
@@ -39,17 +39,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <ClientProviders>
           <div className="wrap">
-            <nav className="nav" aria-label="Navegación principal">
-              <Link href="/" className="brand">
-                RIFA <span>ENTRE AMIGOS</span>
-              </Link>
-              <div className="navLinks">
-                <Link href="/boletos">Boletos</Link>
-                <Link href="/numeros">Números</Link>
-                <Link href="/como-se-elige-al-ganador">¿Cómo se Gana?</Link>
-                <Link href="/condiciones">Bases y Condiciones</Link>
-              </div>
-            </nav>
+            <NavHeader />
             {children}
           </div>
         </ClientProviders>

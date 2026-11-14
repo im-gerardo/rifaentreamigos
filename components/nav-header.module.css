@@ -1,0 +1,257 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid #343b3c;
+  position: relative;
+  z-index: 50;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: #fff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand span {
+  color: var(--yellow, #ffd21a);
+  margin-left: 4px;
+}
+
+/* Enlaces en escritorio */
+.desktopLinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.desktopLink {
+  color: var(--muted, #aeb7b4);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 6px;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+.desktopLink:hover {
+  color: #ffffff;
+}
+
+.activeLink {
+  color: var(--yellow, #ffd21a) !important;
+}
+
+/* Botón Burger */
+.burgerBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: #15191b;
+  border: 1px solid #283335;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.burgerBtn:hover {
+  background: #1c2225;
+  border-color: #ffd21a;
+}
+
+.burgerIcon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
+
+.lineOpen1 {
+  transform: translateY(7px) rotate(45deg);
+  background-color: var(--yellow, #ffd21a);
+}
+
+.lineOpen2 {
+  opacity: 0;
+}
+
+.lineOpen3 {
+  transform: translateY(-7px) rotate(-45deg);
+  background-color: var(--yellow, #ffd21a);
+}
+
+/* Overlay de fondo en móvil */
+.backdrop {
+  display: none;
+}
+
+/* Menú colapsable / Drawer en Móvil */
+.mobileDrawer {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktopLinks {
+    display: none;
+  }
+
+  .burgerBtn {
+    display: flex;
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 60;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .backdropOpen {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobileDrawer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(82vw, 320px);
+    background: #111516;
+    border-left: 1px solid #263032;
+    padding: 24px 20px 32px;
+    z-index: 70;
+    transform: translateX(100%);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: -12px 0 36px rgba(0, 0, 0, 0.75);
+    overflow-y: auto;
+  }
+
+  .mobileDrawerOpen {
+    transform: translateX(0);
+  }
+
+  .drawerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #232c2d;
+    margin-bottom: 20px;
+  }
+
+  .drawerCloseBtn {
+    background: #181f21;
+    border: 1px solid #2c383b;
+    border-radius: 8px;
+    color: #aeb7b4;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.15s ease;
+  }
+
+  .drawerCloseBtn:hover {
+    color: #fff;
+    border-color: #ffd21a;
+  }
+
+  .mobileNavList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobileNavLink {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    color: #d1dad8;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    background: #161b1d;
+    border: 1px solid #222a2c;
+    transition: all 0.15s ease;
+    min-height: 48px;
+  }
+
+  .mobileNavLink:hover,
+  .mobileNavLink:active {
+    background: #1e2628;
+    color: #ffffff;
+    border-color: #384649;
+  }
+
+  .mobileNavLinkActive {
+    background: rgba(255, 210, 26, 0.12) !important;
+    border-color: rgba(255, 210, 26, 0.4) !important;
+    color: #ffd21a !important;
+  }
+
+  .linkIcon {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+  }
+
+  .drawerFooter {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid #232c2d;
+  }
+
+  .prizePill {
+    background: #171d1f;
+    border: 1px solid #2a3639;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 12px;
+    color: #9cb0ac;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .prizePill strong {
+    color: #ffd21a;
+    font-size: 13px;
+  }
+}
