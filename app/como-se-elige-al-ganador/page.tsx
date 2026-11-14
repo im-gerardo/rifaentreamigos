@@ -216,37 +216,37 @@ export default function ComoSeEligeAlGanadorPage() {
           <div className={styles.digitsDisplay} aria-label="Premio Mayor 34827">
             {/* Cifra 3 */}
             <div className={`${styles.digitBox} ${demoStep >= 2 ? styles.digitDimmed : ''}`}>
-              <span>3</span>
-              <span className={styles.digitSub} style={{ color: '#8fa09d' }}>Serie/Prefijo</span>
+              <span className={styles.digitChar}>3</span>
+              <span className={styles.digitSub} style={{ color: '#8fa09d' }}>Prefijo</span>
             </div>
 
             {/* Cifra 4 */}
             <div className={`${styles.digitBox} ${demoStep >= 2 ? styles.digitDimmed : ''}`}>
-              <span>4</span>
+              <span className={styles.digitChar}>4</span>
               <span className={styles.digitSub} style={{ color: '#8fa09d' }}>Prefijo</span>
             </div>
 
             {/* Cifra 8 */}
             <div className={`${styles.digitBox} ${demoStep >= 1 ? styles.digitWinnerHighlight : ''}`}>
-              <span>8</span>
+              <span className={styles.digitChar}>8</span>
               <span className={`${styles.digitSub} ${demoStep >= 1 ? styles.pillChanceWinning : ''}`}>
-                {demoStep >= 1 ? 'Ganador' : 'Cifra 3'}
+                {demoStep >= 1 ? '1ª Gan.' : 'Cifra 3'}
               </span>
             </div>
 
             {/* Cifra 2 */}
             <div className={`${styles.digitBox} ${demoStep >= 1 ? styles.digitWinnerHighlight : ''}`}>
-              <span>2</span>
+              <span className={styles.digitChar}>2</span>
               <span className={`${styles.digitSub} ${demoStep >= 1 ? styles.pillChanceWinning : ''}`}>
-                {demoStep >= 1 ? 'Ganador' : 'Cifra 4'}
+                {demoStep >= 1 ? '2ª Gan.' : 'Cifra 4'}
               </span>
             </div>
 
             {/* Cifra 7 */}
             <div className={`${styles.digitBox} ${demoStep >= 1 ? styles.digitWinnerHighlight : ''}`}>
-              <span>7</span>
+              <span className={styles.digitChar}>7</span>
               <span className={`${styles.digitSub} ${demoStep >= 1 ? styles.pillChanceWinning : ''}`}>
-                {demoStep >= 1 ? 'Ganador' : 'Cifra 5'}
+                {demoStep >= 1 ? '3ª Gan.' : 'Cifra 5'}
               </span>
             </div>
           </div>
@@ -409,24 +409,24 @@ export default function ComoSeEligeAlGanadorPage() {
               {/* Animación visual de los 5 dígitos */}
               <div className={styles.digitsDisplay} style={{ margin: '10px 0 20px' }}>
                 <div className={`${styles.digitBox} ${styles.digitDimmed}`}>
-                  <span>{simResult.firstTwoDigits?.[0]}</span>
+                  <span className={styles.digitChar}>{simResult.firstTwoDigits?.[0]}</span>
                   <span className={styles.digitSub} style={{ color: '#8fa09d' }}>Prefijo</span>
                 </div>
                 <div className={`${styles.digitBox} ${styles.digitDimmed}`}>
-                  <span>{simResult.firstTwoDigits?.[1]}</span>
+                  <span className={styles.digitChar}>{simResult.firstTwoDigits?.[1]}</span>
                   <span className={styles.digitSub} style={{ color: '#8fa09d' }}>Prefijo</span>
                 </div>
                 <div className={`${styles.digitBox} ${styles.digitWinnerHighlight}`}>
-                  <span>{simResult.lastThreeDigits?.[0]}</span>
-                  <span className={`${styles.digitSub} ${styles.pillChanceWinning}`}>1ª Ganadora</span>
+                  <span className={styles.digitChar}>{simResult.lastThreeDigits?.[0]}</span>
+                  <span className={`${styles.digitSub} ${styles.pillChanceWinning}`}>1ª Gan.</span>
                 </div>
                 <div className={`${styles.digitBox} ${styles.digitWinnerHighlight}`}>
-                  <span>{simResult.lastThreeDigits?.[1]}</span>
-                  <span className={`${styles.digitSub} ${styles.pillChanceWinning}`}>2ª Ganadora</span>
+                  <span className={styles.digitChar}>{simResult.lastThreeDigits?.[1]}</span>
+                  <span className={`${styles.digitSub} ${styles.pillChanceWinning}`}>2ª Gan.</span>
                 </div>
                 <div className={`${styles.digitBox} ${styles.digitWinnerHighlight}`}>
-                  <span>{simResult.lastThreeDigits?.[2]}</span>
-                  <span className={`${styles.digitSub} ${styles.pillChanceWinning}`}>3ª Ganadora</span>
+                  <span className={styles.digitChar}>{simResult.lastThreeDigits?.[2]}</span>
+                  <span className={`${styles.digitSub} ${styles.pillChanceWinning}`}>3ª Gan.</span>
                 </div>
               </div>
 
@@ -577,16 +577,20 @@ export default function ComoSeEligeAlGanadorPage() {
 
         <div
           style={{
-            background: 'rgba(255, 210, 26, 0.05)',
-            border: '1px solid rgba(255, 210, 26, 0.2)',
-            borderRadius: 10,
-            padding: '16px 20px',
-            fontSize: 13,
-            color: '#c9d4d2',
-            lineHeight: 1.6,
+            background: 'rgba(255, 210, 26, 0.06)',
+            border: '1px solid rgba(255, 210, 26, 0.25)',
+            borderRadius: 12,
+            padding: '18px 20px',
+            fontSize: 14.5,
+            color: '#dce5e3',
+            lineHeight: 1.65,
+            marginTop: 20,
           }}
         >
-          <strong style={{ color: '#ffd21a' }}>Regla de Venta Total y Liquidación:</strong> Conforme a las bases aprobadas, la rifa se celebrará únicamente habiendo vendido los 200 boletos físicos y estando liquidados al 100% 24 horas antes del sorteo. En caso de no completarse la venta total antes del 11 de diciembre de 2026, el sorteo se pospondrá a la fecha oficial inmediata posterior de la Lotería Nacional hasta completar el 100%.
+          <strong style={{ color: '#ffd21a', display: 'block', marginBottom: 6, fontSize: 15 }}>
+            Regla de Venta Total y Liquidación:
+          </strong>
+          Conforme a las bases aprobadas, la rifa se celebrará únicamente habiendo vendido los 200 boletos físicos y estando liquidados al 100% 24 horas antes del sorteo. En caso de no completarse la venta total antes del 11 de diciembre de 2026, el sorteo se pospondrá a la fecha oficial inmediata posterior de la Lotería Nacional hasta completar el 100%.
         </div>
       </section>
     </main>
