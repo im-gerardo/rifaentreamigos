@@ -242,16 +242,16 @@
     background: #171d1f;
     border: 1px solid #2a3639;
     border-radius: 10px;
-    padding: 12px 14px;
-    font-size: 12px;
+    padding: 14px 16px;
+    font-size: 13px;
     color: #9cb0ac;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
   }
 
   .prizePill strong {
     color: #ffd21a;
-    font-size: 13px;
+    font-size: 14px;
   }
 }

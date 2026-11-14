@@ -178,7 +178,7 @@ p {
 
 .route-label {
   color: var(--yellow);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -251,7 +251,7 @@ p {
 }
 
 .machine-spec span {
-  font-size: 11px;
+  font-size: 13px;
   color: #f1df90;
   text-transform: uppercase;
   letter-spacing: 0.12em;

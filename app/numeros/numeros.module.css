@@ -18,16 +18,16 @@
   background: #fac802;
   color: #000;
   font-weight: 800;
-  font-size: 11px;
-  padding: 4px 10px;
+  font-size: 13px;
+  padding: 5px 12px;
   border-radius: 6px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .tagSub {
-  color: #8d9896;
-  font-size: 13px;
+  color: #a0adaa;
+  font-size: 14px;
 }
 
 .title {
@@ -82,9 +82,9 @@
 }
 
 .quickFiltersLabel {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
-  color: #8d9896;
+  color: #a0adaa;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-right: 4px;
@@ -92,14 +92,15 @@
 
 .quickFilterBtn {
   background: #17202a;
-  color: #8fa1b3;
+  color: #c9d1d9;
   border: 1px solid #273544;
   border-radius: 6px;
-  padding: 4px 10px;
-  font-size: 11px;
+  padding: 6px 12px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
+  min-height: 36px;
 }
 
 .quickFilterBtn:hover {
@@ -118,12 +119,12 @@
   color: #c9d1d9;
   border: 1px solid #273544;
   border-radius: 6px;
-  padding: 8px 12px;
-  font-size: 12px;
+  padding: 8px 14px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
-  min-height: 40px;
+  min-height: 42px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -199,9 +200,9 @@
 
   .centenaBtn {
     flex-shrink: 0;
-    padding: 6px 10px;
-    font-size: 11px;
-    min-height: 36px;
+    padding: 8px 12px;
+    font-size: 13px;
+    min-height: 40px;
   }
 
   .statusBar {

@@ -76,20 +76,20 @@ export default function ComprobantePage({ params }: { params: Promise<{ folio: s
         }}
       >
         <div style={{ textAlign: 'center', borderBottom: '1px solid #232829', paddingBottom: 16, marginBottom: 20 }}>
-          <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#ffd21a', fontWeight: 800 }}>
+          <div style={{ fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#ffd21a', fontWeight: 800 }}>
             Rifa Entre Amigos 2026
           </div>
           <h1 style={{ fontSize: 24, fontWeight: 900, margin: '6px 0', color: '#fff', letterSpacing: '-0.02em' }}>
             Comprobante de Boleto
           </h1>
-          <div style={{ fontSize: 13, color: '#8d9896' }}>
-            Premio: <strong style={{ color: '#d0d7d5' }}>Bajaj Pulsar N250 (Seminueva, mod. 2026)</strong>
+          <div style={{ fontSize: 14, color: '#a0adaa' }}>
+            Premio: <strong style={{ color: '#ffffff' }}>Bajaj Pulsar N250 (Seminueva, mod. 2026)</strong>
           </div>
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
           <div>
-            <span style={{ fontSize: 11, color: '#7c8886', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
+            <span style={{ fontSize: 13, color: '#a0adaa', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
               Folio de Boleto
             </span>
             <div style={{ fontSize: 30, fontWeight: 900, color: '#ffd21a', letterSpacing: '0.04em', fontFamily: 'monospace' }}>
@@ -102,7 +102,7 @@ export default function ComprobantePage({ params }: { params: Promise<{ folio: s
                 display: 'inline-block',
                 padding: '6px 12px',
                 borderRadius: 9999,
-                fontSize: 11,
+                fontSize: 13,
                 fontWeight: 800,
                 letterSpacing: '0.04em',
                 textTransform: 'uppercase',
@@ -118,7 +118,7 @@ export default function ComprobantePage({ params }: { params: Promise<{ folio: s
 
         {/* Zona de números participantes */}
         <div style={{ marginBottom: 20, background: '#191f21', border: '1px solid #283436', padding: 16, borderRadius: 12 }}>
-          <div style={{ fontSize: 11, color: '#ffd21a', marginBottom: 8, textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.04em' }}>
+          <div style={{ fontSize: 13, color: '#ffd21a', marginBottom: 8, textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.04em' }}>
             Tus 5 Números Participantes en el Sorteo:
           </div>
           <div style={{ display: 'flex', gap: 6, justifyContent: 'space-between', flexWrap: 'wrap', marginBottom: 8 }}>

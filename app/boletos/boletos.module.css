@@ -150,7 +150,7 @@
 }
 
 .badge {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -183,10 +183,10 @@
 }
 
 .numbersLabel {
-  font-size: 11px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #8da1ab;
+  color: #a0b2bc;
   margin-bottom: 10px;
   font-weight: 700;
 }
@@ -300,8 +300,11 @@
 
   .filterChip {
     flex-shrink: 0;
-    padding: 6px 12px;
-    font-size: 12px;
+    padding: 8px 14px;
+    font-size: 13px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
   }
 
   .ticketGrid {
@@ -316,12 +319,12 @@
   }
 
   .numbersRow {
-    gap: 4px;
+    gap: 6px;
   }
 
   .numberPill {
-    font-size: 13px;
-    padding: 6px 2px;
+    font-size: 14px;
+    padding: 8px 4px;
   }
 
   .actionButton {

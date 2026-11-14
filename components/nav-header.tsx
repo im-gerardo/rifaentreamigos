@@ -134,7 +134,7 @@ export function NavHeader() {
           <div className={styles.prizePill}>
             <span>Premio Oficial:</span>
             <strong>Bajaj Pulsar N250 mod. 2026</strong>
-            <span style={{ fontSize: 11, color: '#7c8e8b', marginTop: 4 }}>
+            <span style={{ fontSize: 13, color: '#8da29e', marginTop: 4 }}>
               Sorteo Lotería Nacional · 12 Dic 2026
             </span>
           </div>

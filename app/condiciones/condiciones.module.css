@@ -22,10 +22,10 @@
 }
 
 .badgeText {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: #ffd21a;
 }
 
@@ -97,6 +97,7 @@
   }
 
   .content {
-    font-size: 13.5px;
+    font-size: 15px;
+    line-height: 1.65;
   }
 }
